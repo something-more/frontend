@@ -14,36 +14,14 @@ export default () => {
         <li className="active"><a href="/">Home</a></li>
         <li><a href="#">About</a></li>
         <li className="has-children">
-          <a href="#">Portfolio</a>
+          <a href="#">Editors</a>
           <ul>
-            <li><a href="#">Portfolio Child Link 1</a></li>
-            <li><a href="#">Portfolio Child Link 2</a></li>
-            <li className="has-children"><a href="#">Portfolio Child w/Child Trigger</a>
-              <ul>
-                <li><a href="#">Portfolio Grand Child Link 1</a></li>
-                <li><a href="#">Portfolio Grand Child Link 2</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Portfolio Child Link 3</a></li>
-            <li><a href="#">Portfolio Child Link 4</a></li>
+            <li><a href="#">Kim Hojang</a></li>
+            <li><a href="#">Han Siwon</a></li>
+            <li><a href="#">Seung Hyung Soo</a></li>
           </ul>
         </li>
-        <li className="has-children"><a href="#">Services</a>
-          <ul>
-            <li><a href="#">Services Child Link 1</a></li>
-            <li><a href="#">Services Child Link 2</a></li>
-            <li className="has-children"><a href="#">Services Child w/Child Trigger</a>
-              <ul>
-                <li><a href="#">Services Grand Child Link 1</a></li>
-                <li><a href="#">Services Grand Child Link 2</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Services Child Link 3</a></li>
-            <li><a href="#">Services Child Link 4</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Bootstrap</a></li>
+        <li><a href="#">Stories</a></li>
       </ul>
     </nav>
   </div>
