@@ -17,6 +17,7 @@ import './static/css/soft-gray.css';
 // Components
 import NavigationColumn from './components/navigation_column';
 import LogoColumn from './components/logo_column';
+import FooterColumn from './components/footer_column';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
       <div className="App">
         <NavigationColumn/>
         <LogoColumn/>
+        <FooterColumn/>
       </div>
     );
   }
