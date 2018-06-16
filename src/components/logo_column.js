@@ -2,7 +2,8 @@ import React from 'react';
 import logo from '../static/images/text_logo.svg';
 
 export default () => {
-  return (<div className="logo-col">
+  return (
+  <div className="logo-col" style={{"height": "100vh"}}>
     <a href="#" className="toggle-menu">
       <i className="fa fa-bars"/></a>
     <div className="logo-wrapper">
