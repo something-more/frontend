@@ -345,7 +345,7 @@ hr {border-color:#ddd;}
 
 	.footer-col [class*="footer-content-"] {
 	    float: left;
-	    width: 25%;
+	    width: 50%;
 	    clear: none;
 	}
 

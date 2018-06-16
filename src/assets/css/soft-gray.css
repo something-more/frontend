@@ -6,33 +6,33 @@ html, body { background: #fff; color: #333; }
 /*  column borders // hr.divider & hr / .search-open .search-panel style
  -------------------------------------------------------------------------------------------- */
 .logo-col, .faux-logo-col,
-.nav-col, .faux-nav-col, 
+.nav-col, .faux-nav-col,
 .content-col, .faux-content-col {
     border-right: 1px solid #ccc;
 }
 
 /* --- remove right border on content-col and .faux-content-col when footer is below --- */
-@media (max-width:1399px) { 
+@media (max-width:1399px) {
 	.content-col, .faux-content-col { border-right: 0px }
 }
 /* --- add a LEFT border on .content-col when the menu is open on small viewports --- */
-@media (max-width:1019px) { 
+@media (max-width:1019px) {
 	.menu-open .content-col { border-left: 1px solid #ccc }
 }
 
 /*-------------- footer-col has a border top until 1399px -------------------------------------*/
-@media (max-width:1399px) { 
+@media (max-width:1399px) {
 	.footer-col { border-top: 1px solid #ccc }
 }
 
 /*-------------- .footer-col and footer-content-* borders from 600px to 1399px -------------------------------------*/
-@media (min-width:600px) and (max-width:900px) { 
+@media (min-width:600px) and (max-width:900px) {
 	.footer-content-1, .footer-content-3 { border-right: 1px solid #ccc }
 	[class*="footer-content-"] { border-bottom: 1px solid #ccc }
 }
 
 /*-------------- .footer-col and footer-content-* borders from 901px to 1399px -------------------------------------*/
-@media (min-width:901px) and (max-width:1399px) { 
+@media (min-width:901px) and (max-width:1399px) {
 	.footer-content-1, .footer-content-2, .footer-content-3 { border-right: 1px solid #ccc }
 	[class*="footer-content-"] { border-bottom: 1px solid #ccc }
 }
@@ -52,7 +52,7 @@ hr {border-color:#ddd;}
 
 
 /* search-open .search-panel style */
-@media (min-width:1020px) { 
+@media (min-width:1020px) {
 	.search-open .search-panel { background: #fff; border: 1px solid #ccc; }
 }
 
@@ -66,7 +66,7 @@ hr {border-color:#ddd;}
 
 .content-col, .faux-content-col { background: #fff }
 
-.footer-col, .faux-footer-col { background: #f7f7f7 }
+.footer-col, .faux-footer-col { background: #fff }
 
 /*  .logo-wrapper // .search-wrapper // .social-wrapper  */
 .logo-wrapper { background: transparent }
@@ -78,16 +78,16 @@ hr {border-color:#ddd;}
 
 /* footer-content-* backgrounds === change to different background for every other effect  */
 
-@media (max-width:599px) { 
-	.footer-content-2, .footer-content-4 { background: #fff }
+@media (max-width:599px) {
+	.footer-content-2, .footer-content-4 { background: #f7f7f7 }
 }
 
-@media (min-width:600px) and (max-width:900px) { 
-	.footer-content-2, .footer-content-3 { background: #fff }
+@media (min-width:600px) and (max-width:900px) {
+	.footer-content-2, .footer-content-3 { background: #f7f7f7 }
 }
 
-@media (min-width:901px) { 
-	.footer-content-2, .footer-content-4 { background: #fff }
+@media (min-width:901px) {
+	.footer-content-2, .footer-content-4 { background: #f7f7f7 }
 }
 
 
@@ -107,7 +107,7 @@ figcaption a:not(:hover), .text-underline:not(:hover) { color: #333 }
 .primary-nav li a { border-bottom: 1px solid #ccc }
 
 /*  desktop navigation   */
-@media (min-width:1020px) { 
+@media (min-width:1020px) {
 	.primary-nav > li > a { border-bottom: 1px solid #ccc }
 
 	.primary-nav li li a { border-bottom: 0px }
@@ -123,7 +123,7 @@ figcaption a:not(:hover), .text-underline:not(:hover) { color: #333 }
 
 .user-wrapper a { border-bottom: 1px solid #ccc }
 
-@media (min-width:1020px) { 
+@media (min-width:1020px) {
 	.user-wrapper a { border-bottom: 0px }
 
 	.user-wrapper .v-divider { border-right: 1px solid #ccc }

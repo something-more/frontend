@@ -79,15 +79,15 @@ hr {border-color:#ddd;}
 /* footer-content-* backgrounds === change to different background for every other effect  */
 
 @media (max-width:599px) {
-	.footer-content-2, .footer-content-4 { background: #fff }
+	.footer-content-2, .footer-content-4 { background: #f7f7f7 }
 }
 
 @media (min-width:600px) and (max-width:900px) {
-	.footer-content-2, .footer-content-3 { background: #fff }
+	.footer-content-2, .footer-content-3 { background: #f7f7f7 }
 }
 
 @media (min-width:901px) {
-	.footer-content-2, .footer-content-4 { background: #fff }
+	.footer-content-2, .footer-content-4 { background: #f7f7f7 }
 }
 
 
