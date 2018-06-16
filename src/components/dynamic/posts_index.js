@@ -5,6 +5,7 @@ class PostsIndex extends Component {
     return (
     <div className="content-col" id="page">
       <div className="inner-content">
+        {/*carousel*/}
         <div className="multi-slider owl-carousel clearfix">
           <figure className="item"><img data-src="assets/demo-images/113569013.jpg"
           src="/"
@@ -68,6 +69,7 @@ class PostsIndex extends Component {
             </figcaption>
           </figure>
         </div>
+        {/*banner*/}
         <div className="banner">
           <h1 className="display-text">
             <span className="line-1">240<em>px</em> & Up</span>
@@ -75,10 +77,14 @@ class PostsIndex extends Component {
             <span className="line-3">for Bootstrap 3x Framework</span>
           </h1>
         </div>
-        <h2 className="h1 font-weight-thin">Wrap & Roll sideWaze</h2>
-        <p className="lead">
-          <strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget.
-        </p>
+        {/*text description*/}
+        <div>
+          <h2 className="h1 font-weight-thin">Wrap & Roll sideWaze</h2>
+          <p className="lead">
+            <strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget.
+          </p>
+        </div>
+        {/*2-row description*/}
         <div className="row">
           <div className="col-ms-6 col-sm-6">
             <p>Pellentesque habitant morbi tristiquesenectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a
@@ -91,6 +97,7 @@ class PostsIndex extends Component {
           </div>
         </div>
         <hr className="vertical-spacer"/>
+        {/*3-row description*/}
         <div className="row">
           <div className="col-ms-4 col-sm-4">
             <i className="fa fa-refresh feature-icon"/>
@@ -116,10 +123,11 @@ class PostsIndex extends Component {
           </div>
         </div>
         <hr className="vertical-spacer"/>
+        {/*last description*/}
         <div className="row">
           <div className="col-ms-5 col-sm-4 col-lg-5">
             <figure>
-              <img src="assets/demo-images/1383113606.jpg" className="img-responsive img-custom" alt=""/>
+              <img src="" className="img-responsive img-custom" alt=""/>
               <figcaption className="small">credit:
                 <a href="http://www.flickr.com/photos/asthmatic/1383113606/">asthmatic</a>
                 via
