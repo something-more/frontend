@@ -3,26 +3,26 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // Bootstrap 3.2.0
 import 'bootstrap/dist/js/bootstrap.min';
-import './static/css/bootstrap.min.css';
+import './assets/css/bootstrap.min.css';
 
 // Third-Party CSS
-import './static/css/bootstrap-modal.css';
-import './static/css/owl.carousel.css';
+import './assets/css/bootstrap-modal.css';
+import './assets/css/owl.carousel.css';
 
 // 제작자 자체 CSS
-import './static/css/sidewaze_base.css';
-import './static/css/sidewaze_columns.css';
-import './static/css/sidewaze_base_color.css';
-import './static/css/soft-gray.css';
+import './assets/css/sidewaze_base.css';
+import './assets/css/sidewaze_columns.css';
+import './assets/css/sidewaze_base_color.css';
+import './assets/css/soft-gray.css';
 
 // Static Components
-import NavigationColumn from './components/navigation_column';
-import LogoColumn from './components/logo_column';
-import FooterColumn from './components/footer_column';
-import ToTop from './components/to_top';
+import NavigationColumn from './components/static/navigation_column';
+import LogoColumn from './components/static/logo_column';
+import FooterColumn from './components/static/footer_column';
+import ToTop from './components/static/to_top';
 
 // Dynamic Components
-import PostsIndex from './components/posts_index';
+import PostsIndex from './components/dynamic/posts_index';
 
 class App extends Component {
   render() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../static/images/text_logo.svg';
+import logo from '../../assets/images/text_logo.svg';
 
 export default () => {
   return (

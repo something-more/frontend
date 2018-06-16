@@ -239,7 +239,7 @@
 				.css('z-index', getzIndex('modal', this.getOpenModals().length))
 				.appendTo(this.$element);
 
-			if (modal && modal.options.backdrop != 'static') {
+			if (modal && modal.options.backdrop != 'assets') {
 				$container.on('click.modal', targetIsSelf(function (e) {
 					modal.hide();
 				}));
