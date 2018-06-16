@@ -16,7 +16,6 @@ import './static/css/sidewaze_base_color.css';
 import './static/css/soft-gray.css';
 
 // Static Components
-import NavSkip from './components/nav_skip';
 import NavigationColumn from './components/navigation_column';
 import LogoColumn from './components/logo_column';
 import FooterColumn from './components/footer_column';
@@ -29,7 +28,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavSkip/>
         <NavigationColumn/>
         <LogoColumn/>
         <BrowserRouter>
