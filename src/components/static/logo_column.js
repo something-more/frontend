@@ -2,8 +2,15 @@ import React from 'react';
 import logo from '../../assets/images/text_logo.svg';
 
 export default () => {
+  const cssStyle = {
+    'height': '100vh',
+    'float': 'left',
+    'position': 'fixed',
+    'top': 0
+  };
+
   return (
-  <div className="logo-col" style={{"height": "100vh"}}>
+  <div className="logo-col" style={cssStyle}>
     <a href="#" className="toggle-menu">
       <i className="fa fa-bars"/></a>
     <div className="logo-wrapper">
