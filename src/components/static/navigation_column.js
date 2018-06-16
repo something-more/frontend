@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import AuthorDetail from '../dynamic/author_detail';
 
 export default () => {
   return (
@@ -21,9 +23,9 @@ export default () => {
           <a href="#">About</a>
         </li>
         <li className="has-children">
-          <a href="#">Editors</a>
+          <a>Editors</a>
           <ul>
-            <li><a href="#">Kim Hojang</a></li>
+            <li><Link to="/authors">Kim Hojang</Link></li>
             <li><a href="#">Han Siwon</a></li>
             <li><a href="#">Seung Hyung Soo</a></li>
           </ul>

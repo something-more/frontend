@@ -23,21 +23,23 @@ import ToTop from './components/static/to_top';
 
 // Dynamic Components
 import PostsIndex from './components/dynamic/posts_index';
+import AuthorDetail from './components/dynamic/author_detail';
 
 class App extends Component {
   render() {
     return (
+    <BrowserRouter>
       <div className="App">
         <NavigationColumn/>
         <LogoColumn/>
-        <BrowserRouter>
           <Switch>
-            <Route to="/" component={PostsIndex}/>
+            <Route path="/authors" component={AuthorDetail}/>
+            <Route path="/" component={PostsIndex}/>
           </Switch>
-        </BrowserRouter>
         <FooterColumn/>
         <ToTop/>
       </div>
+    </BrowserRouter>
     );
   }
 }
