@@ -8,8 +8,8 @@
  * Boostrap 3 patch for for bootstrap-modal. Include BEFORE bootstrap-modal.css!
  */
 
-body.modal-open, 
-.modal-open .navbar-fixed-top, 
+body.modal-open,
+.modal-open .navbar-fixed-top,
 .modal-open .navbar-fixed-bottom {
   margin-right: 0;
 }
@@ -85,14 +85,14 @@ body.modal-open,
 
 .modal.fade {
 	top: -100%;
-	-webkit-transition: opacity 0.3s linear, top 0.3s ease-out, bottom 0.3s ease-out, margin-top 0.3s ease-out;	
+	-webkit-transition: opacity 0.3s linear, top 0.3s ease-out, bottom 0.3s ease-out, margin-top 0.3s ease-out;
 	   -moz-transition: opacity 0.3s linear, top 0.3s ease-out, bottom 0.3s ease-out, margin-top 0.3s ease-out;
 	     -o-transition: opacity 0.3s linear, top 0.3s ease-out, bottom 0.3s ease-out, margin-top 0.3s ease-out;
 	        transition: opacity 0.3s linear, top 0.3s ease-out, bottom 0.3s ease-out, margin-top 0.3s ease-out;
 }
 
 .modal.fade.in {
-	top: 50%;
+	top: 25%;
 }
 
 .modal-body {
@@ -120,7 +120,7 @@ body.modal-open,
 	z-index: 940;
 }
 
-.modal-backdrop, 
+.modal-backdrop,
 .modal-backdrop.fade.in{
 	opacity: 0.8;
 	filter: alpha(opacity=80);
@@ -161,7 +161,7 @@ body.modal-open,
 }
 
 @media (max-width: 979px) {
-	.modal, 
+	.modal,
 	.modal.container,
 	.modal.modal-overflow 	{
 		top: 1%;
@@ -173,14 +173,14 @@ body.modal-open,
 		margin: 0 !important;
 		padding: 0 !important;
 	}
-	
-	.modal.fade.in, 
+
+	.modal.fade.in,
 	.modal.container.fade.in,
 	.modal.modal-overflow.fade.in {
 		top: 1%;
 		bottom: auto;
 	}
-	
+
 	.modal-body,
 	.modal-overflow .modal-body {
 		position: static;
@@ -189,7 +189,7 @@ body.modal-open,
 		max-height: none !important;
 		overflow: visible !important;
 	}
-	
+
 	.modal-footer,
 	.modal-overflow .modal-footer {
 		position: static;
