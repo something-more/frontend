@@ -34,9 +34,9 @@ class App extends Component {
         <NavigationColumn/>
         <LogoColumn/>
           <Switch>
+            <Route path="/authors/:id" component={AuthorDetail}/>
             <Route path="/about" component={About}/>
-            <Route path="/authors:id" component={AuthorDetail}/>
-            <Route path="/" component={PostsIndex}/>
+            <Route exact path="/" component={PostsIndex}/>
           </Switch>
         <FooterColumn/>
         <ToTop/>
