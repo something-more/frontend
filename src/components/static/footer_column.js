@@ -13,7 +13,7 @@ export default () => {
           <br/>
           <span className="overflow">
             <strong>email:</strong> <a className="text-underline"
-          href="mailto:kimhojang@somethingmore.co.kr">kimhojang@somethingmore.co.kr</a>
+          href="mailto:great-ho@somethingmore.co.kr">great-ho@somethingmore.co.kr</a>
           </span>
         </p>
       </div>
