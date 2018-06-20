@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import { selectAuthor } from '../../reducers/reducer_active_author';
 
 class AuthorDetail extends Component {
-  componentDidMount() {
-    const {id} = this.props.match.params;
-    this.props.selectAuthor(id);
-  }
 
   render() {
+    const { author } = this.props;
+
     return (
     <div className="content-col">
-      <p>이름: {this.props.author.name_ko}</p>
+      <p>이름: {author.name_ko}</p>
     </div>
     )
   }
@@ -19,8 +17,9 @@ class AuthorDetail extends Component {
 
 function mapStateToProps(state) {
   return {
-    author: state.authors[this.props.match.params.id -1]
-  };
+    author: state.activeAuthor
+  }
 }
 
 export default connect(mapStateToProps, {selectAuthor})(AuthorDetail);
+
