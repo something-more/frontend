@@ -1,6 +1,6 @@
 import React from 'react';
-import logoImg from '../../assets/images/img_logo.svg';
-import logoText from '../../assets/images/text_logo_horizontal.png';
+import logoImg from '../../assets/images/logo/img_logo.svg';
+import logoText from '../../assets/images/logo/text_logo_horizontal.png';
 
 export default () => {
   return (
