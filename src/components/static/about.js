@@ -7,7 +7,9 @@ export default () => {
   <div className="content-col">
     <div
     className="row"
-    style={{margin: "100px 0"}}
+    style={{
+      margin: "100px 0",
+      padding: "0 10px"}}
     >
       <div className="col-md-6 col-md-offset-3">
         <img
@@ -18,18 +20,16 @@ export default () => {
         <img
         src={logoText}
         className="img-responsive center-block"
-        style={{padding: "0 10px"}}
         width="500px"
         alt="text-logo"/>
       </div>
       <div
       className="col-md-10 col-md-offset-1 text-center"
-      style={{padding: "70px 10px"}}>
+      style={{padding: "70px 0"}}>
         <h4>'섬띵모어'의 로고는 당사가 성찰적인 정신을 최고 가치로 삼음을 상징합니다.</h4>
       </div>
       <div
-      className="col-md-3 col-md-offset-1"
-      style={{padding: "0 10px"}}>
+      className="col-md-4 col-md-offset-1">
         <p style={{marginBottom: "0"}}>원고 투고:</p>
         <p>
           <a
