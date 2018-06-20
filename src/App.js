@@ -25,6 +25,7 @@ import About from './components/static/about';
 import NavigationColumn from './components/dynamic/navigation_column';
 import PostsIndex from './components/dynamic/posts_index';
 import AuthorDetail from './components/dynamic/author_detail';
+import LoginModal from './components/dynamic/login_modal';
 
 class App extends Component {
   render() {
@@ -40,6 +41,7 @@ class App extends Component {
           </Switch>
         <FooterColumn/>
         <ToTop/>
+        <LoginModal/>
       </div>
     </BrowserRouter>
     );
