@@ -42,10 +42,11 @@ export default () => {
       <ul>
         <li>
           <a
-          href="#"
+          href="https://www.facebook.com/%EC%84%AC%EB%9D%B5%EB%AA%A8%EC%96%B4-137267330409505/"
           className="fa fa-facebook tooltip-hover"
           data-placement="left"
           target="_blank"
+          rel="noopener noreferrer"
           title="Follow Us on Facebook"/></li>
         <li>
           <a
@@ -53,6 +54,7 @@ export default () => {
           className="fa fa-instagram tooltip-hover"
           data-placement="left"
           target="_blank"
+          rel="noopener noreferrer"
           title="Follow Us on Instagram"/></li>
       </ul>
     </div>
