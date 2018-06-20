@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { selectAuthor } from '../../reducers/reducer_active_author';
 
 class Navigation extends Component {
   renderAuthors() {
@@ -20,7 +18,7 @@ class Navigation extends Component {
   render() {
     return (
     <div className="nav-col" style={{"border": "none"}}>
-      <nav id="nav" className="clearfix" role="navigation">
+      <div id="nav" className="clearfix" role="navigation">
         <div className="user-wrapper">
           <p>
             <a href="#login-modal" data-toggle="modal" className="toggle-login">
@@ -47,7 +45,7 @@ class Navigation extends Component {
             <a href="#">Stories</a>
           </li>
         </ul>
-      </nav>
+      </div>
     </div>
     )
   }
