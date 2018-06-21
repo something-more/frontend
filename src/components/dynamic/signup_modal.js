@@ -21,9 +21,8 @@ class SignUpModal extends Component {
     $('#signup-modal').modal('hide');
   };
 
-  async onSubmit(values) {
-    await this.props.signUp(values);
-    await this.props.history.push('/');
+  onSubmit(values) {
+    this.props.signUp(values);
   }
 
   render() {
