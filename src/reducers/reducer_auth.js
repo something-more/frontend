@@ -79,11 +79,7 @@ export async function login(values) {
 
 // 초기 state 정의
 const initialState = {
-  id: '',
   email: '',
-  token: '',
-  expTime: '',
-  isActive: false,
   error: ''
 };
 
@@ -106,9 +102,7 @@ function reducerSignUp(state, action) {
     return {
       ...state, // 전개 연산자: 기존 객체의 요소를 모두 재사용
       // state 의 내용을 덮어쓰게 됨
-      id: action.response.data.id,
-      email: action.response.data.email,
-      isActive: action.response.data.is_active
+      email: action.response.data.email
     }
   } else { // 오류가 발생했을 경우
     return {
@@ -125,15 +119,16 @@ function reducerLogin(state, action) {
     // base64로 인코딩된 payload 를 string 으로 디코딩
     const decodeToken = JSON.parse(window.atob(splitToken));
 
-    return {
-      ...state, // 전개 연산자: 기존 객체의 요소를 모두 재사용
-      // state 의 내용을 덮어쓰게 됨
-      id: decodeToken.id,
-      email: decodeToken.email,
-      token: action.response.data,
-      expTime: decodeToken.exp,
-      isActive: decodeToken.isActive
-    }
+    // 사용자 데이터를 sessionStorage 에 저장
+    sessionStorage.setItem('id', decodeToken.id);
+    sessionStorage.setItem('email', decodeToken.email);
+    sessionStorage.setItem('token', action.response.data);
+    sessionStorage.setItem('expTime', String(decodeToken.exp));
+    sessionStorage.setItem('isActive', decodeToken.isActive);
+
+    // 아무것도 리턴하지 않음
+    return null
+
   } else { // 오류가 발생했을 경우
     return {
       ...state,
