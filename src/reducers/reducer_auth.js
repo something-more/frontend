@@ -32,7 +32,7 @@ export async function signUp(values) {
       withCredentials: true
     });
   } catch (e) {
-    error = e.message
+    error = e.response.data.message
   }
 
   return {
@@ -65,7 +65,7 @@ export async function login(values) {
       withCredentials: true
     });
   } catch (e) {
-    error = e.message
+    error = e.response.data.message
   }
 
   return {
@@ -126,8 +126,8 @@ function reducerLogin(state, action) {
     sessionStorage.setItem('expTime', String(decodeToken.exp));
     sessionStorage.setItem('isActive', decodeToken.isActive);
 
-    // 아무것도 리턴하지 않음
-    return null
+    // 기본 state 만 리턴
+    return state
 
   } else { // 오류가 발생했을 경우
     return {
