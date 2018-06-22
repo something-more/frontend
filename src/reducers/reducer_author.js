@@ -12,7 +12,6 @@ export function fetchAuthors() {
 }
 
 export function selectAuthor(id) {
-
   return {
     type: SELECT,
     payload: id
