@@ -42,7 +42,7 @@ class App extends Component {
           </Switch>
         <FooterColumn/>
         <ToTop/>
-        <Route component={LoginModal}/>
+        <LoginModal/>
         <SignUpModal/>
       </div>
     </BrowserRouter>
