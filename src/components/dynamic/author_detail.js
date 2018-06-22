@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectAuthor } from '../../reducers/reducer_active_author';
 import quotation_left from '../../assets/images/design/quotation_left.png';
 import quotation_right from '../../assets/images/design/quotation_right.png';
 
@@ -60,9 +59,9 @@ class AuthorDetail extends Component {
 
 function mapStateToProps(state) {
   return {
-    author: state.activeAuthor
+    author: state.author.selected // author.selected 스테이트만 props 에 매핑
   }
 }
 
-export default connect(mapStateToProps, {selectAuthor})(AuthorDetail);
+export default connect(mapStateToProps)(AuthorDetail);
 
