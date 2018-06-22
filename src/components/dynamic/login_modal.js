@@ -21,8 +21,10 @@ class LoginModal extends Component {
     $('#login-modal').modal('hide');
   };
 
-  onSubmit(values) {
-    this.props.login(values)
+  async onSubmit(values) {
+    await this.props.login(values);
+    await $('#login-modal').modal('hide');
+    await this.props.history.replace('/');
   }
 
   render() {
