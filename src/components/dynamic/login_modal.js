@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { login } from '../../reducers/reducer_auth';
+
 const $ = window.jQuery;
 
 class LoginModal extends Component {
@@ -17,7 +21,14 @@ class LoginModal extends Component {
     $('#login-modal').modal('hide');
   };
 
+  onSubmit(values) {
+    this.props.login(values)
+  }
+
   render() {
+    // this.props에 handleSubmit 상수를 추가한다
+    const { handleSubmit } = this.props;
+
     return (
     <div ref={node => this.node = node}>
       <div id="login-modal"
@@ -40,33 +51,44 @@ class LoginModal extends Component {
               </ul>
             </div>
             <div className="col-sm-6 col-ms-6">
-              <h4 className="title">Sign In</h4>
-              <form role="form" action="your-login-script-goes-here.php">
+              <h4 className="title">로그인</h4>
+              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <div className="form-group">
-                  <input type="email" className="form-control" placeholder="Enter email"/>
+                  <Field
+                    type="email"
+                    className="form-control"
+                    placeholder="Email"
+                    name="email"
+                    component="input"/>
                 </div>
                 <div className="form-group">
-                  <input type="password" className="form-control" placeholder="Password"/>
-                </div>
-                <div className="form-group checkbox small">
-                  <label>
-                    <input type="checkbox"/>
-                    Remember Me </label>
+                  <Field
+                    type="password"
+                    className="form-control"
+                    placeholder="Password"
+                    name="password"
+                    component="input"/>
                 </div>
                 <p className="text-center">
                   <button className="btn btn-default btn-custom" type="submit">
-                    <i className="fa fa-lock"/> Sign in
+                    <i className="fa fa-lock"/> 로그인
                   </button>
                 </p>
               </form>
             </div>
           </div>
-          <p className="text-center"><a className="text-underline"
-          href="your-link-here.html">Forgot your password?</a> <br/>
-            Don't have an account yet? <a className="text-underline"
-            href="#signup-modal"
-            data-toggle="modal"
-            data-dismiss="modal">Sign up</a></p>
+          <p className="text-center">
+            <a
+              className="text-underline"
+              href="your-link-here.html">비밀번호를 잊으셨나요?</a>
+            <br/>
+            아직 계정이 없으신가요?&nbsp;
+            <a
+              className="text-underline"
+              href="#signup-modal"
+              data-toggle="modal"
+              data-dismiss="modal">회원 가입</a>
+          </p>
         </div>
       </div>
     </div>
@@ -74,4 +96,8 @@ class LoginModal extends Component {
   }
 }
 
-export default LoginModal;
+export default reduxForm({
+  form: 'LoginForm'
+})(
+  connect(null, { login })(LoginModal)
+);
