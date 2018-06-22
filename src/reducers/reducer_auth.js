@@ -1,11 +1,13 @@
 import axios from 'axios';
 
 // Actions
-export const SIGNUP = 'something-more/auth/SIGNUP';
+const SIGNUP = 'something-more/auth/SIGNUP';
 
 const ROOT_URL = 'http://localhost:1323/';
 
 // Action Creators
+
+// 회원 가입
 export async function signUp(values) {
 
   let request;
