@@ -1,16 +1,9 @@
 import hyung_soo from '../assets/images/thumbnail/hyung_soo_thumb-min.jpg';
 
 // Actions
-const LOAD = 'something-more/authors/LOAD';
 const SELECT = 'something-more/authors/SELECT';
 
 // Action Creators
-export function fetchAuthors() {
-  return {
-    type: LOAD
-  }
-}
-
 export function selectAuthor(id) {
   return {
     type: SELECT,
@@ -19,7 +12,10 @@ export function selectAuthor(id) {
 }
 
 // Initial state
-const initialState = [
+// list 와 selected 를 분리해서, reducer 가 state 를 변경시키도
+// navigation column 이 렌더링할 필진 목록을 잃지 않도록 지켜준다
+const initialState = {
+  list: [
   {
     id: 1,
     name_ko: '김호장',
@@ -41,15 +37,13 @@ const initialState = [
     thumbnail: hyung_soo,
     introduce: '컴퓨터의 말과 인간의 말을 함께 배워갑니다.',
     email: 'huskyhoochu@somethingmore.co.kr'
-  }
-];
+  }],
+  selected: {}
+};
 
 // Reducer
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD:
-      return reducerFetchAuthors(state);
-
     case SELECT:
       return reducerSelectAuthor(state, action);
 
@@ -59,11 +53,10 @@ export default function reducer(state = initialState, action) {
 }
 
 // Reducer function
-function reducerFetchAuthors(state) {
-  return state
-}
-
 function reducerSelectAuthor(state, action) {
   const id = action.payload;
-  return state[id - 1]
+  return {
+    ...state, // 전개 연산자, 기존 state 를 함께 가지고 온다
+    selected: state.list[id -1] // selected 값만 새로 매핑
+  }
 }
