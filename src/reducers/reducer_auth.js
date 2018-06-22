@@ -81,6 +81,8 @@ export async function login(values) {
 const initialState = {
   id: '',
   email: '',
+  token: '',
+  expTime: '',
   isActive: false,
   error: ''
 };
@@ -118,12 +120,19 @@ function reducerSignUp(state, action) {
 
 function reducerLogin(state, action) {
   if (action.response) { // 응답이 정상일 경우
+    // 전체 토큰에서 payload 부분만 잘라낸다
+    const splitToken = action.response.data.split('.')[1];
+    // base64로 인코딩된 payload 를 string 으로 디코딩
+    const decodeToken = JSON.parse(window.atob(splitToken));
+
     return {
       ...state, // 전개 연산자: 기존 객체의 요소를 모두 재사용
       // state 의 내용을 덮어쓰게 됨
-      id: action.response.data.id,
-      email: action.response.data.email,
-      isActive: action.response.data.is_active
+      id: decodeToken.id,
+      email: decodeToken.email,
+      token: action.response.data,
+      expTime: decodeToken.exp,
+      isActive: decodeToken.isActive
     }
   } else { // 오류가 발생했을 경우
     return {
