@@ -37,10 +37,6 @@ class LoginModal extends Component {
                 title="Login with Facebook"
                 className="facebook"><i className="fa fa-facebook"/><span>Login with Facebook</span></a>
                 </li>
-                <li><a href="#"
-                title="Login with Google Plus"
-                className="google"><i className="fa fa-google-plus"/><span>Login with Google</span></a>
-                </li>
               </ul>
             </div>
             <div className="col-sm-6 col-ms-6">
