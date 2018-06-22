@@ -23,7 +23,23 @@ class LoginModal extends Component {
 
   async onSubmit(values) {
     await this.props.login(values);
-    await window.location.reload();
+
+    // 에러가 발견되지 않으면 새로고침
+    if (!this.props.error) {
+      await window.location.reload();
+    }
+  }
+
+  errorAlert() {
+    // 에러가 발견되면 경고창 띄움
+    if (this.props.error) {
+      return (
+      <div className="alert alert-danger">
+        <button type="button" className="close" data-dismiss="alert">&times;</button>
+        <strong>{this.props.error}</strong>
+      </div>
+      )
+    }
   }
 
   render() {
@@ -78,6 +94,11 @@ class LoginModal extends Component {
               </form>
             </div>
           </div>
+          <div className="row">
+            <div className="col-sm-8 col-sm-offset-2 text-center">
+              {this.errorAlert()}
+            </div>
+          </div>
           <p className="text-center">
             <a
               className="text-underline"
@@ -97,8 +118,14 @@ class LoginModal extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    error: state.auth.error
+  }
+}
+
 export default reduxForm({
   form: 'LoginForm'
 })(
-  connect(null, { login })(LoginModal)
+  connect(mapStateToProps, { login })(LoginModal)
 );
