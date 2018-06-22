@@ -126,8 +126,11 @@ function reducerLogin(state, action) {
     sessionStorage.setItem('expTime', String(decodeToken.exp));
     sessionStorage.setItem('isActive', decodeToken.isActive);
 
-    // 기본 state 만 리턴
-    return state
+    // 오류 메시지 삭제
+    return {
+      ...state,
+      error: ''
+    }
 
   } else { // 오류가 발생했을 경우
     return {
