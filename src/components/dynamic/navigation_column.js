@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { selectAuthor } from '../../reducers/reducer_active_author';
+import { selectAuthor } from '../../reducers/reducer_author';
 
 class Navigation extends Component {
   // 필진 리스트 렌더링 함수
   // 리스트를 클릭하면 액션 생성자를 호출해 특정 필진 데이터를 리듀서로 옮긴다
   renderAuthors() {
-    return this.props.authors.map((author) => {
+    return this.props.authors.list.map((author) => {
       return (
       <li
       key={author.id}
@@ -59,13 +58,8 @@ class Navigation extends Component {
 
 function mapStateToProps(state) {
   return {
-    authors: state.authors
+    authors: state.author // author 리듀서 스테이트 전체를 authors prop 로 매핑
   }
 }
 
-// 액션 생성자를 리액트 props 에 바인딩
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({selectAuthor: selectAuthor}, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+export default connect(mapStateToProps, { selectAuthor })(Navigation);
