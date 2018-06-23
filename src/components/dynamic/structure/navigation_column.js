@@ -23,16 +23,29 @@ class Navigation extends Component {
     } else {
       const retrieveData = decodeJWT(sessionStorage.getItem('token'));
       return (
-        <p>
-          <span>{retrieveData.email}</span>
-          <span className="v-divider"/>
-          <Link
-            to={'/'}
-            className="toggle-login"
-            onClick={() => {this.props.signOut(); window.location.reload();}}>
-            <i className="fa fa-sign-out">&nbsp;&nbsp;Sign Out</i>
-          </Link>
-        </p>
+          <div className="dropdown">
+            <button className="btn btn-link dropdown-toggle"
+            type="button"
+            id="profileDropdown"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="true">
+              <span className="text-muted">{retrieveData.email}</span>
+              <span className="caret"/>
+            </button>
+            <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+              <li><Link to="/dashboard">Dashboard</Link></li>
+              <li role="separator" className="divider"/>
+              <li>
+                <Link
+                  to={'/'}
+                  className="toggle-login"
+                  onClick={() => {this.props.signOut(); window.location.reload();}}>
+                <i className="fa fa-sign-out">&nbsp;&nbsp;Sign Out</i>
+              </Link>
+              </li>
+            </ul>
+          </div>
       )
     }
   }
