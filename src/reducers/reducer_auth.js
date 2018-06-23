@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Actions
 const SIGNUP = 'something-more/auth/SIGNUP';
-const LOGIN = 'something-more/auth/LOGIN';
+const SIGNIN = 'something-more/auth/SIGNIN';
 const SIGNOUT = 'something-more/auth/SIGNOUT';
 
 // 설정 값
@@ -19,7 +19,7 @@ export async function signUp(values) {
     response = await axios({
       method: 'post',
       baseURL: ROOT_URL,
-      url: '/signup/',
+      url: '/sign-up/',
       data: {
         email: values.email,
         password: values.password
@@ -44,7 +44,7 @@ export async function signUp(values) {
 }
 
 // 로그인
-export async function login(values) {
+export async function signIn(values) {
 
   let response, error = '';
 
@@ -52,7 +52,7 @@ export async function login(values) {
     response = await axios({
       method: 'post',
       baseURL: ROOT_URL,
-      url: '/login/',
+      url: '/sign-in/',
       data: {
         email: values.email,
         password: values.password
@@ -70,7 +70,7 @@ export async function login(values) {
   }
 
   return {
-    type: LOGIN,
+    type: SIGNIN,
     response: response,
     error: error
   }
@@ -96,7 +96,7 @@ export default function reducer(state = initialState, action) {
     case SIGNUP:
       return reducerSignUp(state, action);
 
-    case LOGIN:
+    case SIGNIN:
       return reducerLogin(state, action);
 
     case SIGNOUT:

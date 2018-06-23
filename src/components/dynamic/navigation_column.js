@@ -14,7 +14,7 @@ class Navigation extends Component {
       return (
       <p>
         <a href="#login-modal" data-toggle="modal" className="toggle-login">
-          <i className="fa fa-sign-in"/>&nbsp;&nbsp;Login</a>
+          <i className="fa fa-sign-in"/>&nbsp;&nbsp;Sign In</a>
         <span className="v-divider"/>
         <a href="#signup-modal" data-toggle="modal" className="toggle-signup">
           <i className="fa fa-pencil"/>&nbsp;&nbsp;Sign Up</a>

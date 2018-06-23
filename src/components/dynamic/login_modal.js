@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { login } from '../../reducers/reducer_auth';
+import { signIn } from '../../reducers/reducer_auth';
 
 const $ = window.jQuery;
 
@@ -22,7 +22,7 @@ class LoginModal extends Component {
   };
 
   async onSubmit(values) {
-    await this.props.login(values);
+    await this.props.signIn(values);
 
     // 에러가 발견되지 않으면 새로고침
     if (!this.props.error) {
@@ -127,5 +127,5 @@ function mapStateToProps(state) {
 export default reduxForm({
   form: 'LoginForm'
 })(
-  connect(mapStateToProps, { login })(LoginModal)
+  connect(mapStateToProps, { signIn })(LoginModal)
 );
