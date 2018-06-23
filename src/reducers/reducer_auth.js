@@ -177,15 +177,10 @@ function reducerSignUp(state, action) {
 }
 
 function reducerLogin(state, action) {
-  if (action.response) { // 응답이 정상일 경우
-    // 전체 토큰에서 payload 부분만 잘라낸다
-    const splitToken = action.response.data.split('.')[1];
-    // base64로 인코딩된 payload 를 string 으로 디코딩
-    const decodeToken = JSON.parse(window.atob(splitToken));
-
+  if (action.response) {
+    // 응답이 정상일 경우
     // 사용자 데이터를 sessionStorage 에 저장
     sessionStorage.setItem('token', action.response.data);
-    sessionStorage.setItem('user_data', JSON.stringify(decodeToken));
 
     // 오류 메시지 삭제
     return {
@@ -204,7 +199,6 @@ function reducerLogin(state, action) {
 function reducerSignOut(state) {
   // 사용자 데이터를 삭제
   sessionStorage.removeItem('token');
-  sessionStorage.removeItem('user_data');
 
   // state 초기화
   return {
