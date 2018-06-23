@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 const $ = window.jQuery;
 
@@ -25,7 +26,11 @@ class Stories extends Component {
       <div className="inner-content">
         <h1 className="title">Stories</h1>
         <hr className="vertical-spacer"/>
-        <button style={{color: "#ec5004"}} className="btn btn-link pull-right">Let's Post</button>
+        <Link
+          to="/me/write"
+          type="button"
+          style={{color: "#ec5004"}}
+          className="btn btn-link pull-right">Let's Post</Link>
         <ul id="myTabs" className="nav nav-tabs">
           <li className="active"><a href="#">Published</a></li>
           <li><a href="#">Draft</a></li>
