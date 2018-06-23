@@ -3,6 +3,7 @@ import axios from 'axios';
 // Actions
 const SIGNUP = 'something-more/auth/SIGNUP';
 const LOGIN = 'something-more/auth/LOGIN';
+const SIGNOUT = 'something-more/auth/SIGNOUT';
 
 // 설정 값
 const ROOT_URL = 'http://localhost:1323/';
@@ -75,6 +76,13 @@ export async function login(values) {
   }
 }
 
+// 로그아웃
+export function signOut() {
+  return {
+    type: SIGNOUT
+  }
+}
+
 // Reducer
 
 // 초기 state 정의
@@ -90,6 +98,9 @@ export default function reducer(state = initialState, action) {
 
     case LOGIN:
       return reducerLogin(state, action);
+
+    case SIGNOUT:
+      return reducerSignOut(state);
 
     default:
       return state;
@@ -120,11 +131,8 @@ function reducerLogin(state, action) {
     const decodeToken = JSON.parse(window.atob(splitToken));
 
     // 사용자 데이터를 sessionStorage 에 저장
-    sessionStorage.setItem('id', decodeToken.id);
-    sessionStorage.setItem('email', decodeToken.email);
     sessionStorage.setItem('token', action.response.data);
-    sessionStorage.setItem('expTime', String(decodeToken.exp));
-    sessionStorage.setItem('isActive', decodeToken.isActive);
+    sessionStorage.setItem('user_data', JSON.stringify(decodeToken));
 
     // 오류 메시지 삭제
     return {
@@ -137,5 +145,18 @@ function reducerLogin(state, action) {
       ...state,
       error: action.error
     }
+  }
+}
+
+function reducerSignOut(state) {
+  // 사용자 데이터를 삭제
+  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('user_data');
+
+  // state 초기화
+  return {
+    ...state,
+    email: '',
+    error: ''
   }
 }
