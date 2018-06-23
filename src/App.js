@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 
 // Bootstrap 3.2.0
 import 'bootstrap/dist/js/bootstrap.min';
@@ -28,6 +33,18 @@ import AuthorDetail from './components/dynamic/posts/author_detail';
 import LoginModal from './components/dynamic/auth/login_modal';
 import SignUpModal from './components/dynamic/auth/signup_modal';
 import AdminSignUp from './components/dynamic/auth/admin_signup';
+import Dashboard from './components/dynamic/profile/dashboard';
+
+// Private Route
+const PrivateRoute = ({component: Component, ...rest}) => (
+  <Route
+    {...rest}
+    render={props =>
+      sessionStorage.getItem('token')
+      ? (<Component {...props}/>)
+      : (<Redirect to='/'/>)}
+  />
+);
 
 class App extends Component {
   render() {
@@ -37,6 +54,7 @@ class App extends Component {
         <NavigationColumn/>
         <LogoColumn/>
           <Switch>
+            <PrivateRoute path="/dashboard" component={Dashboard}/>
             <Route path="/authors/:id" component={AuthorDetail}/>
             <Route path="/about" component={About}/>
             <Route path="/st-more-admin" component={AdminSignUp}/>
