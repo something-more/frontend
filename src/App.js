@@ -16,13 +16,13 @@ import './assets/css/sidewaze_base_color.css';
 import './assets/css/soft-gray.css';
 
 // Static Components
+import LogoColumn from './components/static/logo_column';
 import FooterColumn from './components/static/footer_column';
 import ToTop from './components/static/to_top';
 import About from './components/static/about';
 
 // Dynamic Components
 import NavigationColumn from './components/dynamic/navigation_column';
-import LogoColumn from './components/dynamic/logo_column';
 import PostsIndex from './components/dynamic/posts_index';
 import AuthorDetail from './components/dynamic/author_detail';
 import LoginModal from './components/dynamic/login_modal';
