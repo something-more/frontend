@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { signUp } from '../../reducers/reducer_auth';
+import { signUp } from '../../../reducers/reducer_auth';
 
 const $ = window.jQuery;
 

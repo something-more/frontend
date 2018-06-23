@@ -22,12 +22,12 @@ import ToTop from './components/static/to_top';
 import About from './components/static/about';
 
 // Dynamic Components
-import NavigationColumn from './components/dynamic/navigation_column';
-import PostsIndex from './components/dynamic/posts_index';
-import AuthorDetail from './components/dynamic/author_detail';
-import LoginModal from './components/dynamic/login_modal';
-import SignUpModal from './components/dynamic/signup_modal';
-import AdminSignUp from './components/dynamic/admin_signup';
+import NavigationColumn from './components/dynamic/structure/navigation_column';
+import PostsIndex from './components/dynamic/posts/posts_index';
+import AuthorDetail from './components/dynamic/posts/author_detail';
+import LoginModal from './components/dynamic/auth/login_modal';
+import SignUpModal from './components/dynamic/auth/signup_modal';
+import AdminSignUp from './components/dynamic/auth/admin_signup';
 
 class App extends Component {
   render() {

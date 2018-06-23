@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import quotation_left from '../../assets/images/design/quotation_left.png';
-import quotation_right from '../../assets/images/design/quotation_right.png';
+import quotation_left from '../../../assets/images/design/quotation_left.png';
+import quotation_right from '../../../assets/images/design/quotation_right.png';
 
 class AuthorDetail extends Component {
 

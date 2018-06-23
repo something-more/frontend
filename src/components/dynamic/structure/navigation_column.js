@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { selectAuthor } from '../../reducers/reducer_author';
-import { signOut } from '../../reducers/reducer_auth';
-import { decodeJWT } from '../../include/jwt_decode';
+import { selectAuthor } from '../../../reducers/reducer_author';
+import { signOut } from '../../../reducers/reducer_auth';
+import { decodeJWT } from '../../../include/jwt_decode';
 
 class Navigation extends Component {
 
