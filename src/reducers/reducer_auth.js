@@ -165,7 +165,8 @@ function reducerSignUp(state, action) {
     return {
       ...state, // 전개 연산자: 기존 객체의 요소를 모두 재사용
       // state 의 내용을 덮어쓰게 됨
-      email: action.response.data.email
+      email: action.response.data.email,
+      error: ''
     }
   } else { // 오류가 발생했을 경우
     return {
