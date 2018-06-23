@@ -39,8 +39,9 @@ class App extends Component {
           <Switch>
             <Route path="/authors/:id" component={AuthorDetail}/>
             <Route path="/about" component={About}/>
-            <Route path="/admin" component={AdminSignUp}/>
+            <Route path="/st-more-admin" component={AdminSignUp}/>
             <Route exact path="/" component={PostsIndex}/>
+            <Route path="*" component={PostsIndex}/>
           </Switch>
         <FooterColumn/>
         <ToTop/>
