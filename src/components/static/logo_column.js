@@ -1,24 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from '../../assets/images/logo/text_logo.svg';
 
-class LogoColumn extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: sessionStorage.getItem('email')
-    }
-  }
-
-  renderUser() {
-    return (
-      <li>
-        {this.state.email}
-      </li>
-    )
-  }
-
-  render() {
+export default () => {
     const cssStyle = {
       'height': '100vh',
       'float': 'left',
@@ -75,14 +58,6 @@ class LogoColumn extends Component {
             title="Follow Us on Instagram"/></li>
         </ul>
       </div>
-      <div className="profile-wrapper">
-        <ul>
-          {this.renderUser()}
-        </ul>
-      </div>
     </div>
     )
-  }
 }
-
-export default LogoColumn;
