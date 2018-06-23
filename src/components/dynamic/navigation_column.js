@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectAuthor } from '../../reducers/reducer_author';
 import { signOut } from '../../reducers/reducer_auth';
+import { decodeJWT } from '../../include/jwt_decode';
 
 class Navigation extends Component {
 
@@ -10,7 +11,7 @@ class Navigation extends Component {
   // sessionStorage 에 정보가 하나라도 없으면 로그인 / 회원가입 창을 띄우고
   // 그렇지 않으면 로그인 되었음을 보여준다
   renderAuthenticationState() {
-    if (sessionStorage.length !== 2) {
+    if (sessionStorage.length !== 1) {
       return (
       <p>
         <a href="#login-modal" data-toggle="modal" className="toggle-login">
@@ -20,7 +21,7 @@ class Navigation extends Component {
           <i className="fa fa-pencil"/>&nbsp;&nbsp;Sign Up</a>
       </p>)
     } else {
-      const retrieveData = JSON.parse(sessionStorage.getItem('user_data'));
+      const retrieveData = decodeJWT(sessionStorage.getItem('token'));
       return (
         <p>
           <span>{retrieveData.email}</span>
