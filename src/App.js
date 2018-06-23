@@ -34,6 +34,7 @@ import LoginModal from './components/dynamic/auth/login_modal';
 import SignUpModal from './components/dynamic/auth/signup_modal';
 import AdminSignUp from './components/dynamic/auth/admin_signup';
 import Stories from './components/dynamic/profile/stories';
+import { decodeJWT } from "./include/jwt_decode";
 
 // Private Route
 // 라우트의 컴포넌트와 기타 등등을 모두 상속받음
@@ -42,7 +43,8 @@ const PrivateRoute = ({component: Component, ...rest}) => (
   <Route
     {...rest}
     render={props =>
-      sessionStorage.getItem('token')
+    sessionStorage.getItem('token') && // 토큰이 존재하면서 동시에 expired 되지 않았을 때
+    (decodeJWT(sessionStorage.getItem('token')).exp > Math.round(new Date().getTime()/1000))
       ? (<Component {...props}/>)
       : (<Redirect to='/'/>)}
   />
