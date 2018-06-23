@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 // Actions
+const ADMIN_SIGNUP = 'something-more/auth/ADMIN_SIGNUP';
 const SIGNUP = 'something-more/auth/SIGNUP';
 const SIGNIN = 'something-more/auth/SIGNIN';
 const SIGNOUT = 'something-more/auth/SIGNOUT';
@@ -9,6 +10,39 @@ const SIGNOUT = 'something-more/auth/SIGNOUT';
 const ROOT_URL = 'http://localhost:1323/';
 
 // Action Creators
+
+// 관리자 회원 가입
+export async function adminSignUp(values) {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'post',
+      baseURL: ROOT_URL,
+      url: '/admin/',
+      data: {
+        email: values.email,
+        password: values.password
+      },
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      xsrfCookieName: 'csrftoken',
+      withCredentials: true
+    });
+  } catch (e) {
+    error = e.response.data.message
+  }
+
+  return {
+    type: ADMIN_SIGNUP,
+    response: response,
+    error: error
+  }
+}
 
 // 회원 가입
 export async function signUp(values) {
@@ -93,6 +127,9 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case ADMIN_SIGNUP:
+      return reducerAdminSignUp(state, action);
+
     case SIGNUP:
       return reducerSignUp(state, action);
 
@@ -108,6 +145,21 @@ export default function reducer(state = initialState, action) {
 }
 
 // Reducer function
+function reducerAdminSignUp(state, action) {
+  if (action.response) {
+    return {
+      ...state,
+      email: action.response.data.email,
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      error: action.error
+    }
+  }
+}
+
 function reducerSignUp(state, action) {
   if (action.response) { // 응답이 정상일 경우
     return {
