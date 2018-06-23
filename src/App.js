@@ -56,7 +56,7 @@ class App extends Component {
         <NavigationColumn/>
         <LogoColumn/>
           <Switch>
-            <PrivateRoute path="/dashboard" component={Stories}/>
+            <PrivateRoute path="/me/stories" component={Stories}/>
             <Route path="/authors/:id" component={AuthorDetail}/>
             <Route path="/about" component={About}/>
             <Route path="/st-more-admin" component={AdminSignUp}/>
