@@ -36,6 +36,8 @@ import AdminSignUp from './components/dynamic/auth/admin_signup';
 import Dashboard from './components/dynamic/profile/dashboard';
 
 // Private Route
+// 라우트의 컴포넌트와 기타 등등을 모두 상속받음
+// 토큰이 있다면 입장할 수 있고, 토큰이 없다면 홈페이지로 리다이렉트
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route
     {...rest}
