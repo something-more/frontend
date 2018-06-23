@@ -33,7 +33,7 @@ import AuthorDetail from './components/dynamic/posts/author_detail';
 import LoginModal from './components/dynamic/auth/login_modal';
 import SignUpModal from './components/dynamic/auth/signup_modal';
 import AdminSignUp from './components/dynamic/auth/admin_signup';
-import Dashboard from './components/dynamic/profile/dashboard';
+import Stories from './components/dynamic/profile/stories';
 
 // Private Route
 // 라우트의 컴포넌트와 기타 등등을 모두 상속받음
@@ -56,7 +56,7 @@ class App extends Component {
         <NavigationColumn/>
         <LogoColumn/>
           <Switch>
-            <PrivateRoute path="/dashboard" component={Dashboard}/>
+            <PrivateRoute path="/dashboard" component={Stories}/>
             <Route path="/authors/:id" component={AuthorDetail}/>
             <Route path="/about" component={About}/>
             <Route path="/st-more-admin" component={AdminSignUp}/>
