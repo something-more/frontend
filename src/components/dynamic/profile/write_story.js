@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import Quill from 'quill/dist/quill.min';
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
@@ -35,19 +37,46 @@ class WriteStory extends Component {
     })
   }
 
+  onSubmit(values) {
+    const delta = JSON.stringify(this.state.quill.getContents());
+    const formData = new FormData();
+
+    formData.append('title', values.title);
+    formData.append('content', delta);
+  }
+
   render() {
+    const { handleSubmit } = this.props;
+
     return (
-      <div className="content-col">
-        <div className="inner-content">
-          <h1 className="title">Write Your Story...</h1>
-          <hr className="vertical-spacer"/>
-          <button className="btn btn-info pull-right">Save</button>
-          <hr className="vertical-spacer"/>
+    <div className="content-col">
+      <div className="inner-content">
+        <h1 className="title">Write Your Story...</h1>
+        <hr className="vertical-spacer"/>
+        <form method="post" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <div
+          className="input-group"
+          style={{marginBottom: "20px"}}>
+            <Field
+              type="text"
+              className="form-control"
+              placeholder="Title"
+              name="title"
+              component="input"/>
+            <span className="input-group-btn">
+            <button type="submit" className="btn btn-info pull-right">Save</button>
+          </span>
+          </div>
           <div id="editor" style={{minHeight: "70vh"}}/>
-        </div>
+        </form>
       </div>
+    </div>
     )
   }
 }
 
-export default WriteStory;
+export default reduxForm({
+  form: 'WriteStoryForm'
+})(
+  connect()(WriteStory)
+);
