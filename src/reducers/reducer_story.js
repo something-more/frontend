@@ -5,6 +5,7 @@ axiosConfig(axios);
 
 // Actions
 const CREATE = 'something-more/story/CREATE';
+const LIST = 'something-more/story/LIST';
 
 // Action Creators
 export async function createStory(formData) {
@@ -33,6 +34,29 @@ export async function createStory(formData) {
   }
 }
 
+export async function listStory(query = '?page=1') {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'get',
+      url: `/story/${query}`,
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      }
+    })
+  } catch (e) {
+    error = e.message
+  }
+
+  return {
+    type: LIST,
+    response: response,
+    error: error
+  }
+}
+
 // State
 const initialState = {
   list: [],
@@ -46,6 +70,9 @@ export default function reducer(state = initialState, action) {
     case CREATE:
       return reducerCreateStory(state, action);
 
+    case LIST:
+      return reducerListStory(state, action);
+
     default:
       return state;
   }
@@ -57,6 +84,21 @@ function reducerCreateStory(state, action) {
     return {
       ...state,
       retrieve: action.response.data,
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      error: action.error
+    }
+  }
+}
+
+function reducerListStory(state, action) {
+  if (action.response) {
+    return {
+      ...state,
+      list: action.response.data,
       error: ''
     }
   } else {
