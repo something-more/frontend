@@ -1,19 +1,14 @@
 import axios from 'axios';
+import { axiosConfig } from '../include/axios';
+
+// axios 설정
+axiosConfig(axios);
 
 // Actions
 const ADMIN_SIGNUP = 'something-more/auth/ADMIN_SIGNUP';
 const SIGNUP = 'something-more/auth/SIGNUP';
 const SIGNIN = 'something-more/auth/SIGNIN';
 const SIGNOUT = 'something-more/auth/SIGNOUT';
-
-// 설정 값
-const ROOT_URL = 'http://localhost:1323/';
-axios.defaults.baseURL = ROOT_URL;
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8';
-axios.defaults.xsrfHeaderName = 'X-CSRF-Token';
-axios.defaults.xsrfCookieName = '_csrf';
-axios.defaults.withCredentials = true;
 
 // Action Creators
 
