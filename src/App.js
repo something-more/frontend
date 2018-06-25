@@ -5,6 +5,7 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
+import moment from 'moment';
 
 // Bootstrap 3.2.0
 import 'bootstrap/dist/js/bootstrap.min';
@@ -47,7 +48,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
     {...rest}
     render={props =>
     sessionStorage.getItem('token') && // 토큰이 존재하면서 동시에 expired 되지 않았을 때
-    (decodeJWT(sessionStorage.getItem('token')).exp > Math.round(new Date().getTime()/1000))
+    (decodeJWT(sessionStorage.getItem('token')).exp > moment(new Date().getTime()).unix())
       ? (<Component {...props}/>)
       : (<Redirect to='/'/>)}
   />
