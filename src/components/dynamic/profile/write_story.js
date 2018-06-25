@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import Quill from 'quill/dist/quill.min';
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
@@ -45,6 +46,7 @@ class WriteStory extends Component {
 
     formData.append('title', values.title);
     formData.append('content', delta);
+    formData.append('date_created', moment().format());
 
     await this.props.createStory(formData);
 
