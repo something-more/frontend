@@ -37,7 +37,7 @@ class AdminSignUp extends Component {
             padding: "0 10px"}}>
           <div className="col-md-6 col-md-offset-3">
             <h4 className="title">관리자 회원 가입</h4>
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <form method="post" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
               <div className="form-group">
                 <Field
                   type="email"

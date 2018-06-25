@@ -78,7 +78,7 @@ class SignUpModal extends Component {
             </div>
             <div className="col-sm-6 col-ms-6">
               <h4 className="title">회원 가입</h4>
-              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <form method="post" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <div className="form-group">
                   <Field
                     type="email"
