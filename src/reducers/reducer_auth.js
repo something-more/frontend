@@ -8,6 +8,12 @@ const SIGNOUT = 'something-more/auth/SIGNOUT';
 
 // 설정 값
 const ROOT_URL = 'http://localhost:1323/';
+axios.defaults.baseURL = ROOT_URL;
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8';
+axios.defaults.xsrfHeaderName = 'X-CSRF-Token';
+axios.defaults.xsrfCookieName = '_csrf';
+axios.defaults.withCredentials = true;
 
 // Action Creators
 
@@ -19,19 +25,11 @@ export async function adminSignUp(values) {
   try {
     response = await axios({
       method: 'post',
-      baseURL: ROOT_URL,
       url: '/admin/',
       data: {
         email: values.email,
         password: values.password
-      },
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type': 'application/json;charset=UTF-8'
-      },
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-      xsrfCookieName: 'csrftoken',
-      withCredentials: true
+      }
     });
   } catch (e) {
     error = e.response.data.message
@@ -52,19 +50,11 @@ export async function signUp(values) {
   try {
     response = await axios({
       method: 'post',
-      baseURL: ROOT_URL,
       url: '/sign-up/',
       data: {
         email: values.email,
         password: values.password
-      },
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type': 'application/json;charset=UTF-8',
-      },
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-      xsrfCookieName: 'csrftoken',
-      withCredentials: true
+      }
     });
   } catch (e) {
     error = e.response.data.message
@@ -85,19 +75,11 @@ export async function signIn(values) {
   try {
     response = await axios({
       method: 'post',
-      baseURL: ROOT_URL,
       url: '/sign-in/',
       data: {
         email: values.email,
         password: values.password
-      },
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type': 'application/json;charset=UTF-8',
-      },
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-      xsrfCookieName: 'csrftoken',
-      withCredentials: true
+      }
     });
   } catch (e) {
     error = e.response.data.message
