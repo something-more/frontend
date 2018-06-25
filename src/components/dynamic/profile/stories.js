@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { listStory } from '../../../reducers/reducer_story';
 
 const $ = window.jQuery;
 
@@ -19,6 +22,22 @@ class Stories extends Component {
     });
   };
 
+  renderList() {
+    return this.props.list.map(story => {
+      // 글 생성 일자
+      const dateCreated = moment(story.date_created).format('YYYY-MM-DD');
+      // 글 인덱스 번호
+      const indexNum = (this.props.list.length) - (this.props.list.indexOf(story));
+      return (
+        <tr key={story.id}>
+          <td>{indexNum}</td>
+          <td>{story.title}</td>
+          <td>{dateCreated}</td>
+        </tr>
+      )
+    })
+  }
+
   render() {
     return (
     <div ref={node => this.node = node}
@@ -33,12 +52,32 @@ class Stories extends Component {
           className="btn btn-link pull-right">Let's Post</Link>
         <ul id="myTabs" className="nav nav-tabs">
           <li className="active"><a href="#">Published</a></li>
-          <li><a href="#">Draft</a></li>
+          <li><a onClick={() => this.props.listStory()}>Draft</a></li>
         </ul>
+        <hr className="vertical-spacer"/>
+        <table className="table table-hover text-center">
+          <thead>
+          <tr>
+            <th className="text-center">번호</th>
+            <th className="text-center">제목</th>
+            <th className="text-center">날짜</th>
+          </tr>
+          </thead>
+          <tbody>
+            {this.renderList()}
+          </tbody>
+        </table>
       </div>
     </div>
     )
   }
 }
 
-export default Stories;
+function mapStateToProps(state) {
+  return {
+    list: state.story.list,
+    error: state.story.error
+  }
+}
+
+export default connect(mapStateToProps, { listStory })(Stories);
