@@ -29,11 +29,16 @@ class Stories extends Component {
       // 글 인덱스 번호
       const indexNum = (this.props.list.length) - (this.props.list.indexOf(story));
       return (
-        <tr key={story.id}>
-          <td>{indexNum}</td>
-          <td>{story.title}</td>
-          <td>{dateCreated}</td>
-        </tr>
+      <tr key={story.id}>
+        <td>{indexNum}</td>
+        <td>
+          <Link
+            to={`/me/stories/${story.id}`}>
+              {story.title}
+          </Link>
+        </td>
+        <td>{dateCreated}</td>
+      </tr>
       )
     })
   }
