@@ -6,6 +6,8 @@ axiosConfig(axios);
 // Actions
 const CREATE = 'something-more/story/CREATE';
 const LIST = 'something-more/story/LIST';
+const PUBLISHED = 'something-more/story/PUBLISHED';
+const DRAFT = 'something-more/story/DRAFT';
 const RETRIEVE = 'something-more/story/RETRIEVE';
 
 // Action Creators
@@ -58,6 +60,18 @@ export async function listStory(query = '?page=1') {
   }
 }
 
+export function filterPublished() {
+  return {
+    type: PUBLISHED
+  }
+}
+
+export function filterDraft() {
+  return {
+    type: DRAFT
+  }
+}
+
 export async function retrieveStory(id) {
 
   let response, error = '';
@@ -84,7 +98,8 @@ export async function retrieveStory(id) {
 
 // State
 const initialState = {
-  list: [],
+  rawList: [],
+  filteredList: [],
   retrieve: {},
   error: ''
 };
@@ -97,6 +112,12 @@ export default function reducer(state = initialState, action) {
 
     case LIST:
       return reducerListStory(state, action);
+
+    case PUBLISHED:
+      return reducerFilterPublished(state);
+
+    case DRAFT:
+      return reducerFilterDraft(state);
 
     case RETRIEVE:
       return reducerRetrieveStory(state, action);
@@ -126,7 +147,7 @@ function reducerListStory(state, action) {
   if (action.response) {
     return {
       ...state,
-      list: action.response.data,
+      rawList: action.response.data,
       error: ''
     }
   } else {
@@ -134,6 +155,20 @@ function reducerListStory(state, action) {
       ...state,
       error: action.error
     }
+  }
+}
+
+function reducerFilterPublished(state) {
+  return {
+    ...state,
+    filteredList: state.rawList.filter(story => story.is_published === true)
+  }
+}
+
+function reducerFilterDraft(state) {
+  return {
+    ...state,
+    filteredList: state.rawList.filter(story => story.is_published !== true)
   }
 }
 
