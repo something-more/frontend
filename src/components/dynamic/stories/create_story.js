@@ -87,7 +87,8 @@ class CreateStory extends Component {
               className="form-control"
               placeholder="Title"
               name="title"
-              component="input"/>
+              component="input"
+              required/>
             <span className="input-group-btn">
             <button type="submit" className="btn btn-info pull-right">Save</button>
           </span>
@@ -108,7 +109,7 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
-  form: 'WriteStoryForm'
+  form: 'CreateStoryForm'
 })(
   connect(mapStateToProps, { createStory })(CreateStory)
 );
