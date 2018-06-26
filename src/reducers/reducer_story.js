@@ -6,6 +6,7 @@ axiosConfig(axios);
 // Actions
 const CREATE = 'something-more/story/CREATE';
 const LIST = 'something-more/story/LIST';
+const RETRIEVE = 'something-more/story/RETRIEVE';
 
 // Action Creators
 export async function createStory(formData) {
@@ -57,6 +58,30 @@ export async function listStory(query = '?page=1') {
   }
 }
 
+export async function retrieveStory(id) {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'get',
+      url: `/story/${id}`,
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      }
+    })
+  } catch (e) {
+    error = e.message;
+    console.log(e.response.data.message);
+  }
+
+  return {
+    type: RETRIEVE,
+    response: response,
+    error: error
+  }
+}
+
 // State
 const initialState = {
   list: [],
@@ -72,6 +97,9 @@ export default function reducer(state = initialState, action) {
 
     case LIST:
       return reducerListStory(state, action);
+
+    case RETRIEVE:
+      return reducerRetrieveStory(state, action);
 
     default:
       return state;
@@ -104,6 +132,22 @@ function reducerListStory(state, action) {
   } else {
     return {
       ...state,
+      error: action.error
+    }
+  }
+}
+
+function reducerRetrieveStory(state, action) {
+  if (action.response) {
+    return {
+      ...state,
+      retrieve: action.response.data,
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      retrieve: {},
       error: action.error
     }
   }
