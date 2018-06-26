@@ -34,9 +34,10 @@ import AuthorDetail from './components/dynamic/posts/author_detail';
 import LoginModal from './components/dynamic/auth/login_modal';
 import SignUpModal from './components/dynamic/auth/signup_modal';
 import AdminSignUp from './components/dynamic/auth/admin_signup';
-import Stories from './components/dynamic/stories/list_story';
-import WriteStory from './components/dynamic/stories/create_story';
-import StoryDetail from './components/dynamic/stories/retrieve_story';
+import ListStory from './components/dynamic/stories/list_story';
+import CreateStory from './components/dynamic/stories/create_story';
+import RetrieveStory from './components/dynamic/stories/retrieve_story';
+import PatchStory from './components/dynamic/stories/patch_story';
 
 // Helper function
 import { decodeJWT } from "./include/jwt_decode";
@@ -63,9 +64,9 @@ class App extends Component {
         <NavigationColumn/>
         <LogoColumn/>
           <Switch>
-            <PrivateRoute path="/me/write" component={WriteStory}/>
-            <PrivateRoute path="/me/stories/:id" component={StoryDetail}/>
-            <PrivateRoute path="/me/stories" component={Stories}/>
+            <PrivateRoute path="/me/write" component={CreateStory}/>
+            <PrivateRoute path="/me/stories/:id" component={PatchStory}/>
+            <PrivateRoute path="/me/stories" component={ListStory}/>
             <Route path="/authors/:id" component={AuthorDetail}/>
             <Route path="/about" component={About}/>
             <Route path="/st-more-admin" component={AdminSignUp}/>
