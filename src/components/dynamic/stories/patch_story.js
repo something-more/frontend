@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Quill from 'quill';
 import moment from 'moment';
-import { retrieveStory, patchStory } from '../../../reducers/reducer_story';
+import { retrieveStory, patchStory, destroyStory } from '../../../reducers/reducer_story';
 
 class PatchStory extends Component {
   constructor(props) {
@@ -88,6 +88,18 @@ class PatchStory extends Component {
     }
   }
 
+  async onDestroy() {
+    const isConfirm = window.confirm('정말 삭제하겠습니까?');
+
+    if (isConfirm) {
+      await alert('삭제되었습니다');
+      await this.props.destroyStory(this.props.story.id);
+      await this.props.history.push('/me/stories')
+    } else {
+      alert('삭제를 취소하셨습니다');
+    }
+  }
+
   render() {
     const { handleSubmit, story } = this.props;
 
@@ -116,6 +128,9 @@ class PatchStory extends Component {
               <ul className="dropdown-menu dropdown-menu-right">
                 <li><a onClick={handleSubmit(this.onPublish.bind(this))}>Publish</a></li>
                 <li><a onClick={handleSubmit(this.onDraftSave.bind(this))}>Draft Save</a></li>
+                <li role="separator" className="divider"/>
+                <li><a onClick={handleSubmit(this.onDestroy.bind(this))}>
+                  <span className="text-danger">Destroy</span></a></li>
               </ul>
             </div>
           </div>
@@ -138,5 +153,5 @@ function mapStateToProps(state) {
 export default reduxForm({
   form: 'PatchStoryForm'
 })(
-  connect(mapStateToProps, { retrieveStory, patchStory })(PatchStory)
+  connect(mapStateToProps, { retrieveStory, patchStory, destroyStory })(PatchStory)
 );

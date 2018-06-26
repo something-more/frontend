@@ -10,6 +10,7 @@ const PUBLISHED = 'something-more/story/PUBLISHED';
 const DRAFT = 'something-more/story/DRAFT';
 const RETRIEVE = 'something-more/story/RETRIEVE';
 const PATCH = 'something-more/story/PATCH';
+const DESTROY = 'something-more/story/DESTROY';
 
 // Action Creators
 export async function createStory(formData) {
@@ -122,6 +123,29 @@ export async function patchStory(formData, id) {
   }
 }
 
+export async function destroyStory(id) {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'delete',
+      url: `/story/${id}`,
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      }
+    });
+  } catch (e) {
+    error = e.message;
+  }
+
+  return {
+    type: DESTROY,
+    response: response,
+    error: error
+  }
+}
+
 // State
 const initialState = {
   rawList: [],
@@ -150,6 +174,9 @@ export default function reducer(state = initialState, action) {
 
     case PATCH:
       return reducerPatchStory(state, action);
+
+    case DESTROY:
+      return reducerDestroyStory(state, action);
 
     default:
       return state;
@@ -228,6 +255,22 @@ function reducerPatchStory(state, action) {
     return {
       ...state,
       retrieve: '',
+      error: action.error
+    }
+  }
+}
+
+function reducerDestroyStory(state, action) {
+  if (action.response) {
+    return {
+      ...state,
+      retrieve: {},
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      retrieve: {},
       error: action.error
     }
   }
