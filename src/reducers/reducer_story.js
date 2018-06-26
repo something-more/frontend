@@ -9,6 +9,7 @@ const LIST = 'something-more/story/LIST';
 const PUBLISHED = 'something-more/story/PUBLISHED';
 const DRAFT = 'something-more/story/DRAFT';
 const RETRIEVE = 'something-more/story/RETRIEVE';
+const PATCH = 'something-more/story/PATCH';
 
 // Action Creators
 export async function createStory(formData) {
@@ -96,6 +97,31 @@ export async function retrieveStory(id) {
   }
 }
 
+export async function patchStory(formData, id) {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'patch',
+      url: `/story/${id}`,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      },
+      data: formData
+    });
+  } catch (e) {
+    error = e.message;
+  }
+
+  return {
+    type: PATCH,
+    response: response,
+    error: error
+  }
+}
+
 // State
 const initialState = {
   rawList: [],
@@ -121,6 +147,9 @@ export default function reducer(state = initialState, action) {
 
     case RETRIEVE:
       return reducerRetrieveStory(state, action);
+
+    case PATCH:
+      return reducerPatchStory(state, action);
 
     default:
       return state;
@@ -183,6 +212,22 @@ function reducerRetrieveStory(state, action) {
     return {
       ...state,
       retrieve: {},
+      error: action.error
+    }
+  }
+}
+
+function reducerPatchStory(state, action) {
+  if (action.response) {
+    return {
+      ...state,
+      retrieve: action.response.data,
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      retrieve: '',
       error: action.error
     }
   }
