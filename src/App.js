@@ -34,9 +34,9 @@ import AuthorDetail from './components/dynamic/posts/author_detail';
 import LoginModal from './components/dynamic/auth/login_modal';
 import SignUpModal from './components/dynamic/auth/signup_modal';
 import AdminSignUp from './components/dynamic/auth/admin_signup';
-import Stories from './components/dynamic/profile/stories';
-import WriteStory from './components/dynamic/profile/write_story';
-import StoryDetail from './components/dynamic/profile/story_detail';
+import Stories from './components/dynamic/stories/list_story';
+import WriteStory from './components/dynamic/stories/create_story';
+import StoryDetail from './components/dynamic/stories/retrieve_story';
 
 // Helper function
 import { decodeJWT } from "./include/jwt_decode";

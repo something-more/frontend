@@ -7,7 +7,7 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import { createStory } from '../../../reducers/reducer_story';
 
-class WriteStory extends Component {
+class CreateStory extends Component {
 
   constructor(props) {
     super(props);
@@ -110,5 +110,5 @@ function mapStateToProps(state) {
 export default reduxForm({
   form: 'WriteStoryForm'
 })(
-  connect(mapStateToProps, { createStory })(WriteStory)
+  connect(mapStateToProps, { createStory })(CreateStory)
 );

@@ -6,7 +6,7 @@ import { listStory } from '../../../reducers/reducer_story';
 
 const $ = window.jQuery;
 
-class Stories extends Component {
+class ListStory extends Component {
   componentWillMount() {
     document.addEventListener('mousedown', this.handleClick, false);
   }
@@ -85,4 +85,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { listStory })(Stories);
+export default connect(mapStateToProps, { listStory })(ListStory);

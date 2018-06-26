@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Quill from 'quill';
 import { retrieveStory } from '../../../reducers/reducer_story';
 
-class StoryDetail extends Component {
+class RetrieveStory extends Component {
   constructor(props) {
     super(props);
 
@@ -49,4 +49,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { retrieveStory })(StoryDetail);
+export default connect(mapStateToProps, { retrieveStory })(RetrieveStory);
