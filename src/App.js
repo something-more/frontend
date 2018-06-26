@@ -36,6 +36,7 @@ import SignUpModal from './components/dynamic/auth/signup_modal';
 import AdminSignUp from './components/dynamic/auth/admin_signup';
 import Stories from './components/dynamic/profile/stories';
 import WriteStory from './components/dynamic/profile/write_story';
+import StoryDetail from './components/dynamic/profile/story_detail';
 
 // Helper function
 import { decodeJWT } from "./include/jwt_decode";
@@ -63,6 +64,7 @@ class App extends Component {
         <LogoColumn/>
           <Switch>
             <PrivateRoute path="/me/write" component={WriteStory}/>
+            <PrivateRoute path="/me/stories/:id" component={StoryDetail}/>
             <PrivateRoute path="/me/stories" component={Stories}/>
             <Route path="/authors/:id" component={AuthorDetail}/>
             <Route path="/about" component={About}/>
