@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Quill from 'quill';
+import moment from 'moment';
 import { retrieveStory } from '../../../reducers/reducer_story';
 
 class RetrieveStory extends Component {
@@ -36,7 +37,12 @@ class RetrieveStory extends Component {
     <div className="content-col">
       <div className="inner-content">
         <div id="editor" style={{display: "none"}}/>
-        <h1>{story.title}</h1>
+        <h1 className="font-weight-thin no-margin-top">{story.title}</h1>
+        <hr className="hidden-xs"/>
+        <p className="meta">
+          <span>Date: {moment(story.date_created).format('YYYY-MM-DD')}</span>
+        </p>
+        <hr className="hidden-xs"/>
         <div id="content" className="ql-editor"/>
       </div>
     </div>
