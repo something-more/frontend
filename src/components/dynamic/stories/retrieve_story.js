@@ -22,9 +22,11 @@ class RetrieveStory extends Component {
     const contents = await JSON.parse(this.props.story.content);
     await this.state.quill.setContents(contents);
     document.getElementById('content').innerHTML = this.state.quill.root.innerHTML;
-    const images = document.getElementById('content').querySelectorAll('img')
-
-    images.forEach(img => img.classList.add('img-responsive'))
+    const images = document.getElementById('content').querySelectorAll('img');
+    images.forEach(img => {
+      img.style.maxWidth = '100%';
+      img.style.height = 'auto';
+    })
   }
 
   render() {
@@ -35,7 +37,7 @@ class RetrieveStory extends Component {
       <div className="inner-content">
         <div id="editor" style={{display: "none"}}/>
         <h1>{story.title}</h1>
-        <div id="content"/>
+        <div id="content" className="ql-editor"/>
       </div>
     </div>
     )
