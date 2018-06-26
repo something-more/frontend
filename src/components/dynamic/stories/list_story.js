@@ -2,13 +2,21 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { listStory } from '../../../reducers/reducer_story';
+import {
+  listStory,
+  filterPublished,
+  filterDraft } from '../../../reducers/reducer_story';
 
 const $ = window.jQuery;
 
 class ListStory extends Component {
   componentWillMount() {
     document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  async componentDidMount() {
+    await this.props.listStory();
+    await this.props.filterDraft();
   }
 
   componentWillUnmount() {
@@ -23,11 +31,11 @@ class ListStory extends Component {
   };
 
   renderList() {
-    return this.props.list.map(story => {
+    return this.props.filteredList.map(story => {
       // 글 생성 일자
       const dateCreated = moment(story.date_created).format('YYYY-MM-DD');
       // 글 인덱스 번호
-      const indexNum = (this.props.list.length) - (this.props.list.indexOf(story));
+      const indexNum = (this.props.filteredList.length) - (this.props.filteredList.indexOf(story));
       return (
       <tr key={story.id}>
         <td>{indexNum}</td>
@@ -56,8 +64,8 @@ class ListStory extends Component {
           style={{color: "#ec5004"}}
           className="btn btn-link pull-right">Let's Post</Link>
         <ul id="myTabs" className="nav nav-tabs">
-          <li className="active"><a href="#">Published</a></li>
-          <li><a onClick={() => this.props.listStory()}>Draft</a></li>
+          <li><a onClick={() => this.props.filterPublished()}>Published</a></li>
+          <li className="active"><a onClick={() => this.props.filterDraft()}>Draft</a></li>
         </ul>
         <hr className="vertical-spacer"/>
         <table className="table table-hover text-center">
@@ -80,9 +88,12 @@ class ListStory extends Component {
 
 function mapStateToProps(state) {
   return {
-    list: state.story.list,
+    filteredList: state.story.filteredList,
     error: state.story.error
   }
 }
 
-export default connect(mapStateToProps, { listStory })(ListStory);
+export default connect(mapStateToProps, {
+  listStory,
+  filterPublished,
+  filterDraft })(ListStory);
