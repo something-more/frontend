@@ -6,6 +6,7 @@ axiosConfig(axios);
 // Actions
 const CREATE = 'something-more/story/CREATE';
 const LIST = 'something-more/story/LIST';
+const COUNT = 'something-more/story/COUNT';
 const PUBLISHED = 'something-more/story/PUBLISHED';
 const DRAFT = 'something-more/story/DRAFT';
 const RETRIEVE = 'something-more/story/RETRIEVE';
@@ -57,6 +58,29 @@ export async function listStory(query = '?page=1') {
 
   return {
     type: LIST,
+    response: response,
+    error: error
+  }
+}
+
+export async function countStory() {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'get',
+      url: '/story/count/',
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      }
+    });
+  } catch (e) {
+    error = e.message;
+  }
+
+  return {
+    type: COUNT,
     response: response,
     error: error
   }
@@ -151,7 +175,8 @@ const initialState = {
   rawList: [],
   filteredList: [],
   retrieve: {},
-  error: ''
+  error: '',
+  count: 0
 };
 
 // Reducer
@@ -162,6 +187,9 @@ export default function reducer(state = initialState, action) {
 
     case LIST:
       return reducerListStory(state, action);
+
+    case COUNT:
+      return reducerCountStory(state, action);
 
     case PUBLISHED:
       return reducerFilterPublished(state);
@@ -209,6 +237,22 @@ function reducerListStory(state, action) {
   } else {
     return {
       ...state,
+      error: action.error
+    }
+  }
+}
+
+function reducerCountStory(state, action) {
+  if (action.response) {
+    return {
+      ...state,
+      count: Number(action.response.data),
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      count: 0,
       error: action.error
     }
   }
