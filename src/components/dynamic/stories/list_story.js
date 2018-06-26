@@ -40,10 +40,15 @@ class ListStory extends Component {
       <tr key={story.id}>
         <td>{indexNum}</td>
         <td>
-          <Link
-            to={`/me/stories/${story.id}`}>
-              {story.title}
+          {story.is_published
+          ? <Link
+            to={`/stories/${story.id}`}>
+            {story.title}
           </Link>
+          : <Link
+            to={`/me/stories/${story.id}`}>
+            {story.title}
+          </Link>}
         </td>
         <td>{dateCreated}</td>
       </tr>

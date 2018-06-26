@@ -64,6 +64,7 @@ class App extends Component {
         <NavigationColumn/>
         <LogoColumn/>
           <Switch>
+            <Route path="/stories/:id" component={RetrieveStory}/>
             <PrivateRoute path="/me/write" component={CreateStory}/>
             <PrivateRoute path="/me/stories/:id" component={PatchStory}/>
             <PrivateRoute path="/me/stories" component={ListStory}/>
