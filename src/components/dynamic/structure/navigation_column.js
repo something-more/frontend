@@ -35,7 +35,7 @@ class Navigation extends Component {
             </button>
             <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
               {retrieveData.isStaff ? <li><Link to="/me/stories">Stories</Link></li> : ''}
-              <li><a>Settings</a></li>
+              <li><Link to="/me/settings">Settings</Link></li>
               <li role="separator" className="divider"/>
               <li>
                 <Link
