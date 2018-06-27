@@ -9,6 +9,7 @@ const ADMIN_SIGNUP = 'something-more/auth/ADMIN_SIGNUP';
 const SIGNUP = 'something-more/auth/SIGNUP';
 const SIGNIN = 'something-more/auth/SIGNIN';
 const SIGNOUT = 'something-more/auth/SIGNOUT';
+const DESTROY = 'something-more/auth/DESTROY';
 
 // Action Creators
 
@@ -94,6 +95,33 @@ export function signOut() {
   }
 }
 
+// 회원 탈퇴
+export async function destroyUser(values) {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'delete',
+      url: '/destroy/',
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      },
+      data: {
+        password: values.password
+      }
+    });
+  } catch (e) {
+    error = e.response.data.message;
+  }
+
+  return {
+    type: DESTROY,
+    response: response,
+    error: error
+  }
+}
+
 // Reducer
 
 // 초기 state 정의
@@ -115,6 +143,9 @@ export default function reducer(state = initialState, action) {
 
     case SIGNOUT:
       return reducerSignOut(state);
+
+    case DESTROY:
+      return reducerDestroyUser(state, action);
 
     default:
       return state;
@@ -182,5 +213,22 @@ function reducerSignOut(state) {
     ...state,
     email: '',
     error: ''
+  }
+}
+
+function reducerDestroyUser(state, action) {
+  if (!action.error) {
+    sessionStorage.removeItem('token');
+
+    return {
+      ...state,
+      email: '',
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      error: action.error
+    }
   }
 }
