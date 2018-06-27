@@ -9,6 +9,7 @@ const ADMIN_SIGNUP = 'something-more/auth/ADMIN_SIGNUP';
 const SIGNUP = 'something-more/auth/SIGNUP';
 const SIGNIN = 'something-more/auth/SIGNIN';
 const SIGNOUT = 'something-more/auth/SIGNOUT';
+const PATCH = 'something-more/auth/PATCH';
 const DESTROY = 'something-more/auth/DESTROY';
 
 // Action Creators
@@ -95,6 +96,33 @@ export function signOut() {
   }
 }
 
+// 패스워드 수정
+export async function patchPassword(values) {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'patch',
+      url: '/patch/',
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      },
+      data: {
+        password: values.password2
+      }
+    });
+  } catch (e) {
+    error = e.response.data.message;
+  }
+
+  return {
+    type: PATCH,
+    response: response,
+    error: error
+  }
+}
+
 // 회원 탈퇴
 export async function destroyUser(values) {
 
@@ -143,6 +171,9 @@ export default function reducer(state = initialState, action) {
 
     case SIGNOUT:
       return reducerSignOut(state);
+
+    case PATCH:
+      return reducerPatchPassword(state, action);
 
     case DESTROY:
       return reducerDestroyUser(state, action);
@@ -213,6 +244,20 @@ function reducerSignOut(state) {
     ...state,
     email: '',
     error: ''
+  }
+}
+
+function reducerPatchPassword(state, action) {
+  if (!action.error) {
+    return {
+      ...state,
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      error: action.error
+    }
   }
 }
 
