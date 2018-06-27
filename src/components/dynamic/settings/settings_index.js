@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { listUsers } from '../../../reducers/reducer_admin';
 import { patchPassword, destroyUser } from '../../../reducers/reducer_auth';
 import { decodeJWT } from '../../../include/jwt_decode';
 
 class SettingsIndex extends Component {
+  constructor(props) {
+    super(props);
 
-  state = {
-    status: ''
-  };
+    this.state = {
+      status: ''
+    };
+
+    this.props.listUsers()
+  }
 
   errorAlert() {
     // 에러가 발견되면 경고창 띄움
@@ -39,6 +45,20 @@ class SettingsIndex extends Component {
     }
   }
 
+  renderUsers() {
+    return this.props.users.map((user) => {
+      // 인덱스 번호
+      const indexNum = this.props.users.indexOf(user) + 1;
+      return (
+      <tr key={user.id}>
+        <td>{indexNum}</td>
+        <td>{user.email}</td>
+        <td>{user.is_admin ? '관리자' : user.is_staff ? '필진' : '일반'}</td>
+      </tr>
+      )
+    })
+  }
+
   renderPasswordField(field) {
     return (
       <div className="form-group">
@@ -59,6 +79,30 @@ class SettingsIndex extends Component {
   renderSettings() {
     const { handleSubmit } = this.props;
     switch(this.state.status) {
+      case 'admin':
+        return (
+          <div>
+            <h4>회원 등급 관리</h4>
+            <div className="panel panel-warning">
+              <div className="panel-heading">
+                <strong>유저를 필진이나 관리자로 등급 조정을 할 수 있는 곳입니다.</strong>
+              </div>
+              <table className="table table-hover table-striped table-bordered text-center">
+                <thead>
+                <tr>
+                  <th className="text-center">번호</th>
+                  <th className="text-center">이메일</th>
+                  <th className="text-center">등급</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {this.renderUsers()}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+
       case 'password':
         return (
         <div>
@@ -121,12 +165,21 @@ class SettingsIndex extends Component {
         <div className="inner-content">
           <h1 className="title">Settings</h1>
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-4">
               <h4>회원 정보</h4>
               <ul className="list-group">
                 <li className="list-group-item active">
                   <strong>Email:&nbsp;</strong>
-                  <span>{decodedToken.email}</span></li>
+                  <span>{decodedToken.email}</span>
+                </li>
+                {decodedToken.isAdmin
+                ? <li
+                    className="list-group-item"
+                    style={{cursor: "pointer"}}
+                    onClick={() => {this.setState({status: 'admin'})}}>
+                  <strong>회원 등급 관리</strong>
+                </li>
+                : ''}
                 <li
                   className="list-group-item"
                   style={{cursor: "pointer"}}
@@ -142,7 +195,7 @@ class SettingsIndex extends Component {
                 </li>
               </ul>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-8">
               {this.renderSettings()}
               <hr className="vertical-spacer"/>
               {this.errorAlert()}
@@ -156,6 +209,7 @@ class SettingsIndex extends Component {
 
 function mapStateToProps(state) {
   return {
+    users: state.admin.list,
     error: state.auth.error
   }
 }
@@ -174,5 +228,8 @@ export default reduxForm({
   validate,
   form: 'UserSettingForm'
 })(
-  connect(mapStateToProps, { patchPassword, destroyUser })(SettingsIndex)
+  connect(mapStateToProps, {
+    listUsers,
+    patchPassword,
+    destroyUser })(SettingsIndex)
 );
