@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Quill from 'quill';
 import moment from 'moment';
-import { retrieveBoard } from '../../../reducers/reducer_board';
+import { retrieveBoard, destroyBoard } from '../../../reducers/reducer_board';
 import { decodeJWT } from '../../../include/jwt_decode';
 
 class RetrieveBoard extends Component {
@@ -32,6 +32,18 @@ class RetrieveBoard extends Component {
     })
   }
 
+  async onDestroy() {
+    const isConfirm = window.confirm('정말 삭제하겠습니까?');
+
+    if (isConfirm) {
+      await alert('삭제되었습니다');
+      await this.props.destroyBoard(this.props.board.id);
+      await this.props.history.push('/board')
+    } else {
+      alert('삭제를 취소하셨습니다');
+    }
+  }
+
   render() {
     const { board } = this.props;
 
@@ -47,10 +59,16 @@ class RetrieveBoard extends Component {
           <span>Date: {moment(board.date_created).format('YYYY-MM-DD')}</span>
           {sessionStorage.getItem('token') &&
           decodeJWT(sessionStorage.getItem('token')).email === board.author
-          ? <Link
+          ? <div className="pull-right">
+            <button
+            className="btn btn-danger"
+            style={{marginRight: "10px"}}
+            onClick={() => this.onDestroy()}>Delete</button>
+            <Link
           to={`/board/patch/${board.id}`}
           type="button"
-          className="btn btn-warning pull-right">Modify</Link>
+          className="btn btn-warning">Modify</Link>
+          </div>
           : null}
         </p>
         <hr className="hidden-xs"/>
@@ -68,4 +86,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { retrieveBoard })(RetrieveBoard);
+export default connect(mapStateToProps, { retrieveBoard, destroyBoard })(RetrieveBoard);
