@@ -89,7 +89,7 @@ export async function retrieveBoard(id) {
   try {
     response = await axios({
       method: 'get',
-      url: `/board/${id}`
+      url: `/board/view/${id}`
     })
   } catch (e) {
     error = e.message;
@@ -110,7 +110,7 @@ export async function patchBoard(formData, id) {
   try {
     response = await axios({
       method: 'patch',
-      url: `/board/patch/${id}`,
+      url: `/board/${id}`,
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
