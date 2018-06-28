@@ -4,8 +4,10 @@ import AdminReducer from './reducer_admin';
 import AuthorReducer from './reducer_author';
 import AuthReducer from './reducer_auth';
 import StoryReducer from './reducer_story';
+import BoardReducer from './reducer_board';
 
 const rootReducer = combineReducers({
+  board: BoardReducer,
   admin: AdminReducer,
   author: AuthorReducer,
   auth: AuthReducer,
