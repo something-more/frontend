@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { listBoard } from '../../../reducers/reducer_board';
+import { listBoard, countBoard } from '../../../reducers/reducer_board';
 import { decodeJWT } from "../../../include/jwt_decode";
 import moment from "moment/moment";
 import AlertError from '../structure/alert_error';
@@ -10,6 +10,26 @@ class ListBoard extends Component {
 
   componentDidMount() {
     this.props.listBoard();
+    this.props.countBoard();
+  }
+
+  renderPagination() {
+    const { boardCount } = this.props;
+    const pageCount = Math.ceil(boardCount / 15);
+    const pageArray = [];
+
+    for (let step = 1; step <= pageCount; step += 1) {
+      pageArray.push(step);
+    }
+
+    return pageArray.map((pageNum) => {
+      return(
+      <li>
+        <a onClick={() => this.props.listBoard(`page=${pageNum}`)}>{pageNum}</a>
+      </li>
+      )
+    })
+
   }
 
   renderList() {
@@ -53,6 +73,12 @@ class ListBoard extends Component {
             {this.renderList()}
             </tbody>
           </table>
+          <hr className="vertical-spacer"/>
+          <div className="center-block text-center">
+            <ul className="pagination">
+              {this.renderPagination()}
+            </ul>
+          </div>
           <AlertError errors={this.props.error}/>
         </div>
       </div>
@@ -62,9 +88,10 @@ class ListBoard extends Component {
 
 function mapStateToProps(state) {
   return {
+    boardCount: state.board.count,
     boardList: state.board.list,
     error: state.board.error
   }
 }
 
-export default connect(mapStateToProps, { listBoard })(ListBoard);
+export default connect(mapStateToProps, { listBoard, countBoard })(ListBoard);
