@@ -12,8 +12,6 @@ class SettingsIndex extends Component {
     this.state = {
       status: ''
     };
-
-    this.props.listUsers()
   }
 
   render() {

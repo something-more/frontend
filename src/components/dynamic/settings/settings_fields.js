@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import { patchPassword, destroyUser } from '../../../reducers/reducer_auth';
+import Users from './settings_users';
 
 class SettingsFields extends Component {
 
@@ -20,20 +21,6 @@ class SettingsFields extends Component {
       await this.props.history.replace('/');
       await window.location.reload();
     }
-  }
-
-  renderUsers() {
-    return this.props.users.map((user) => {
-      // 인덱스 번호
-      const indexNum = this.props.users.indexOf(user) + 1;
-      return (
-      <tr key={user.id}>
-        <td>{indexNum}</td>
-        <td>{user.email}</td>
-        <td>{user.is_admin ? '관리자' : user.is_staff ? '필진' : '일반'}</td>
-      </tr>
-      )
-    })
   }
 
   renderPasswordField(field) {
@@ -57,26 +44,7 @@ class SettingsFields extends Component {
     const {handleSubmit} = this.props;
     switch (this.props.onStatusChange) {
       case 'admin':
-        return (<div>
-          <h4>회원 등급 관리</h4>
-          <div className="panel panel-warning">
-            <div className="panel-heading">
-              <strong>유저를 필진이나 관리자로 등급 조정을 할 수 있는 곳입니다.</strong>
-            </div>
-            <table className="table table-hover table-striped table-bordered text-center">
-              <thead>
-              <tr>
-                <th className="text-center">번호</th>
-                <th className="text-center">이메일</th>
-                <th className="text-center">등급</th>
-              </tr>
-              </thead>
-              <tbody>
-              {this.renderUsers()}
-              </tbody>
-            </table>
-          </div>
-        </div>);
+        return(<Users/>);
 
       case 'password':
         return (<div>
@@ -131,7 +99,6 @@ class SettingsFields extends Component {
 
 function mapStateToProps(state) {
   return {
-    users: state.admin.list,
     error: state.auth.error
   }
 }
