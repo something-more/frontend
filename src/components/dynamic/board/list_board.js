@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {decodeJWT} from "../../../include/jwt_decode";
 import moment from "moment/moment";
 
-class FreeBoardIndex extends Component {
+class ListBoard extends Component {
 
   renderList() {
     return (
@@ -42,4 +42,4 @@ class FreeBoardIndex extends Component {
   }
 }
 
-export default FreeBoardIndex;
+export default ListBoard;
