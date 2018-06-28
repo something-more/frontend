@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Quill from 'quill';
 import moment from 'moment';
 import { retrieveBoard } from '../../../reducers/reducer_board';
+import { decodeJWT } from '../../../include/jwt_decode';
 
 class RetrieveBoard extends Component {
   constructor(props) {
@@ -43,6 +45,13 @@ class RetrieveBoard extends Component {
           <span>Author: {board.author}</span>
           <span>&nbsp;/&nbsp;</span>
           <span>Date: {moment(board.date_created).format('YYYY-MM-DD')}</span>
+          {sessionStorage.getItem('token') &&
+          decodeJWT(sessionStorage.getItem('token')).email === board.author
+          ? <Link
+          to={`/board/patch/${board.id}`}
+          type="button"
+          className="btn btn-warning pull-right">Modify</Link>
+          : null}
         </p>
         <hr className="hidden-xs"/>
         <div id="content" className="ql-editor"/>
