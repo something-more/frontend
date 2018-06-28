@@ -10,6 +10,7 @@ const LIST = 'something-more/board/LIST';
 const COUNT = 'something-more/board/COUNT';
 const RETRIEVE = 'something-more/board/RETRIEVE';
 const PATCH = 'something-more/board/PATCH';
+const DESTROY = 'something-more/board/DESTROY';
 
 // Action Creators
 
@@ -128,6 +129,30 @@ export async function patchBoard(formData, id) {
   }
 }
 
+// 글 삭제
+export async function destroyBoard(id) {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'delete',
+      url: `/board/${id}`,
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      }
+    });
+  } catch (e) {
+    error = e.message;
+  }
+
+  return {
+    type: DESTROY,
+    response: response,
+    error: error
+  }
+}
+
 // Initial State
 const initialState = {
   list: [],
@@ -153,6 +178,9 @@ export default function reducer(state = initialState, action) {
 
     case PATCH:
       return reducerPatchBoard(action, state);
+
+    case DESTROY:
+      return reducerDestroyBoard(action, state);
 
     default:
       return state;
@@ -235,6 +263,21 @@ function reducerPatchBoard(action, state) {
     return {
       ...state,
       retrieve: {},
+      error: action.error
+    }
+  }
+}
+
+function reducerDestroyBoard(action, state) {
+  if (!action.error) {
+    return {
+      ...state,
+      retrieve: {},
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
       error: action.error
     }
   }
