@@ -9,6 +9,7 @@ const CREATE = 'something-more/board/CREATE';
 const LIST = 'something-more/board/LIST';
 const COUNT = 'something-more/board/COUNT';
 const RETRIEVE = 'something-more/board/RETRIEVE';
+const PATCH = 'something-more/board/PATCH';
 
 // Action Creators
 
@@ -101,6 +102,32 @@ export async function retrieveBoard(id) {
   }
 }
 
+// 글 수정
+export async function patchBoard(formData, id) {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'patch',
+      url: `/board/patch/${id}`,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      },
+      data: formData
+    });
+  } catch (e) {
+    error = e.message;
+  }
+
+  return {
+    type: PATCH,
+    response: response,
+    error: error
+  }
+}
+
 // Initial State
 const initialState = {
   list: [],
@@ -123,6 +150,9 @@ export default function reducer(state = initialState, action) {
 
     case RETRIEVE:
       return reducerRetrieveBoard(action, state);
+
+    case PATCH:
+      return reducerPatchBoard(action, state);
 
     default:
       return state;
@@ -179,6 +209,22 @@ function reducerCountBoard(action, state) {
 }
 
 function reducerRetrieveBoard(action, state) {
+  if (action.response) {
+    return {
+      ...state,
+      retrieve: action.response.data,
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      retrieve: {},
+      error: action.error
+    }
+  }
+}
+
+function reducerPatchBoard(action, state) {
   if (action.response) {
     return {
       ...state,
