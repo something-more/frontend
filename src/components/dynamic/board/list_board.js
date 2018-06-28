@@ -20,7 +20,7 @@ class ListBoard extends Component {
       return (
       <tr key={board.id}>
         <td>{board.author}</td>
-        <td>{board.title}</td>
+        <td><Link to={`/board/${board.id}`}>{board.title}</Link></td>
         <td>{dateCreated}</td>
       </tr>
       )
