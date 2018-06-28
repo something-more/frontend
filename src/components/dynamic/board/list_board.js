@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {decodeJWT} from "../../../include/jwt_decode";
+import { connect } from 'react-redux';
+import { listBoard } from '../../../reducers/reducer_board';
+import { decodeJWT } from "../../../include/jwt_decode";
 import moment from "moment/moment";
+import AlertError from '../structure/alert_error';
 
 class ListBoard extends Component {
 
+  componentDidMount() {
+    this.props.listBoard();
+  }
+
   renderList() {
-    return (
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
+    return this.props.boardList.map((board) => {
+      // 글 생성 일자
+      const dateCreated = moment(board.date_created).format('YYYY-MM-DD');
+
+      return (
+      <tr key={board.id}>
+        <td>{board.author}</td>
+        <td>{board.title}</td>
+        <td>{dateCreated}</td>
       </tr>
-    )
+      )
+    })
   }
 
   render() {
@@ -41,10 +53,18 @@ class ListBoard extends Component {
             {this.renderList()}
             </tbody>
           </table>
+          <AlertError errors={this.props.error}/>
         </div>
       </div>
     )
   }
 }
 
-export default ListBoard;
+function mapStateToProps(state) {
+  return {
+    boardList: state.board.list,
+    error: state.board.error
+  }
+}
+
+export default connect(mapStateToProps, { listBoard })(ListBoard);
