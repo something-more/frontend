@@ -42,6 +42,7 @@ import SettingsIndex from './components/dynamic/settings/settings_index';
 import ListFreeBoard from './components/dynamic/board/list_board';
 import CreateFreeBoard from './components/dynamic/board/create_board';
 import RetrieveFreeBoard from './components/dynamic/board/retrieve_board';
+import PatchBoard from './components/dynamic/board/patch_board';
 
 // Helper function
 import { decodeJWT } from "./include/jwt_decode";
@@ -68,6 +69,7 @@ class App extends Component {
         <NavigationColumn/>
         <LogoColumn/>
           <Switch>
+            <PrivateRoute path="/board/patch/:id" component={PatchBoard}/>
             <PrivateRoute path="/board/write" component={CreateFreeBoard}/>
             <Route path="/board/:id" component={RetrieveFreeBoard}/>
             <Route path="/board" component={ListFreeBoard}/>
