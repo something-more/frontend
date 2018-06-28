@@ -54,9 +54,15 @@ function validate(values) {
   return errors;
 }
 
+function mapStateToProps(state) {
+  return {
+    error: state.auth.error
+  }
+}
+
 export default reduxForm({
   validate,
   form: 'NewPasswordsForm'
 })(
-  connect(null, { patchPassword })(NewPasswords)
+  connect(mapStateToProps, { patchPassword })(NewPasswords)
 );
