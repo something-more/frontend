@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { listUsers } from '../../../reducers/reducer_admin';
 import { decodeJWT } from '../../../include/jwt_decode';
 import SettingsFields from './settings_fields';
+import AlertError from '../structure/alert_error';
 
 class SettingsIndex extends Component {
   constructor(props) {
@@ -13,18 +14,6 @@ class SettingsIndex extends Component {
     };
 
     this.props.listUsers()
-  }
-
-  errorAlert() {
-    // 에러가 발견되면 경고창 띄움
-    if (this.props.error) {
-      return (
-      <div className="alert alert-danger">
-        <button type="button" className="close" data-dismiss="alert">&times;</button>
-        <strong>{this.props.error}</strong>
-      </div>
-      )
-    }
   }
 
   render() {
@@ -68,7 +57,7 @@ class SettingsIndex extends Component {
             <div className="col-md-8">
               <SettingsFields onStatusChange={this.state.status}/>
               <hr className="vertical-spacer"/>
-              {this.errorAlert()}
+              <AlertError errors={this.props.error}/>
             </div>
           </div>
         </div>

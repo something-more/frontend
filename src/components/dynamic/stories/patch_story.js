@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Quill from 'quill';
 import moment from 'moment';
 import { retrieveStory, patchStory, destroyStory } from '../../../reducers/reducer_story';
+import AlertError from '../structure/alert_error';
 
 class PatchStory extends Component {
   constructor(props) {
@@ -40,18 +41,6 @@ class PatchStory extends Component {
     const contents = await JSON.parse(this.props.story.content);
     await this.state.quill.setContents(contents);
     this.props.initialize({title: this.props.story.title})
-  }
-
-  errorAlert() {
-    // 에러가 발견되면 경고창 띄움
-    if (this.props.error) {
-      return (
-      <div className="alert alert-danger">
-        <button type="button" className="close" data-dismiss="alert">&times;</button>
-        <strong>{this.props.error}</strong>
-      </div>
-      )
-    }
   }
 
   async onPublish(values) {
@@ -136,7 +125,7 @@ class PatchStory extends Component {
           </div>
           <div id="editor" style={{minHeight: "70vh"}}/>
         </form>
-        {this.errorAlert()}
+        <AlertError errors={this.props.error}/>
       </div>
     </div>
     )

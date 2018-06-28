@@ -6,6 +6,7 @@ import Quill from 'quill/dist/quill.min';
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import { createStory } from '../../../reducers/reducer_story';
+import AlertError from '../structure/alert_error';
 
 class CreateStory extends Component {
 
@@ -55,18 +56,6 @@ class CreateStory extends Component {
     }
   }
 
-  errorAlert() {
-    // 에러가 발견되면 경고창 띄움
-    if (this.props.error) {
-      return (
-      <div className="alert alert-danger">
-        <button type="button" className="close" data-dismiss="alert">&times;</button>
-        <strong>{this.props.error}</strong>
-      </div>
-      )
-    }
-  }
-
   render() {
     const { handleSubmit } = this.props;
 
@@ -95,7 +84,7 @@ class CreateStory extends Component {
           </div>
           <div id="editor" style={{minHeight: "70vh"}}/>
         </form>
-        {this.errorAlert()}
+        <AlertError errors={this.props.error}/>
       </div>
     </div>
     )

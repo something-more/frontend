@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { signUp } from '../../../reducers/reducer_auth';
+import AlertError from '../structure/alert_error';
 
 const $ = window.jQuery;
 
@@ -27,18 +28,6 @@ class SignUpModal extends Component {
     // 에러가 발견되지 않으면 새로고침
     if (!this.props.error) {
       await window.location.reload();
-    }
-  }
-
-  errorAlert() {
-    // 에러가 발견되면 경고창 띄움
-    if (this.props.error) {
-      return (
-      <div className="alert alert-danger">
-        <button type="button" className="close" data-dismiss="alert">&times;</button>
-        <strong>{this.props.error}</strong>
-      </div>
-      )
     }
   }
 
@@ -105,7 +94,7 @@ class SignUpModal extends Component {
           </div>
           <div className="row">
             <div className="col-sm-8 col-sm-offset-2 text-center">
-              {this.errorAlert()}
+              <AlertError errors={this.props.error}/>
             </div>
           </div>
           <p className="text-center">Already have an account?

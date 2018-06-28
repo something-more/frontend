@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { adminSignUp } from '../../../reducers/reducer_auth';
+import AlertError from '../structure/alert_error';
 
 class AdminSignUp extends Component {
 
@@ -10,18 +11,6 @@ class AdminSignUp extends Component {
 
     if (!this.props.error) {
       window.location.replace('/');
-    }
-  }
-
-  errorAlert() {
-    // 에러가 발견되면 경고창 띄움
-    if (this.props.error) {
-      return (
-      <div className="alert alert-danger">
-        <button type="button" className="close" data-dismiss="alert">&times;</button>
-        <strong>{this.props.error}</strong>
-      </div>
-      )
     }
   }
 
@@ -63,7 +52,7 @@ class AdminSignUp extends Component {
           </div>
           <div className="row">
             <div className="col-sm-6 col-sm-offset-3 text-center">
-              {this.errorAlert()}
+              <AlertError errors={this.props.error}/>
             </div>
           </div>
         </div>
