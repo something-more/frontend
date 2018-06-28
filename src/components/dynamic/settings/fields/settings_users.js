@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { listUsers } from '../../../../reducers/reducer_admin';
+import { listUsers, updateUserAuth } from '../../../../reducers/reducer_admin';
+import AlertError from '../../structure/alert_error';
 
 class Users extends Component {
 
@@ -15,9 +17,73 @@ class Users extends Component {
     this.props.listUsers()
   }
 
+  async onUpdate(values) {
+    const { auth } = values;
+
+    const payload = {
+      email: this.state.userEmail,
+      is_admin: false,
+      is_staff: false
+    };
+
+    if (auth === 'admin') {
+      payload.is_admin = true;
+      payload.is_staff = true;
+    } else if (auth === 'staff') {
+      payload.is_staff = true;
+    }
+
+    const isConfirm = window.confirm('정말 등급을 변경하시겠습니까?');
+
+    if (isConfirm) {
+      await this.props.updateUserAuth(payload);
+    }
+
+    if (isConfirm && !this.props.error) {
+      await window.location.reload();
+    }
+  }
+
   renderUpdate() {
+    const { handleSubmit } = this.props;
+
     return (
-      <div>{String(this.state.userEmail)}</div>
+    <Fragment>
+      <nav className="navbar navbar-default">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <button type="button"
+            className="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"/>
+              <span className="icon-bar"/>
+              <span className="icon-bar"/>
+            </button>
+            <a className="navbar-brand">{this.state.userEmail}</a>
+          </div>
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form
+            method="post"
+            onSubmit={handleSubmit(this.onUpdate.bind(this))}
+            className="navbar-form navbar-right">
+              <div className="form-group" style={{marginRight: "10px"}}>
+                <Field name="auth" className="form-control" id="updateAuth" component="select">
+                  <option value="" disabled selected>등급 선택</option>
+                  <option value="admin">관리자</option>
+                  <option value="staff">필진</option>
+                  <option value="normal">일반</option>
+                </Field>
+              </div>
+              <button type="submit" className="btn btn-default">Submit</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <AlertError errors={this.props.error}/>
+    </Fragment>
     )
   }
 
@@ -78,10 +144,27 @@ class Users extends Component {
   }
 }
 
+function validate(values) {
+  console.log(values);
+  const errors = {};
+
+  if (!values.auth) {
+    errors.auth = '등급을 선택하셔야 합니다'
+  }
+
+  return errors;
+}
+
 function mapStateToProps(state) {
   return {
-    users: state.admin.list
+    users: state.admin.list,
+    error: state.admin.error
   }
 }
 
-export default connect(mapStateToProps, { listUsers })(Users);
+export default reduxForm({
+  validate,
+  form: 'UserAuthUpdateForm'
+})(
+  connect(mapStateToProps, { listUsers, updateUserAuth })(Users)
+);
