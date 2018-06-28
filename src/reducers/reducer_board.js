@@ -7,6 +7,7 @@ axiosConfig(axios);
 // Actions
 const CREATE = 'something-more/board/CREATE';
 const LIST = 'something-more/board/LIST';
+const RETRIEVE = 'something-more/board/RETRIEVE';
 
 // Action Creators
 
@@ -57,6 +58,27 @@ export async function listBoard() {
   }
 }
 
+// 글 디테일
+export async function retrieveBoard(id) {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'get',
+      url: `/board/${id}`
+    })
+  } catch (e) {
+    error = e.message;
+  }
+
+  return {
+    type: RETRIEVE,
+    response: response,
+    error: error
+  }
+}
+
 // Initial State
 const initialState = {
   list: [],
@@ -72,6 +94,9 @@ export default function reducer(state = initialState, action) {
 
     case LIST:
       return reducerListBoard(action, state);
+
+    case RETRIEVE:
+      return reducerRetrieveBoard(action, state);
 
     default:
       return state;
@@ -106,6 +131,22 @@ function reducerListBoard(action, state) {
     return {
       ...state,
       list: [],
+      error: action.error
+    }
+  }
+}
+
+function reducerRetrieveBoard(action, state) {
+  if (action.response) {
+    return {
+      ...state,
+      retrieve: action.response.data,
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      retrieve: {},
       error: action.error
     }
   }
