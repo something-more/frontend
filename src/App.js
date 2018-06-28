@@ -39,6 +39,7 @@ import CreateStory from './components/dynamic/stories/create_story';
 import RetrieveStory from './components/dynamic/stories/retrieve_story';
 import PatchStory from './components/dynamic/stories/patch_story';
 import SettingsIndex from './components/dynamic/settings/settings_index';
+import FreeBoard from './components/dynamic/board/board_index';
 
 // Helper function
 import { decodeJWT } from "./include/jwt_decode";
@@ -65,6 +66,7 @@ class App extends Component {
         <NavigationColumn/>
         <LogoColumn/>
           <Switch>
+            <Route path="/board" component={FreeBoard}/>
             <Route path="/stories/:id" component={RetrieveStory}/>
             <PrivateRoute path="/me/write" component={CreateStory}/>
             <PrivateRoute path="/me/stories/:id" component={PatchStory}/>
