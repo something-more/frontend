@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Quill from 'quill';
 import moment from 'moment';
-import { retrieveBoard, patchBoard } from '../../../reducers/reducer_board';
+import { retrieveBoard, patchBoard, destroyBoard } from '../../../reducers/reducer_board';
 import AlertError from '../structure/alert_error';
 
 class PatchBoard extends Component {
@@ -64,7 +64,7 @@ class PatchBoard extends Component {
 
     if (isConfirm) {
       await alert('삭제되었습니다');
-      // await this.props.destroyStory(this.props.board.id);
+      await this.props.destroyBoard(this.props.board.id);
       await this.props.history.push('/board')
     } else {
       alert('삭제를 취소하셨습니다');
@@ -123,5 +123,5 @@ function mapStateToProps(state) {
 export default reduxForm({
   form: 'PatchBoardForm'
 })(
-connect(mapStateToProps, { retrieveBoard, patchBoard })(PatchBoard)
+connect(mapStateToProps, { retrieveBoard, patchBoard, destroyBoard })(PatchBoard)
 );
