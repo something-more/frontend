@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Users from './settings_users';
-import NewPasswords from './settings_passwords';
-import Destroy from './settings_destroy';
+import Users from './fields/settings_users';
+import NewPasswords from './fields/settings_passwords';
+import Destroy from './fields/settings_destroy';
 
 class SettingsFields extends Component {
 

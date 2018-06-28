@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { listUsers } from '../../../reducers/reducer_admin';
+import { listUsers } from '../../../../reducers/reducer_admin';
 
 class Users extends Component {
   componentDidMount() {
