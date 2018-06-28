@@ -7,6 +7,7 @@ axiosConfig(axios);
 // Actions
 const CREATE = 'something-more/board/CREATE';
 const LIST = 'something-more/board/LIST';
+const COUNT = 'something-more/board/COUNT';
 const RETRIEVE = 'something-more/board/RETRIEVE';
 
 // Action Creators
@@ -58,6 +59,27 @@ export async function listBoard(query = 'page=1') {
   }
 }
 
+// 글 갯수
+export async function countBoard() {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'get',
+      url: '/board/count/'
+    })
+  } catch (e) {
+    error = e.message;
+  }
+
+  return {
+    type: COUNT,
+    response: response,
+    error: error
+  }
+}
+
 // 글 디테일
 export async function retrieveBoard(id) {
 
@@ -83,6 +105,7 @@ export async function retrieveBoard(id) {
 const initialState = {
   list: [],
   retrieve: {},
+  count: 0,
   error: ''
 };
 
@@ -94,6 +117,9 @@ export default function reducer(state = initialState, action) {
 
     case LIST:
       return reducerListBoard(action, state);
+
+    case COUNT:
+      return reducerCountBoard(action, state);
 
     case RETRIEVE:
       return reducerRetrieveBoard(action, state);
@@ -131,6 +157,22 @@ function reducerListBoard(action, state) {
     return {
       ...state,
       list: [],
+      error: action.error
+    }
+  }
+}
+
+function reducerCountBoard(action, state) {
+  if (action.response) {
+    return {
+      ...state,
+      count: action.response.data,
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      count: 0,
       error: action.error
     }
   }
