@@ -5,7 +5,7 @@ import moment from 'moment';
 import Quill from 'quill/dist/quill.min';
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
-
+import { createBoard } from '../../../reducers/reducer_board';
 import AlertError from '../structure/alert_error';
 
 class CreateBoard extends Component {
@@ -49,7 +49,7 @@ class CreateBoard extends Component {
     formData.append('content', delta);
     formData.append('date_created', moment().format());
 
-    // await this.props.createStory(formData);
+    await this.props.createBoard(formData);
 
     if (!this.props.error) {
       await this.props.history.push('/board')
@@ -79,7 +79,7 @@ class CreateBoard extends Component {
               component="input"
               required/>
               <span className="input-group-btn">
-            <button type="submit" className="btn btn-info pull-right">Save</button>
+            <button type="submit" className="btn btn-info pull-right">Publish</button>
           </span>
             </div>
             <div id="editor" style={{minHeight: "70vh"}}/>
@@ -91,8 +91,14 @@ class CreateBoard extends Component {
   }
 }
 
-export default reduxForm({
+function mapStateToProps(state) {
+  return {
+    error: state.board.error
+  }
+}
 
+export default reduxForm({
+  form: 'CreateBoardForm'
 })(
-  connect()(CreateBoard)
+  connect(mapStateToProps, { createBoard })(CreateBoard)
 );

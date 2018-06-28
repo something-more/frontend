@@ -32,7 +32,7 @@ class ListBoard extends Component {
           <table className="table table-hover text-center">
             <thead>
             <tr>
-              <th className="text-center">번호</th>
+              <th className="text-center">글쓴이</th>
               <th className="text-center">제목</th>
               <th className="text-center">날짜</th>
             </tr>
