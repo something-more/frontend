@@ -8,9 +8,9 @@ import AlertError from '../structure/alert_error';
 
 class ListBoard extends Component {
 
-  componentDidMount() {
-    this.props.listBoard();
-    this.props.countBoard();
+  async componentDidMount() {
+    await this.props.countBoard();
+    await this.props.listBoard();
   }
 
   renderPagination() {
@@ -70,13 +70,13 @@ class ListBoard extends Component {
             </tr>
             </thead>
             <tbody>
-            {this.renderList()}
+            {this.props.boardCount !== 0 ? this.renderList() : null}
             </tbody>
           </table>
           <hr className="vertical-spacer"/>
           <div className="center-block text-center">
             <ul className="pagination">
-              {this.renderPagination()}
+              {this.props.boardCount !== 0 ? this.renderPagination() : null}
             </ul>
           </div>
           <AlertError errors={this.props.error}/>
