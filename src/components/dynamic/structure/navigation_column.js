@@ -46,6 +46,9 @@ class Navigation extends Component {
             <a href="#">Stories</a>
           </li>
           <li>
+            <Link to="/notice">Notice</Link>
+          </li>
+          <li>
             <Link to="/board">Free Board</Link>
           </li>
         </ul>
