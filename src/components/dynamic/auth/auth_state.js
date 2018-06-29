@@ -37,6 +37,9 @@ class AuthenticationState extends Component {
         <ul
           className="dropdown-menu dropdown-menu-right"
           aria-labelledby="profileDropdown">
+          {decodedToken.isAdmin
+          ? <li><Link to="/notice">Notice</Link></li>
+          : null}
           {decodedToken.isStaff
           ? <li><Link to="/me/stories">Stories</Link></li>
           : null}

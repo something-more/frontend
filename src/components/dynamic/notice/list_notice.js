@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { listNotice, countNotice } from '../../../../reducers/reducer_notice';
-import { decodeJWT } from '../../../../include/jwt_decode';
+import { listNotice, countNotice } from '../../../reducers/reducer_notice';
+import { decodeJWT } from '../../../include/jwt_decode';
 import moment from 'moment/moment';
-import AlertError from '../../structure/alert_error';
+import AlertError from '../structure/alert_error';
 
 class ListBoard extends Component {
 
