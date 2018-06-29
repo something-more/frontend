@@ -46,6 +46,7 @@ import PatchBoard from './components/dynamic/board/patch_board';
 import ListNotice from './components/dynamic/notice/list_notice';
 import CreateNotice from './components/dynamic/notice/create_notice';
 import RetrieveNotice from './components/dynamic/notice/retrieve_notice';
+import PatchNotice from './components/dynamic/notice/patch_notice';
 
 // Helper function
 import { decodeJWT } from "./include/jwt_decode";
@@ -72,6 +73,7 @@ class App extends Component {
         <NavigationColumn/>
         <LogoColumn/>
           <Switch>
+            <PrivateRoute path="/notice/patch/:id" component={PatchNotice}/>
             <PrivateRoute path="/notice/write" component={CreateNotice}/>
             <Route path="/notice/:id" component={RetrieveNotice}/>
             <Route path="/notice" component={ListNotice}/>
