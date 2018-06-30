@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Quill from 'quill';
 import moment from 'moment';
-import { retrieveStory } from '../../../reducers/reducer_story';
+import { retrieveStory, destroyStory } from '../../../reducers/reducer_story';
 import { renderQuillObject } from '../../../include/render_quill_object';
+import {decodeJWT} from "../../../include/jwt_decode";
+import {onDestroy} from "../../../include/submit_functions";
 
 class RetrieveStory extends Component {
   constructor(props) {
@@ -24,7 +27,7 @@ class RetrieveStory extends Component {
   }
 
   render() {
-    const { story } = this.props;
+    const { story, destroyStory, history } = this.props;
 
     return (
     <div className="content-col">
@@ -33,7 +36,23 @@ class RetrieveStory extends Component {
         <h1 className="font-weight-thin no-margin-top">{story.title}</h1>
         <hr className="hidden-xs"/>
         <p className="meta">
+          <span>Author: {story.author}</span>
+          <span>&nbsp;/&nbsp;</span>
           <span>Date: {moment(story.date_created).format('YYYY-MM-DD')}</span>
+          {sessionStorage.getItem('token') &&
+          decodeJWT(sessionStorage.getItem('token')).id === story.author
+          ? <div className="pull-right">
+            <button
+            className="btn btn-danger"
+            style={{marginRight: "10px"}}
+            onClick={() =>
+            onDestroy(story.id, destroyStory, history.push('/me/stories'))}>Delete</button>
+            <Link
+            to={`/me/stories/${story.id}`}
+            type="button"
+            className="btn btn-warning">Modify</Link>
+          </div>
+          : null}
         </p>
         <hr className="hidden-xs"/>
         <div id="content" className="ql-editor"/>
@@ -50,4 +69,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { retrieveStory })(RetrieveStory);
+export default connect(mapStateToProps, { retrieveStory, destroyStory })(RetrieveStory);
