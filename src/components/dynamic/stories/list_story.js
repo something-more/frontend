@@ -4,6 +4,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { countStory, listStory, changePublishStory } from '../../../reducers/reducer_story';
+import Pagination from '../structure/write_modules/pagination';
 import AlertError from '../structure/alert_error';
 
 class ListStory extends Component {
@@ -86,6 +87,13 @@ class ListStory extends Component {
             {this.props.storyCount !== 0 ? this.renderList() : null}
           </tbody>
         </table>
+        <div className="center-block text-center">
+          <ul className="pagination">
+            {this.props.storyCount !== 0
+            ? <Pagination count={this.props.storyCount} list={this.props.listStory}/>
+            : null }
+          </ul>
+        </div>
         <AlertError errors={this.props.error}/>
       </div>
     </div>

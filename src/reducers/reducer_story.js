@@ -38,14 +38,14 @@ export async function createStory(formData) {
   }
 }
 
-export async function listStory(query = '?page=1') {
+export async function listStory(query = 'page=1') {
 
   let response, error = '';
 
   try {
     response = await axios({
       method: 'get',
-      url: `/story/${query}`,
+      url: `/story/?${query}`,
       headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
       }
