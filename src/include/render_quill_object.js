@@ -8,3 +8,10 @@ export function renderQuillObject(delta, quill) {
     img.style.height = 'auto';
   })
 }
+
+export async function renderQuillPatchObject(props, quill) {
+  await props.retrieveStory(props.match.params.id);
+  const contents = await JSON.parse(props.story.content);
+  await quill.setContents(contents);
+  props.initialize({title: props.story.title});
+}

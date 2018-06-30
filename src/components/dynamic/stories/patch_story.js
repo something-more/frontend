@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Quill from 'quill';
 import moment from 'moment';
 import { retrieveStory, patchStory, destroyStory } from '../../../reducers/reducer_story';
+import { renderQuillPatchObject } from '../../../include/render_quill_object';
 import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
 import { onDestroy } from '../../../include/submit_functions';
@@ -22,11 +23,7 @@ class PatchStory extends Component {
       quill: new Quill('#editor', QuillOptions)
     });
 
-    const {id} = this.props.match.params;
-    await this.props.retrieveStory(id);
-    const contents = await JSON.parse(this.props.story.content);
-    await this.state.quill.setContents(contents);
-    this.props.initialize({title: this.props.story.title})
+    await renderQuillPatchObject(this.props, this.state.quill);
   }
 
   async onPublish(values) {

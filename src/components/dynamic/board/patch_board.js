@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Quill from 'quill';
 import moment from 'moment';
 import { retrieveBoard, patchBoard, destroyBoard } from '../../../reducers/reducer_board';
+import {renderQuillPatchObject } from '../../../include/render_quill_object';
 import { TitleField } from '../structure/input_fields';
 import { onPatch } from '../../../include/submit_functions';
 import QuillOptions from '../structure/write_modules/quill_options';
@@ -23,11 +24,7 @@ class PatchBoard extends Component {
       quill: new Quill('#editor', QuillOptions)
     });
 
-    const {id} = this.props.match.params;
-    await this.props.retrieveBoard(id);
-    const contents = await JSON.parse(this.props.board.content);
-    await this.state.quill.setContents(contents);
-    this.props.initialize({title: this.props.board.title})
+    await renderQuillPatchObject(this.props, this.state.quill);
   }
 
   async onPublish(values) {
