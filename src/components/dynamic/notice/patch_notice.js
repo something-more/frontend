@@ -5,6 +5,7 @@ import Quill from 'quill';
 import moment from 'moment';
 import { retrieveNotice, patchNotice, destroyNotice } from '../../../reducers/reducer_notice';
 import { TitleField } from '../structure/input_fields';
+import { onPatch } from '../../../include/submit_functions';
 import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
 
@@ -30,19 +31,10 @@ class PatchBoard extends Component {
   }
 
   async onPublish(values) {
-    const delta = JSON.stringify(this.state.quill.getContents());
-
-    const formData = new FormData();
-
-    formData.append('title', values.title);
-    formData.append('content', delta);
-    formData.append('date_modified', moment().format());
-
-    await this.props.patchNotice(formData, this.props.notice.id);
-
-    if (!this.props.error) {
-      await this.props.history.push(`/notice/${this.props.notice.id}`)
-    }
+    const { quill } = this.state;
+    const { notice, patchNotice, error, history } = this.props;
+    await onPatch(notice.id, quill, values,
+    patchNotice, error, history.push(`/notice/${notice.id}`));
   }
 
   render() {

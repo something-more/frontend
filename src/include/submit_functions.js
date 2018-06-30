@@ -28,7 +28,7 @@ export async function onCreate(quill, values, dispatch, error, routeFn) {
   }
 }
 
-export async function onPatch(id, quill, dispatch, error, routeFn, values) {
+export async function onPatch(id, quill, values, dispatch, error, routeFn) {
   const delta = JSON.stringify(quill.getContents());
 
   const formData = new FormData();

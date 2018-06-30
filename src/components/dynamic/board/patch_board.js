@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Quill from 'quill';
 import moment from 'moment';
 import { retrieveBoard, patchBoard, destroyBoard } from '../../../reducers/reducer_board';
+import { TitleField } from '../structure/input_fields';
+import { onPatch } from '../../../include/submit_functions';
 import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
 
@@ -29,19 +31,10 @@ class PatchBoard extends Component {
   }
 
   async onPublish(values) {
-    const delta = JSON.stringify(this.state.quill.getContents());
-
-    const formData = new FormData();
-
-    formData.append('title', values.title);
-    formData.append('content', delta);
-    formData.append('date_modified', moment().format());
-
-    await this.props.patchBoard(formData, this.props.board.id);
-
-    if (!this.props.error) {
-      await this.props.history.push(`/board/${this.props.board.id}`)
-    }
+    const { quill } = this.state;
+    const { board, patchBoard, error, history } = this.props;
+    await onPatch(board.id, quill, values,
+    patchBoard, error, history.push(`/board/${board.id}`));
   }
 
   render() {
@@ -58,20 +51,7 @@ class PatchBoard extends Component {
         method="post"
         encType="multipart/form-data"
         onSubmit={handleSubmit(this.onPublish.bind(this))}>
-          <div
-          className="input-group"
-          style={{marginBottom: "20px"}}>
-            <Field
-            type="text"
-            className="form-control"
-            placeholder="Title"
-            name="title"
-            component="input"
-            required/>
-            <span className="input-group-btn">
-            <button type="submit" className="btn btn-info pull-right">Publish</button>
-          </span>
-          </div>
+          <Field name="title" component={TitleField}/>
           <div id="editor" style={{minHeight: "70vh"}}/>
         </form>
         <AlertError errors={this.props.error}/>
