@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { patchPassword } from '../../../../reducers/reducer_auth';
-import PasswordField from '../../structure/write_modules/password_field';
+import { PasswordField } from '../../structure/input_fields';
 
 class NewPasswords extends Component {
 
