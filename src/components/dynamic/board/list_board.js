@@ -21,9 +21,9 @@ class ListBoard extends Component {
 
       return (
       <tr key={board.id}>
-        <td>{board.author}</td>
-        <td><Link to={`/board/${board.id}`}>{board.title}</Link></td>
-        <td>{dateCreated}</td>
+        <td className="col-md-2">{board.author}</td>
+        <td className="col-md-8"><Link to={`/board/${board.id}`}>{board.title}</Link></td>
+        <td className="col-md-2">{dateCreated}</td>
       </tr>
       )
     })
@@ -46,9 +46,9 @@ class ListBoard extends Component {
           <table className="table table-hover text-center">
             <thead>
             <tr>
-              <th className="text-center">글쓴이</th>
-              <th className="text-center">제목</th>
-              <th className="text-center">날짜</th>
+              <th className="col-md-2 text-center">글쓴이</th>
+              <th className="col-md-8 text-center">제목</th>
+              <th className="col-md-2 text-center">날짜</th>
             </tr>
             </thead>
             <tbody>

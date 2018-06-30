@@ -22,9 +22,9 @@ class ListBoard extends Component {
       const indexNum = (this.props.noticeList.length) - (this.props.noticeList.indexOf(notice));
       return (
       <tr key={notice.id}>
-        <td>{indexNum}</td>
-        <td><Link to={`/notice/${notice.id}`}>{notice.title}</Link></td>
-        <td>{dateCreated}</td>
+        <td className="col-md-2">{indexNum}</td>
+        <td className="col-md-8"><Link to={`/notice/${notice.id}`}>{notice.title}</Link></td>
+        <td className="col-md-2">{dateCreated}</td>
       </tr>
       )
     })
@@ -48,9 +48,9 @@ class ListBoard extends Component {
         <table className="table table-hover text-center">
           <thead>
           <tr>
-            <th className="text-center">번호</th>
-            <th className="text-center">제목</th>
-            <th className="text-center">날짜</th>
+            <th className="text-center col-md-2">번호</th>
+            <th className="text-center col-md-8">제목</th>
+            <th className="text-center col-md-2">날짜</th>
           </tr>
           </thead>
           <tbody>
