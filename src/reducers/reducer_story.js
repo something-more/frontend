@@ -7,8 +7,6 @@ axiosConfig(axios);
 const CREATE = 'something-more/story/CREATE';
 const LIST = 'something-more/story/LIST';
 const COUNT = 'something-more/story/COUNT';
-const PUBLISHED = 'something-more/story/PUBLISHED';
-const DRAFT = 'something-more/story/DRAFT';
 const RETRIEVE = 'something-more/story/RETRIEVE';
 const PATCH = 'something-more/story/PATCH';
 const DESTROY = 'something-more/story/DESTROY';
@@ -30,7 +28,6 @@ export async function createStory(formData) {
     });
   } catch (e) {
     error = e.message;
-    console.log(e.response.data.message);
   }
 
   return {
@@ -53,7 +50,7 @@ export async function listStory(query = '?page=1') {
       }
     })
   } catch (e) {
-    error = e.message
+    error = e.message;
   }
 
   return {
@@ -86,18 +83,6 @@ export async function countStory() {
   }
 }
 
-export function filterPublished() {
-  return {
-    type: PUBLISHED
-  }
-}
-
-export function filterDraft() {
-  return {
-    type: DRAFT
-  }
-}
-
 export async function retrieveStory(id) {
 
   let response, error = '';
@@ -112,7 +97,6 @@ export async function retrieveStory(id) {
     })
   } catch (e) {
     error = e.message;
-    console.log(e.response.data.message);
   }
 
   return {
@@ -172,8 +156,7 @@ export async function destroyStory(id) {
 
 // State
 const initialState = {
-  rawList: [],
-  filteredList: [],
+  list: [],
   retrieve: {},
   error: '',
   count: 0
@@ -190,12 +173,6 @@ export default function reducer(state = initialState, action) {
 
     case COUNT:
       return reducerCountStory(state, action);
-
-    case PUBLISHED:
-      return reducerFilterPublished(state);
-
-    case DRAFT:
-      return reducerFilterDraft(state);
 
     case RETRIEVE:
       return reducerRetrieveStory(state, action);
@@ -231,7 +208,7 @@ function reducerListStory(state, action) {
   if (action.response) {
     return {
       ...state,
-      rawList: action.response.data,
+      list: action.response.data,
       error: ''
     }
   } else {
@@ -255,20 +232,6 @@ function reducerCountStory(state, action) {
       count: 0,
       error: action.error
     }
-  }
-}
-
-function reducerFilterPublished(state) {
-  return {
-    ...state,
-    filteredList: state.rawList.filter(story => story.is_published === true)
-  }
-}
-
-function reducerFilterDraft(state) {
-  return {
-    ...state,
-    filteredList: state.rawList.filter(story => story.is_published !== true)
   }
 }
 
