@@ -21,32 +21,19 @@ import './assets/css/sidewaze_columns.css';
 import './assets/css/sidewaze_base_color.css';
 import './assets/css/soft-gray.css';
 
-// Static Components
-import LogoColumn from './components/static/logo_column';
-import FooterColumn from './components/static/footer_column';
-import ToTop from './components/static/to_top';
-import About from './components/static/about';
+// 동적 로딩
+import {
+  LogoColumn, FooterColumn, About,
+  PostsIndex, AuthorDetail, SettingsIndex,
+  LoginModal, SignUpModal, AdminSignUp,
+  ListStory, CreateStory, RetrieveStory, PatchStory,
+  ListFreeBoard, CreateFreeBoard, RetrieveFreeBoard, PatchFreeBoard,
+  ListNotice, CreateNotice, RetrieveNotice, PatchNotice
+} from './route/lazy';
 
-// Dynamic Components
+// 정적 로딩
+import ToTop from './components/static/to_top';
 import NavigationColumn from './components/dynamic/structure/navigation_column';
-import PostsIndex from './components/dynamic/posts/posts_index';
-import AuthorDetail from './components/dynamic/posts/author_detail';
-import LoginModal from './components/dynamic/auth/login_modal';
-import SignUpModal from './components/dynamic/auth/signup_modal';
-import AdminSignUp from './components/dynamic/auth/admin_signup';
-import ListStory from './components/dynamic/stories/list_story';
-import CreateStory from './components/dynamic/stories/create_story';
-import RetrieveStory from './components/dynamic/stories/retrieve_story';
-import PatchStory from './components/dynamic/stories/patch_story';
-import SettingsIndex from './components/dynamic/settings/settings_index';
-import ListFreeBoard from './components/dynamic/board/list_board';
-import CreateFreeBoard from './components/dynamic/board/create_board';
-import RetrieveFreeBoard from './components/dynamic/board/retrieve_board';
-import PatchBoard from './components/dynamic/board/patch_board';
-import ListNotice from './components/dynamic/notice/list_notice';
-import CreateNotice from './components/dynamic/notice/create_notice';
-import RetrieveNotice from './components/dynamic/notice/retrieve_notice';
-import PatchNotice from './components/dynamic/notice/patch_notice';
 
 // Helper function
 import { decodeJWT } from "./include/jwt_decode";
@@ -77,7 +64,7 @@ class App extends Component {
             <PrivateRoute path="/notice/write" component={CreateNotice}/>
             <Route path="/notice/:id" component={RetrieveNotice}/>
             <Route path="/notice" component={ListNotice}/>
-            <PrivateRoute path="/board/patch/:id" component={PatchBoard}/>
+            <PrivateRoute path="/board/patch/:id" component={PatchFreeBoard}/>
             <PrivateRoute path="/board/write" component={CreateFreeBoard}/>
             <Route path="/board/:id" component={RetrieveFreeBoard}/>
             <Route path="/board" component={ListFreeBoard}/>
