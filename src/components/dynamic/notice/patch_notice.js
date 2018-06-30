@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Quill from 'quill';
 import moment from 'moment';
 import { retrieveNotice, patchNotice, destroyNotice } from '../../../reducers/reducer_notice';
+import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
 
 class PatchBoard extends Component {
@@ -11,29 +12,13 @@ class PatchBoard extends Component {
     super(props);
 
     this.state = {
-      quill: '',
-      options: {
-        modules: {
-          toolbar: [
-            [{ size: ['small', false, 'large', 'huge'] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ list: 'ordered' }, { list: 'bullet' }],
-            [{ script: 'sub' }, { script: 'super' }],
-            [{ indent: '-1' }, { indent: '+1' }],
-            [{ align: [] }],
-            [{ color: [] }, { background: [] }],
-            ['image', 'video', 'link'],
-          ],
-        },
-        placeholder: 'Tell your story...',
-        theme: 'snow',
-      }
+      quill: ''
     }
   }
 
   async componentDidMount() {
     this.setState({
-      quill: new Quill('#editor', this.state.options)
+      quill: new Quill('#editor', QuillOptions)
     });
 
     const {id} = this.props.match.params;
