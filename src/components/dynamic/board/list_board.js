@@ -8,7 +8,7 @@ import AlertError from '../structure/alert_error';
 
 class ListBoard extends Component {
 
-  async componentDidMount() {
+  async componentWillMount() {
     await this.props.countBoard();
     await this.props.listBoard();
   }
