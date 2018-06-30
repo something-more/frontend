@@ -44,7 +44,7 @@ class CreateBoard extends Component {
           method="post"
           encType="multipart/form-data"
           onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <Field name="title" component={TitleField}/>
+            <Field name="title" label="publish" component={TitleField}/>
             <div id="editor" style={{minHeight: "70vh"}}/>
           </form>
           <AlertError errors={this.props.error}/>

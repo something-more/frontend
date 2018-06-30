@@ -31,7 +31,7 @@ export function TitleField(field) {
     <span className="input-group-btn">
       <button
       type="submit"
-      className="btn btn-info pull-right">Publish</button>
+      className="btn btn-info pull-right">{field.label}</button>
     </span>
   </div>
   )
