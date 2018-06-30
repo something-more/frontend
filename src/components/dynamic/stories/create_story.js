@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import moment from 'moment';
 import Quill from 'quill/dist/quill.min';
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import { createStory } from '../../../reducers/reducer_story';
+import { onCreate } from '../../../include/submit_functions';
 import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
 
@@ -26,19 +26,9 @@ class CreateStory extends Component {
   }
 
   async onSubmit(values) {
-    const delta = JSON.stringify(this.state.quill.getContents());
-
-    const formData = new FormData();
-
-    formData.append('title', values.title);
-    formData.append('content', delta);
-    formData.append('date_created', moment().format());
-
-    await this.props.createStory(formData);
-
-    if (!this.props.error) {
-      await this.props.history.push('/me/stories')
-    }
+    const { quill } = this.state;
+    const { createStory, error, history } = this.props;
+    await onCreate(quill, values, createStory, error, history.push('/me/stories'));
   }
 
   render() {
