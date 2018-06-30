@@ -9,9 +9,8 @@ export function renderQuillObject(delta, quill) {
   })
 }
 
-export async function renderQuillPatchObject(props, quill) {
-  await props.retrieveStory(props.match.params.id);
-  const contents = await JSON.parse(props.story.content);
-  await quill.setContents(contents);
-  props.initialize({title: props.story.title});
+export function renderQuillPatchObject(props, value, quill) {
+  const content = JSON.parse(value.content);
+  quill.setContents(content);
+  props.initialize({title: value.title});
 }

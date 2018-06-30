@@ -23,8 +23,9 @@ class PatchBoard extends Component {
     this.setState({
       quill: new Quill('#editor', QuillOptions)
     });
-
-    await renderQuillPatchObject(this.props, this.state.quill);
+    const {id} = this.props.match.params;
+    await this.props.retrieveNotice(id);
+    await renderQuillPatchObject(this.props, this.props.notice, this.state.quill);
   }
 
   async onPublish(values) {
