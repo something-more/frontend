@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { listBoard, countBoard } from '../../../reducers/reducer_board';
 import { decodeJWT } from "../../../include/jwt_decode";
 import moment from "moment/moment";
+import Pagination from '../structure/pagination';
 import AlertError from '../structure/alert_error';
 
 class ListBoard extends Component {
@@ -11,25 +12,6 @@ class ListBoard extends Component {
   async componentWillMount() {
     await this.props.countBoard();
     await this.props.listBoard();
-  }
-
-  renderPagination() {
-    const { boardCount } = this.props;
-    const pageCount = Math.ceil(boardCount / 15);
-    const pageArray = [];
-
-    for (let step = 1; step <= pageCount; step += 1) {
-      pageArray.push(step);
-    }
-
-    return pageArray.map((pageNum) => {
-      return(
-      <li>
-        <a onClick={() => this.props.listBoard(`page=${pageNum}`)}>{pageNum}</a>
-      </li>
-      )
-    })
-
   }
 
   renderList() {
@@ -76,7 +58,9 @@ class ListBoard extends Component {
           <hr className="vertical-spacer"/>
           <div className="center-block text-center">
             <ul className="pagination">
-              {this.props.boardCount !== 0 ? this.renderPagination() : null}
+              {this.props.boardCount !== 0
+              ? <Pagination count={this.props.boardCount} list={this.props.listBoard}/>
+              : null}
             </ul>
           </div>
           <AlertError errors={this.props.error}/>
