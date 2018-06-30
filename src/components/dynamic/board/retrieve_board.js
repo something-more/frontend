@@ -5,6 +5,7 @@ import Quill from 'quill';
 import moment from 'moment';
 import { retrieveBoard, destroyBoard } from '../../../reducers/reducer_board';
 import { decodeJWT } from '../../../include/jwt_decode';
+import { renderQuillObject } from '../../../include/render_quill_object';
 
 class RetrieveBoard extends Component {
   constructor(props) {
@@ -19,17 +20,9 @@ class RetrieveBoard extends Component {
     this.setState({
       quill: new Quill('#editor')
     });
-
     const {id} = this.props.match.params;
     await this.props.retrieveBoard(id);
-    const contents = await JSON.parse(this.props.board.content);
-    await this.state.quill.setContents(contents);
-    document.getElementById('content').innerHTML = this.state.quill.root.innerHTML;
-    const images = document.getElementById('content').querySelectorAll('img');
-    images.forEach(img => {
-      img.style.maxWidth = '100%';
-      img.style.height = 'auto';
-    })
+    await renderQuillObject(this.props.board.content, this.state.quill);
   }
 
   async onDestroy() {

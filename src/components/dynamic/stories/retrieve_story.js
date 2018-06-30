@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Quill from 'quill';
 import moment from 'moment';
 import { retrieveStory } from '../../../reducers/reducer_story';
+import { renderQuillObject } from '../../../include/render_quill_object';
 
 class RetrieveStory extends Component {
   constructor(props) {
@@ -17,17 +18,9 @@ class RetrieveStory extends Component {
     this.setState({
       quill: new Quill('#editor')
     });
-
     const {id} = this.props.match.params;
     await this.props.retrieveStory(id);
-    const contents = await JSON.parse(this.props.story.content);
-    await this.state.quill.setContents(contents);
-    document.getElementById('content').innerHTML = this.state.quill.root.innerHTML;
-    const images = document.getElementById('content').querySelectorAll('img');
-    images.forEach(img => {
-      img.style.maxWidth = '100%';
-      img.style.height = 'auto';
-    })
+    await renderQuillObject(this.props.story.content, this.state.quill);
   }
 
   render() {
