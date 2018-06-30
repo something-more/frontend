@@ -6,6 +6,7 @@ import Quill from 'quill/dist/quill.min';
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import { createStory } from '../../../reducers/reducer_story';
+import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
 
 class CreateStory extends Component {
@@ -14,29 +15,13 @@ class CreateStory extends Component {
     super(props);
 
     this.state = {
-      quill: '',
-      options: {
-        modules: {
-          toolbar: [
-            [{ size: ['small', false, 'large', 'huge'] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ list: 'ordered' }, { list: 'bullet' }],
-            [{ script: 'sub' }, { script: 'super' }],
-            [{ indent: '-1' }, { indent: '+1' }],
-            [{ align: [] }],
-            [{ color: [] }, { background: [] }],
-            ['image', 'video', 'link'],
-          ],
-        },
-        placeholder: 'Tell your story...',
-        theme: 'snow',
-      }
+      quill: ''
     }
   }
 
   componentDidMount() {
     this.setState({
-      quill: new Quill('#editor', this.state.options)
+      quill: new Quill('#editor', QuillOptions)
     })
   }
 
