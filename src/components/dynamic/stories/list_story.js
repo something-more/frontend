@@ -3,13 +3,32 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { countStory, listStory } from '../../../reducers/reducer_story';
+import { countStory, listStory, changePublishStory } from '../../../reducers/reducer_story';
+import AlertError from '../structure/alert_error';
 
 class ListStory extends Component {
 
   async componentWillMount() {
     await this.props.countStory();
     await this.props.listStory();
+  }
+
+  async onChangePublish(story) {
+    let bool = [];
+    story.is_published ? bool = ['false', '발행 중'] : bool = ['true', '미발행'];
+    const isConfirm = window.confirm(`현재 이 글의 상태는 ${bool[1]}입니다. 변경하시겠습니까?`);
+
+    if (isConfirm) {
+      const formData = new FormData();
+      formData.append('data_modified', moment().format());
+      formData.append('is_published', bool[0]);
+      await this.props.changePublishStory(formData, story.id);
+    }
+
+    if (!this.props.error) {
+      alert('변경되었습니다');
+      await window.location.reload();
+    }
   }
 
   renderList() {
@@ -23,20 +42,18 @@ class ListStory extends Component {
         <td className="col-md-2">{indexNum}</td>
         <td className="col-md-6">
           {story.is_published
-          ? <Link
-            to={`/stories/${story.id}`}>
-            {story.title}
-          </Link>
-          : <Link
-            to={`/me/stories/${story.id}`}>
-            {story.title}
-          </Link>}
+          ? <Link to={`/stories/${story.id}`}>{story.title}</Link>
+          : <Link to={`/me/stories/${story.id}`}>{story.title}</Link>}
         </td>
         <td className="col-md-2">{dateCreated}</td>
         <td className="col-md-2">
           {story.is_published
-          ? <button className="btn btn-success btn-sm">발행 중</button>
-          : <button className="btn btn-default btn-sm">미발행</button>}
+          ? <button
+          onClick={() => this.onChangePublish(story)}
+          className="btn btn-success btn-sm">발행 중</button>
+          : <button
+          onClick={() => this.onChangePublish(story)}
+          className="btn btn-default btn-sm">미발행</button>}
         </td>
       </tr>
       )
@@ -69,6 +86,7 @@ class ListStory extends Component {
             {this.props.storyCount !== 0 ? this.renderList() : null}
           </tbody>
         </table>
+        <AlertError errors={this.props.error}/>
       </div>
     </div>
     )
@@ -83,4 +101,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { countStory, listStory })(ListStory);
+export default connect(mapStateToProps, { countStory, listStory, changePublishStory })(ListStory);
