@@ -1,45 +1,27 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  listStory,
-  filterPublished,
-  filterDraft } from '../../../reducers/reducer_story';
-
-const $ = window.jQuery;
+import { countStory, listStory } from '../../../reducers/reducer_story';
 
 class ListStory extends Component {
-  componentWillMount() {
-    document.addEventListener('mousedown', this.handleClick, false);
-  }
 
-  async componentDidMount() {
+  async componentWillMount() {
+    await this.props.countStory();
     await this.props.listStory();
-    await this.props.filterDraft();
   }
-
-  componentWillUnmount() {
-    document.addEventListener('mousedown', this.handleClick, false);
-  }
-
-  handleClick = () => {
-    $('#myTabs a').click(function (event) {
-      event.preventDefault();
-      $(this).tab('show');
-    });
-  };
 
   renderList() {
-    return this.props.filteredList.map(story => {
+    return _.map(this.props.storyList, story => {
       // 글 생성 일자
       const dateCreated = moment(story.date_created).format('YYYY-MM-DD');
       // 글 인덱스 번호
-      const indexNum = (this.props.filteredList.length) - (this.props.filteredList.indexOf(story));
+      const indexNum = (this.props.storyList.length) - (_.indexOf(this.props.storyList, story));
       return (
       <tr key={story.id}>
-        <td>{indexNum}</td>
-        <td>
+        <td className="col-md-2">{indexNum}</td>
+        <td className="col-md-6">
           {story.is_published
           ? <Link
             to={`/stories/${story.id}`}>
@@ -50,7 +32,12 @@ class ListStory extends Component {
             {story.title}
           </Link>}
         </td>
-        <td>{dateCreated}</td>
+        <td className="col-md-2">{dateCreated}</td>
+        <td className="col-md-2">
+          {story.is_published
+          ? <button className="btn btn-success btn-sm">발행 중</button>
+          : <button className="btn btn-default btn-sm">미발행</button>}
+        </td>
       </tr>
       )
     })
@@ -68,21 +55,18 @@ class ListStory extends Component {
           type="button"
           style={{color: "#ec5004"}}
           className="btn btn-link pull-right">Let's Post</Link>
-        <ul id="myTabs" className="nav nav-tabs">
-          <li><a onClick={() => this.props.filterPublished()}>Published</a></li>
-          <li className="active"><a onClick={() => this.props.filterDraft()}>Draft</a></li>
-        </ul>
         <hr className="vertical-spacer"/>
         <table className="table table-hover text-center">
           <thead>
           <tr>
-            <th className="text-center">번호</th>
-            <th className="text-center">제목</th>
-            <th className="text-center">날짜</th>
+            <th className="text-center col-md-2">번호</th>
+            <th className="text-center col-md-6">제목</th>
+            <th className="text-center col-md-2">날짜</th>
+            <th className="text-center col-md-2">발행 여부</th>
           </tr>
           </thead>
           <tbody>
-            {this.renderList()}
+            {this.props.storyCount !== 0 ? this.renderList() : null}
           </tbody>
         </table>
       </div>
@@ -93,12 +77,10 @@ class ListStory extends Component {
 
 function mapStateToProps(state) {
   return {
-    filteredList: state.story.filteredList,
+    storyCount: state.story.count,
+    storyList: state.story.list,
     error: state.story.error
   }
 }
 
-export default connect(mapStateToProps, {
-  listStory,
-  filterPublished,
-  filterDraft })(ListStory);
+export default connect(mapStateToProps, { countStory, listStory })(ListStory);
