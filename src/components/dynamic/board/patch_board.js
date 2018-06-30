@@ -44,18 +44,6 @@ class PatchBoard extends Component {
     }
   }
 
-  async onDestroy() {
-    const isConfirm = window.confirm('정말 삭제하겠습니까?');
-
-    if (isConfirm) {
-      await alert('삭제되었습니다');
-      await this.props.destroyBoard(this.props.board.id);
-      await this.props.history.push('/board')
-    } else {
-      alert('삭제를 취소하셨습니다');
-    }
-  }
-
   render() {
     const { handleSubmit, board } = this.props;
 
@@ -68,7 +56,8 @@ class PatchBoard extends Component {
         </p>
         <form
         method="post"
-        encType="multipart/form-data">
+        encType="multipart/form-data"
+        onSubmit={handleSubmit(this.onPublish.bind(this))}>
           <div
           className="input-group"
           style={{marginBottom: "20px"}}>
@@ -79,15 +68,9 @@ class PatchBoard extends Component {
             name="title"
             component="input"
             required/>
-            <div className="input-group-btn">
-              <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span className="caret"/></button>
-              <ul className="dropdown-menu dropdown-menu-right">
-                <li><a onClick={handleSubmit(this.onPublish.bind(this))}>Publish</a></li>
-                <li role="separator" className="divider"/>
-                <li><a onClick={handleSubmit(this.onDestroy.bind(this))}>
-                  <span className="text-danger">Destroy</span></a></li>
-              </ul>
-            </div>
+            <span className="input-group-btn">
+            <button type="submit" className="btn btn-info pull-right">Publish</button>
+          </span>
           </div>
           <div id="editor" style={{minHeight: "70vh"}}/>
         </form>

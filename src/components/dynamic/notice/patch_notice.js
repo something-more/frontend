@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Quill from 'quill';
 import moment from 'moment';
 import { retrieveNotice, patchNotice, destroyNotice } from '../../../reducers/reducer_notice';
+import { TitleField } from '../structure/input_fields';
 import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
 
@@ -44,18 +45,6 @@ class PatchBoard extends Component {
     }
   }
 
-  async onDestroy() {
-    const isConfirm = window.confirm('정말 삭제하겠습니까?');
-
-    if (isConfirm) {
-      await alert('삭제되었습니다');
-      await this.props.destroyNotice(this.props.notice.id);
-      await this.props.history.push('/notice')
-    } else {
-      alert('삭제를 취소하셨습니다');
-    }
-  }
-
   render() {
     const { handleSubmit, notice } = this.props;
 
@@ -68,27 +57,9 @@ class PatchBoard extends Component {
         </p>
         <form
         method="post"
-        encType="multipart/form-data">
-          <div
-          className="input-group"
-          style={{marginBottom: "20px"}}>
-            <Field
-            type="text"
-            className="form-control"
-            placeholder="Title"
-            name="title"
-            component="input"
-            required/>
-            <div className="input-group-btn">
-              <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span className="caret"/></button>
-              <ul className="dropdown-menu dropdown-menu-right">
-                <li><a onClick={handleSubmit(this.onPublish.bind(this))}>Publish</a></li>
-                <li role="separator" className="divider"/>
-                <li><a onClick={handleSubmit(this.onDestroy.bind(this))}>
-                  <span className="text-danger">Destroy</span></a></li>
-              </ul>
-            </div>
-          </div>
+        encType="multipart/form-data"
+        onSubmit={handleSubmit(this.onPublish.bind(this))}>
+          <Field name="title" component={TitleField}/>
           <div id="editor" style={{minHeight: "70vh"}}/>
         </form>
         <AlertError errors={this.props.error}/>

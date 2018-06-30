@@ -6,6 +6,7 @@ import Quill from 'quill/dist/quill.min';
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import { createBoard } from '../../../reducers/reducer_board';
+import { TitleField } from '../structure/input_fields';
 import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
 
@@ -53,20 +54,7 @@ class CreateBoard extends Component {
           method="post"
           encType="multipart/form-data"
           onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <div
-            className="input-group"
-            style={{marginBottom: "20px"}}>
-              <Field
-              type="text"
-              className="form-control"
-              placeholder="Title"
-              name="title"
-              component="input"
-              required/>
-              <span className="input-group-btn">
-            <button type="submit" className="btn btn-info pull-right">Publish</button>
-          </span>
-            </div>
+            <Field name="title" component={TitleField}/>
             <div id="editor" style={{minHeight: "70vh"}}/>
           </form>
           <AlertError errors={this.props.error}/>
