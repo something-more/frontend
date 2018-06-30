@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { destroyUser } from '../../../../reducers/reducer_auth';
-import PasswordField from '../../structure/password_field';
+import PasswordField from '../../structure/write_modules/password_field';
 
 class DestroyUser extends Component {
 
