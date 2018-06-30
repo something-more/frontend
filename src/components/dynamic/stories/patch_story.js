@@ -6,6 +6,7 @@ import moment from 'moment';
 import { retrieveStory, patchStory, destroyStory } from '../../../reducers/reducer_story';
 import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
+import { onDestroy } from '../../../include/submit_functions';
 
 class PatchStory extends Component {
   constructor(props) {
@@ -62,20 +63,8 @@ class PatchStory extends Component {
     }
   }
 
-  async onDestroy() {
-    const isConfirm = window.confirm('정말 삭제하겠습니까?');
-
-    if (isConfirm) {
-      await alert('삭제되었습니다');
-      await this.props.destroyStory(this.props.story.id);
-      await this.props.history.push('/me/stories')
-    } else {
-      alert('삭제를 취소하셨습니다');
-    }
-  }
-
   render() {
-    const { handleSubmit, story } = this.props;
+    const { handleSubmit, story, destroyStory, history } = this.props;
 
     return (
     <div className="content-col">
@@ -98,12 +87,14 @@ class PatchStory extends Component {
             component="input"
             required/>
             <div className="input-group-btn">
-              <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span className="caret"/></button>
+              <button type="button" className="btn btn-default dropdown-toggle"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span className="caret"/></button>
               <ul className="dropdown-menu dropdown-menu-right">
                 <li><a onClick={handleSubmit(this.onPublish.bind(this))}>Publish</a></li>
                 <li><a onClick={handleSubmit(this.onDraftSave.bind(this))}>Draft Save</a></li>
                 <li role="separator" className="divider"/>
-                <li><a onClick={handleSubmit(this.onDestroy.bind(this))}>
+                <li><a onClick={() => onDestroy(story.id, destroyStory, history.push('/me/stories'))
+                }>
                   <span className="text-danger">Destroy</span></a></li>
               </ul>
             </div>

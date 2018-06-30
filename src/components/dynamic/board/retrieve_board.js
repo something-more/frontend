@@ -6,6 +6,7 @@ import moment from 'moment';
 import { retrieveBoard, destroyBoard } from '../../../reducers/reducer_board';
 import { decodeJWT } from '../../../include/jwt_decode';
 import { renderQuillObject } from '../../../include/render_quill_object';
+import { onDestroy } from '../../../include/submit_functions';
 
 class RetrieveBoard extends Component {
   constructor(props) {
@@ -25,20 +26,8 @@ class RetrieveBoard extends Component {
     await renderQuillObject(this.props.board.content, this.state.quill);
   }
 
-  async onDestroy() {
-    const isConfirm = window.confirm('정말 삭제하겠습니까?');
-
-    if (isConfirm) {
-      await alert('삭제되었습니다');
-      await this.props.destroyBoard(this.props.board.id);
-      await this.props.history.push('/board')
-    } else {
-      alert('삭제를 취소하셨습니다');
-    }
-  }
-
   render() {
-    const { board } = this.props;
+    const { board, destroyBoard, history } = this.props;
 
     return (
     <div className="content-col">
@@ -56,7 +45,8 @@ class RetrieveBoard extends Component {
             <button
             className="btn btn-danger"
             style={{marginRight: "10px"}}
-            onClick={() => this.onDestroy()}>Delete</button>
+            onClick={() =>
+            onDestroy(board.id, destroyBoard, history.push('/board'))}>Delete</button>
             <Link
           to={`/board/patch/${board.id}`}
           type="button"
