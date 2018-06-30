@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { listNotice, countNotice } from '../../../reducers/reducer_notice';
 import { decodeJWT } from '../../../include/jwt_decode';
 import moment from 'moment/moment';
-import Pagination from '../structure/pagination';
+import Pagination from '../structure/write_modules/pagination';
 import AlertError from '../structure/alert_error';
 
 class ListBoard extends Component {
