@@ -1,4 +1,4 @@
-import hyung_soo from '../assets/images/thumbnail/hyung_soo_thumb-min.jpg';
+import hyungSoo from '../assets/images/thumbnail/hyung_soo_thumb-min.jpg';
 
 // Actions
 const SELECT = 'something-more/authors/SELECT';
@@ -34,12 +34,21 @@ const initialState = {
       id: 3,
       name_ko: '승형수',
       name_en: 'Seung Hyung Soo',
-      thumbnail: hyung_soo,
+      thumbnail: hyungSoo,
       introduce: '컴퓨터의 말과 인간의 말을 함께 배워갑니다.',
       email: 'huskyhoochu@somethingmore.co.kr',
     }],
   selected: {},
 };
+
+// Reducer function
+function reducerSelectAuthor(state, action) {
+  const id = action.payload;
+  return {
+    ...state, // 전개 연산자, 기존 state 를 함께 가지고 온다
+    selected: state.list[id - 1], // selected 값만 새로 매핑
+  };
+}
 
 // Reducer
 export default function reducer(state = initialState, action) {
@@ -50,13 +59,4 @@ export default function reducer(state = initialState, action) {
     default:
       return state;
   }
-}
-
-// Reducer function
-function reducerSelectAuthor(state, action) {
-  const id = action.payload;
-  return {
-    ...state, // 전개 연산자, 기존 state 를 함께 가지고 온다
-    selected: state.list[id - 1], // selected 값만 새로 매핑
-  };
 }
