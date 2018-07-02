@@ -17,62 +17,70 @@ class PatchBoard extends Component {
     super(props);
 
     this.state = {
-      quill: ''
-    }
+      quill: '',
+    };
   }
 
   async componentWillMount() {
-    const {id} = this.props.match.params;
+    const { id } = this.props.match.params;
     await this.props.retrieveNotice(id);
     await renderQuillPatchObject(this.props, this.props.notice, this.state.quill);
   }
 
   componentDidMount() {
     this.setState({
-      quill: new Quill('#editor', QuillOptions)
+      quill: new Quill('#editor', QuillOptions),
     });
   }
 
   async onPublish(values) {
     const { quill } = this.state;
-    const { notice, patchNotice, error, history } = this.props;
+    const {
+      notice, patchNotice, error, history,
+    } = this.props;
     await onPatch(notice.id, quill, values,
-    patchNotice, error, history.push(`/notice/${notice.id}`));
+      patchNotice, error, history.push(`/notice/${notice.id}`));
   }
 
   render() {
     const { handleSubmit, notice } = this.props;
 
     return (
-    <div className="content-col">
-      <div className="inner-content">
-        <h1 className="title">Complete Your Notice...</h1>
-        <p className="meta">
-          <span>Created Date: {moment(notice.date_created).format('YYYY-MM-DD')}</span>
-        </p>
-        <form
-        method="post"
-        encType="multipart/form-data"
-        onSubmit={handleSubmit(this.onPublish.bind(this))}>
-          <Field name="title" label="publish" component={TitleField}/>
-          <div id="editor" style={{minHeight: "70vh"}}/>
-        </form>
-        <AlertError errors={this.props.error}/>
+      <div className="content-col">
+        <div className="inner-content">
+          <h1 className="title">
+Complete Your Notice...
+          </h1>
+          <p className="meta">
+            <span>
+Created Date:
+              {moment(notice.date_created).format('YYYY-MM-DD')}
+            </span>
+          </p>
+          <form
+            method="post"
+            encType="multipart/form-data"
+            onSubmit={handleSubmit(this.onPublish.bind(this))}
+          >
+            <Field name="title" label="publish" component={TitleField} />
+            <div id="editor" style={{ minHeight: '70vh' }} />
+          </form>
+          <AlertError errors={this.props.error} />
+        </div>
       </div>
-    </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
     notice: state.notice.retrieve,
-    error: state.notice.error
-  }
+    error: state.notice.error,
+  };
 }
 
 export default reduxForm({
-  form: 'PatchNoticeForm'
+  form: 'PatchNoticeForm',
 })(
-connect(mapStateToProps, { retrieveNotice, patchNotice, destroyNotice })(PatchBoard)
+  connect(mapStateToProps, { retrieveNotice, patchNotice, destroyNotice })(PatchBoard),
 );

@@ -1,4 +1,4 @@
-import moment from "moment/moment";
+import moment from 'moment/moment';
 
 export async function onDestroy(id, dispatch, routeFn) {
   const isConfirm = window.confirm('정말 삭제하겠습니까?');

@@ -16,19 +16,19 @@ class PatchStory extends Component {
     super(props);
 
     this.state = {
-      quill: ''
-    }
+      quill: '',
+    };
   }
 
   async componentWillMount() {
-    const {id} = this.props.match.params;
+    const { id } = this.props.match.params;
     await this.props.retrieveStory(id);
     await renderQuillPatchObject(this.props, this.props.story, this.state.quill);
   }
 
   componentDidMount() {
     this.setState({
-      quill: new Quill('#editor', QuillOptions)
+      quill: new Quill('#editor', QuillOptions),
     });
   }
 
@@ -45,7 +45,7 @@ class PatchStory extends Component {
     await this.props.patchStory(formData, this.props.story.id);
 
     if (!this.props.error) {
-      await this.props.history.push('/me/stories')
+      await this.props.history.push('/me/stories');
     }
   }
 
@@ -67,59 +67,92 @@ class PatchStory extends Component {
   }
 
   render() {
-    const { handleSubmit, story, destroyStory, history } = this.props;
+    const {
+      handleSubmit, story, destroyStory, history,
+    } = this.props;
 
     return (
-    <div className="content-col">
-      <div className="inner-content">
-        <h1 className="title">Complete Your Stories...</h1>
-        <p className="meta">
-          <span>Created Date: {moment(story.date_created).format('YYYY-MM-DD')}</span>
-        </p>
-        <form
-        method="post"
-        encType="multipart/form-data">
-          <div
-          className="input-group"
-          style={{marginBottom: "20px"}}>
-            <Field
-            type="text"
-            className="form-control"
-            placeholder="Title"
-            name="title"
-            component="input"
-            required/>
-            <div className="input-group-btn">
-              <button type="button" className="btn btn-default dropdown-toggle"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span className="caret"/></button>
-              <ul className="dropdown-menu dropdown-menu-right">
-                <li><a onClick={handleSubmit(this.onPublish.bind(this))}>Publish</a></li>
-                <li><a onClick={handleSubmit(this.onDraftSave.bind(this))}>Draft Save</a></li>
-                <li role="separator" className="divider"/>
-                <li><a onClick={() => onDestroy(story.id, destroyStory, history.push('/me/stories'))
-                }>
-                  <span className="text-danger">Destroy</span></a></li>
-              </ul>
+      <div className="content-col">
+        <div className="inner-content">
+          <h1 className="title">
+Complete Your Stories...
+          </h1>
+          <p className="meta">
+            <span>
+Created Date:
+              {moment(story.date_created).format('YYYY-MM-DD')}
+            </span>
+          </p>
+          <form
+            method="post"
+            encType="multipart/form-data"
+          >
+            <div
+              className="input-group"
+              style={{ marginBottom: '20px' }}
+            >
+              <Field
+                type="text"
+                className="form-control"
+                placeholder="Title"
+                name="title"
+                component="input"
+                required
+              />
+              <div className="input-group-btn">
+                <button
+                  type="button"
+                  className="btn btn-default dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+Action
+                  {' '}
+                  <span className="caret" />
+                </button>
+                <ul className="dropdown-menu dropdown-menu-right">
+                  <li>
+                    <a onClick={handleSubmit(this.onPublish.bind(this))}>
+Publish
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={handleSubmit(this.onDraftSave.bind(this))}>
+Draft Save
+                    </a>
+                  </li>
+                  <li role="separator" className="divider" />
+                  <li>
+                    <a onClick={() => onDestroy(story.id, destroyStory, history.push('/me/stories'))
+                }
+                    >
+                      <span className="text-danger">
+Destroy
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div id="editor" style={{minHeight: "70vh"}}/>
-        </form>
-        <AlertError errors={this.props.error}/>
+            <div id="editor" style={{ minHeight: '70vh' }} />
+          </form>
+          <AlertError errors={this.props.error} />
+        </div>
       </div>
-    </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
     story: state.story.retrieve,
-    error: state.story.error
-  }
+    error: state.story.error,
+  };
 }
 
 export default reduxForm({
-  form: 'PatchStoryForm'
+  form: 'PatchStoryForm',
 })(
-  connect(mapStateToProps, { retrieveStory, patchStory, destroyStory })(PatchStory)
+  connect(mapStateToProps, { retrieveStory, patchStory, destroyStory })(PatchStory),
 );

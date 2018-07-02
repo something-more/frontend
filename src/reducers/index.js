@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   author: AuthorReducer,
   auth: AuthReducer,
   story: StoryReducer,
-  form: formReducer
+  form: formReducer,
 });
 
 export default rootReducer;

@@ -13,4 +13,4 @@ export default {
   },
   placeholder: 'Tell your story...',
   theme: 'snow',
-}
+};

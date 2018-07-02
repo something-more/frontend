@@ -15,19 +15,19 @@ class RetrieveBoard extends Component {
     super(props);
 
     this.state = {
-      quill: ''
-    }
+      quill: '',
+    };
   }
 
   async componentWillMount() {
-    const {id} = this.props.match.params;
+    const { id } = this.props.match.params;
     await this.props.retrieveNotice(id);
     await renderQuillObject(this.props.notice.content, this.state.quill);
   }
 
   async componentDidMount() {
     this.setState({
-      quill: new Quill('#editor')
+      quill: new Quill('#editor'),
     });
   }
 
@@ -35,42 +35,56 @@ class RetrieveBoard extends Component {
     const { notice, destroyNotice, history } = this.props;
 
     return (
-    <div className="content-col">
-      <div className="inner-content">
-        <div id="editor" style={{display: "none"}}/>
-        <h1 className="font-weight-thin no-margin-top">{notice.title}</h1>
-        <hr className="hidden-xs"/>
-        <p className="meta">
-          <span>Date: {moment(notice.date_created).format('YYYY-MM-DD')}</span>
-          {sessionStorage.getItem('token') &&
-          decodeJWT(sessionStorage.getItem('token')).isAdmin
-          ? <span className="pull-right" style={{display: "block"}}>
-            <button
-            className="btn btn-danger"
-            style={{marginRight: "10px"}}
-            onClick={() => onDestroy(
-            notice.id, destroyNotice, history.push('/notice'))
-            }>Delete</button>
-            <Link
-            to={`/notice/patch/${notice.id}`}
-            type="button"
-            className="btn btn-warning">Modify</Link>
-          </span>
-          : null}
-        </p>
-        <hr className="hidden-xs"/>
-        <div id="content" className="ql-editor"/>
+      <div className="content-col">
+        <div className="inner-content">
+          <div id="editor" style={{ display: 'none' }} />
+          <h1 className="font-weight-thin no-margin-top">
+            {notice.title}
+          </h1>
+          <hr className="hidden-xs" />
+          <p className="meta">
+            <span>
+Date:
+              {moment(notice.date_created).format('YYYY-MM-DD')}
+            </span>
+            {sessionStorage.getItem('token')
+          && decodeJWT(sessionStorage.getItem('token')).isAdmin
+              ? (
+                <span className="pull-right" style={{ display: 'block' }}>
+                  <button
+                    className="btn btn-danger"
+                    style={{ marginRight: '10px' }}
+                    onClick={() => onDestroy(
+                      notice.id, destroyNotice, history.push('/notice'),
+                    )
+            }
+                  >
+Delete
+                  </button>
+                  <Link
+                    to={`/notice/patch/${notice.id}`}
+                    type="button"
+                    className="btn btn-warning"
+                  >
+Modify
+                  </Link>
+                </span>
+              )
+              : null}
+          </p>
+          <hr className="hidden-xs" />
+          <div id="content" className="ql-editor" />
+        </div>
       </div>
-    </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
     notice: state.notice.retrieve,
-    error: state.notice.error
-  }
+    error: state.notice.error,
+  };
 }
 
 export default connect(mapStateToProps, { retrieveNotice, destroyNotice })(RetrieveBoard);

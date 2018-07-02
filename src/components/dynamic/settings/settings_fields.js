@@ -5,28 +5,27 @@ import NewPasswords from './fields/settings_passwords';
 import Destroy from './fields/settings_destroy';
 
 class SettingsFields extends Component {
-
   render() {
     switch (this.props.onStatusChange) {
       case 'admin':
-        return(<Users/>);
+        return (<Users />);
 
       case 'password':
-        return (<NewPasswords/>);
+        return (<NewPasswords />);
 
       case 'destroy':
-        return (<Destroy/>);
+        return (<Destroy />);
 
       default:
-        return null
+        return null;
     }
   }
 }
 
 function mapStateToProps(state) {
   return {
-    error: state.auth.error
-  }
+    error: state.auth.error,
+  };
 }
 
 export default connect(mapStateToProps)(SettingsFields);

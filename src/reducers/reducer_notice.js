@@ -16,8 +16,8 @@ const DESTROY = 'something-more/notice/DESTROY';
 
 // 공지사항 생성
 export async function createNotice(formData) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
@@ -25,88 +25,88 @@ export async function createNotice(formData) {
       url: '/notice/',
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
-      data: formData
-    })
+      data: formData,
+    });
   } catch (e) {
     error = e.message;
   }
 
   return {
     type: CREATE,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // 공지사항 목록
 export async function listNotice(query = '1') {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'get',
-      url: `/notice/list/?page=${query}`
-    })
+      url: `/notice/list/?page=${query}`,
+    });
   } catch (e) {
     error = e.message;
   }
 
   return {
     type: LIST,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // 공지사항 갯수
 export async function countNotice() {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'get',
-      url: '/notice/count/'
-    })
+      url: '/notice/count/',
+    });
   } catch (e) {
     error = e.message;
   }
 
   return {
     type: COUNT,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // 공지사항 디테일
 export async function retrieveNotice(id) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'get',
-      url: `/notice/view/${id}`
-    })
+      url: `/notice/view/${id}`,
+    });
   } catch (e) {
     error = e.message;
   }
 
   return {
     type: RETRIEVE,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // 공지사항 수정
 export async function patchNotice(formData, id) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
@@ -114,9 +114,9 @@ export async function patchNotice(formData, id) {
       url: `/notice/${id}`,
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
-      data: formData
+      data: formData,
     });
   } catch (e) {
     error = e.message;
@@ -124,23 +124,23 @@ export async function patchNotice(formData, id) {
 
   return {
     type: PATCH,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // 공지사항 삭제
 export async function destroyNotice(id) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'delete',
       url: `/notice/${id}`,
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-      }
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
     });
   } catch (e) {
     error = e.message;
@@ -148,9 +148,9 @@ export async function destroyNotice(id) {
 
   return {
     type: DESTROY,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // Initial State
@@ -158,7 +158,7 @@ const initialState = {
   list: [],
   retrieve: {},
   count: 0,
-  error: ''
+  error: '',
 };
 
 // Reducer
@@ -193,15 +193,14 @@ function reducerCreateNotice(action, state) {
     return {
       ...state,
       retrieve: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      retrieve: {},
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    retrieve: {},
+    error: action.error,
+  };
 }
 
 function reducerListNotice(action, state) {
@@ -209,15 +208,14 @@ function reducerListNotice(action, state) {
     return {
       ...state,
       list: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      list: [],
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    list: [],
+    error: action.error,
+  };
 }
 
 function reducerCountNotice(action, state) {
@@ -225,15 +223,14 @@ function reducerCountNotice(action, state) {
     return {
       ...state,
       count: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      count: 0,
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    count: 0,
+    error: action.error,
+  };
 }
 
 function reducerRetrieveNotice(action, state) {
@@ -241,15 +238,14 @@ function reducerRetrieveNotice(action, state) {
     return {
       ...state,
       retrieve: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      retrieve: {},
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    retrieve: {},
+    error: action.error,
+  };
 }
 
 function reducerPatchNotice(action, state) {
@@ -257,15 +253,14 @@ function reducerPatchNotice(action, state) {
     return {
       ...state,
       retrieve: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      retrieve: {},
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    retrieve: {},
+    error: action.error,
+  };
 }
 
 function reducerDestroyNotice(action, state) {
@@ -273,12 +268,11 @@ function reducerDestroyNotice(action, state) {
     return {
       ...state,
       retrieve: {},
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    error: action.error,
+  };
 }

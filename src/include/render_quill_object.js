@@ -3,14 +3,14 @@ export function renderQuillObject(delta, quill) {
   quill.setContents(contents);
   document.getElementById('content').innerHTML = quill.root.innerHTML;
   const images = document.getElementById('content').querySelectorAll('img');
-  images.forEach(img => {
+  images.forEach((img) => {
     img.style.maxWidth = '100%';
     img.style.height = 'auto';
-  })
+  });
 }
 
 export function renderQuillPatchObject(props, value, quill) {
   const content = JSON.parse(value.content);
   quill.setContents(content);
-  props.initialize({title: value.title});
+  props.initialize({ title: value.title });
 }

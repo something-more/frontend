@@ -16,8 +16,8 @@ const DESTROY = 'something-more/auth/DESTROY';
 
 // 관리자 회원 가입
 export async function adminSignUp(values) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
@@ -25,24 +25,24 @@ export async function adminSignUp(values) {
       url: '/admin/',
       data: {
         email: values.email,
-        password: values.password
-      }
+        password: values.password,
+      },
     });
   } catch (e) {
-    error = e.response.data.message
+    error = e.response.data.message;
   }
 
   return {
     type: ADMIN_SIGNUP,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // 회원 가입
 export async function signUp(values) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
@@ -50,24 +50,24 @@ export async function signUp(values) {
       url: '/sign-up/',
       data: {
         email: values.email,
-        password: values.password
-      }
+        password: values.password,
+      },
     });
   } catch (e) {
-    error = e.response.data.message
+    error = e.response.data.message;
   }
 
   return {
     type: SIGNUP,
-    response: response,
-    error: error
+    response,
+    error,
   };
 }
 
 // 로그인
 export async function signIn(values) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
@@ -75,42 +75,42 @@ export async function signIn(values) {
       url: '/sign-in/',
       data: {
         email: values.email,
-        password: values.password
-      }
+        password: values.password,
+      },
     });
   } catch (e) {
-    error = e.response.data.message
+    error = e.response.data.message;
   }
 
   return {
     type: SIGNIN,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // 로그아웃
 export function signOut() {
   return {
-    type: SIGNOUT
-  }
+    type: SIGNOUT,
+  };
 }
 
 // 패스워드 수정
 export async function patchPassword(values) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'patch',
       url: '/patch/',
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
       data: {
-        password: values.password2
-      }
+        password: values.password2,
+      },
     });
   } catch (e) {
     error = e.response.data.message;
@@ -118,26 +118,26 @@ export async function patchPassword(values) {
 
   return {
     type: PATCH,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // 회원 탈퇴
 export async function destroyUser(values) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'delete',
       url: '/destroy/',
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
       data: {
-        password: values.password
-      }
+        password: values.password,
+      },
     });
   } catch (e) {
     error = e.response.data.message;
@@ -145,9 +145,9 @@ export async function destroyUser(values) {
 
   return {
     type: DESTROY,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // Reducer
@@ -155,7 +155,7 @@ export async function destroyUser(values) {
 // 초기 state 정의
 const initialState = {
   email: '',
-  error: ''
+  error: '',
 };
 
 export default function reducer(state = initialState, action) {
@@ -189,14 +189,13 @@ function reducerAdminSignUp(state, action) {
     return {
       ...state,
       email: action.response.data.email,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    error: action.error,
+  };
 }
 
 function reducerSignUp(state, action) {
@@ -205,14 +204,13 @@ function reducerSignUp(state, action) {
       ...state, // 전개 연산자: 기존 객체의 요소를 모두 재사용
       // state 의 내용을 덮어쓰게 됨
       email: action.response.data.email,
-      error: ''
-    }
-  } else { // 오류가 발생했을 경우
-    return {
-      ...state,
-      error: action.error
-    }
-  }
+      error: '',
+    };
+  } // 오류가 발생했을 경우
+  return {
+    ...state,
+    error: action.error,
+  };
 }
 
 function reducerLogin(state, action) {
@@ -224,15 +222,13 @@ function reducerLogin(state, action) {
     // 오류 메시지 삭제
     return {
       ...state,
-      error: ''
-    }
-
-  } else { // 오류가 발생했을 경우
-    return {
-      ...state,
-      error: action.error
-    }
-  }
+      error: '',
+    };
+  } // 오류가 발생했을 경우
+  return {
+    ...state,
+    error: action.error,
+  };
 }
 
 function reducerSignOut(state) {
@@ -243,22 +239,21 @@ function reducerSignOut(state) {
   return {
     ...state,
     email: '',
-    error: ''
-  }
+    error: '',
+  };
 }
 
 function reducerPatchPassword(state, action) {
   if (!action.error) {
     return {
       ...state,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    error: action.error,
+  };
 }
 
 function reducerDestroyUser(state, action) {
@@ -268,12 +263,11 @@ function reducerDestroyUser(state, action) {
     return {
       ...state,
       email: '',
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    error: action.error,
+  };
 }

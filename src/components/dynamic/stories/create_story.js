@@ -11,19 +11,18 @@ import { TitleField } from '../structure/input_fields';
 import AlertError from '../structure/alert_error';
 
 class CreateStory extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      quill: ''
-    }
+      quill: '',
+    };
   }
 
   componentDidMount() {
     this.setState({
-      quill: new Quill('#editor', QuillOptions)
-    })
+      quill: new Quill('#editor', QuillOptions),
+    });
   }
 
   async onSubmit(values) {
@@ -36,32 +35,35 @@ class CreateStory extends Component {
     const { handleSubmit } = this.props;
 
     return (
-    <div className="content-col">
-      <div className="inner-content">
-        <h1 className="title">Write Your Story...</h1>
-        <hr className="vertical-spacer"/>
-        <form
-          method="post"
-          encType="multipart/form-data"
-          onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="title" label="save" component={TitleField}/>
-          <div id="editor" style={{minHeight: "70vh"}}/>
-        </form>
-        <AlertError errors={this.props.error}/>
+      <div className="content-col">
+        <div className="inner-content">
+          <h1 className="title">
+Write Your Story...
+          </h1>
+          <hr className="vertical-spacer" />
+          <form
+            method="post"
+            encType="multipart/form-data"
+            onSubmit={handleSubmit(this.onSubmit.bind(this))}
+          >
+            <Field name="title" label="save" component={TitleField} />
+            <div id="editor" style={{ minHeight: '70vh' }} />
+          </form>
+          <AlertError errors={this.props.error} />
+        </div>
       </div>
-    </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    error: state.story.error
-  }
+    error: state.story.error,
+  };
 }
 
 export default reduxForm({
-  form: 'CreateStoryForm'
+  form: 'CreateStoryForm',
 })(
-  connect(mapStateToProps, { createStory })(CreateStory)
+  connect(mapStateToProps, { createStory })(CreateStory),
 );

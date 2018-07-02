@@ -15,8 +15,8 @@ const DESTROY = 'something-more/story/DESTROY';
 
 // Action Creators
 export async function createStory(formData) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
@@ -24,9 +24,9 @@ export async function createStory(formData) {
       url: '/story/',
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
-      data: formData
+      data: formData,
     });
   } catch (e) {
     error = e.message;
@@ -34,65 +34,65 @@ export async function createStory(formData) {
 
   return {
     type: CREATE,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 export async function listStory(query = 1) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'get',
       url: `/story/?page=${query}`,
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-      }
-    })
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
+    });
   } catch (e) {
     error = e.message;
   }
 
   return {
     type: LIST,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 export async function clientListStory() {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'get',
-      url: '/story/client/'
-    })
+      url: '/story/client/',
+    });
   } catch (e) {
     error = e.message;
   }
 
   return {
     type: CLIENT,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 export async function countStory() {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'get',
       url: '/story/count/',
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-      }
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
     });
   } catch (e) {
     error = e.message;
@@ -100,37 +100,37 @@ export async function countStory() {
 
   return {
     type: COUNT,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 export async function retrieveStory(id) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'get',
       url: `/story/${id}`,
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-      }
-    })
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
+    });
   } catch (e) {
     error = e.message;
   }
 
   return {
     type: RETRIEVE,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 export async function patchStory(formData, id) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
@@ -138,9 +138,9 @@ export async function patchStory(formData, id) {
       url: `/story/${id}`,
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
-      data: formData
+      data: formData,
     });
   } catch (e) {
     error = e.message;
@@ -148,14 +148,14 @@ export async function patchStory(formData, id) {
 
   return {
     type: PATCH,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 export async function changePublishStory(formData, id) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
@@ -163,9 +163,9 @@ export async function changePublishStory(formData, id) {
       url: `/story/publish/${id}`,
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
-      data: formData
+      data: formData,
     });
   } catch (e) {
     error = e.message;
@@ -173,22 +173,22 @@ export async function changePublishStory(formData, id) {
 
   return {
     type: PUBLISH,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 export async function destroyStory(id) {
-
-  let response, error = '';
+  let response,
+    error = '';
 
   try {
     response = await axios({
       method: 'delete',
       url: `/story/${id}`,
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-      }
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
     });
   } catch (e) {
     error = e.message;
@@ -196,9 +196,9 @@ export async function destroyStory(id) {
 
   return {
     type: DESTROY,
-    response: response,
-    error: error
-  }
+    response,
+    error,
+  };
 }
 
 // State
@@ -206,7 +206,7 @@ const initialState = {
   list: [],
   retrieve: {},
   error: '',
-  count: 0
+  count: 0,
 };
 
 // Reducer
@@ -247,14 +247,13 @@ function reducerCreateStory(state, action) {
     return {
       ...state,
       retrieve: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    error: action.error,
+  };
 }
 
 function reducerListStory(state, action) {
@@ -262,14 +261,13 @@ function reducerListStory(state, action) {
     return {
       ...state,
       list: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    error: action.error,
+  };
 }
 
 function reducerClientListStory(state, action) {
@@ -277,15 +275,14 @@ function reducerClientListStory(state, action) {
     return {
       ...state,
       list: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      list: [],
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    list: [],
+    error: action.error,
+  };
 }
 
 function reducerCountStory(state, action) {
@@ -293,15 +290,14 @@ function reducerCountStory(state, action) {
     return {
       ...state,
       count: Number(action.response.data),
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      count: 0,
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    count: 0,
+    error: action.error,
+  };
 }
 
 function reducerRetrieveStory(state, action) {
@@ -309,15 +305,14 @@ function reducerRetrieveStory(state, action) {
     return {
       ...state,
       retrieve: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      retrieve: {},
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    retrieve: {},
+    error: action.error,
+  };
 }
 
 function reducerPatchStory(state, action) {
@@ -325,15 +320,14 @@ function reducerPatchStory(state, action) {
     return {
       ...state,
       retrieve: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      retrieve: '',
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    retrieve: '',
+    error: action.error,
+  };
 }
 
 function reducerChangePublishStory(state, action) {
@@ -341,15 +335,14 @@ function reducerChangePublishStory(state, action) {
     return {
       ...state,
       retrieve: action.response.data,
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      retrieve: {},
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    retrieve: {},
+    error: action.error,
+  };
 }
 
 function reducerDestroyStory(state, action) {
@@ -357,13 +350,12 @@ function reducerDestroyStory(state, action) {
     return {
       ...state,
       retrieve: {},
-      error: ''
-    }
-  } else {
-    return {
-      ...state,
-      retrieve: {},
-      error: action.error
-    }
+      error: '',
+    };
   }
+  return {
+    ...state,
+    retrieve: {},
+    error: action.error,
+  };
 }

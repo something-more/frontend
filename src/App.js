@@ -3,7 +3,7 @@ import {
   BrowserRouter,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 import moment from 'moment';
 
@@ -29,7 +29,7 @@ import {
   LoginModal, SignUpModal, AdminSignUp,
   ListStory, CreateStory, RetrieveStory, PatchStory,
   ListFreeBoard, CreateFreeBoard, RetrieveFreeBoard, PatchFreeBoard,
-  ListNotice, CreateNotice, RetrieveNotice, PatchNotice
+  ListNotice, CreateNotice, RetrieveNotice, PatchNotice,
 } from './route/lazy';
 
 // 정적 로딩
@@ -39,56 +39,55 @@ import LogoColumn from './components/static/logo_column';
 import FauxColumn from './components/static/faux_column';
 
 // Helper function
-import { decodeJWT } from "./include/jwt_decode";
+import { decodeJWT } from './include/jwt_decode';
 
 // Private Route
 // 라우트의 컴포넌트와 기타 등등을 모두 상속받음
 // 토큰이 있다면 입장할 수 있고, 토큰이 없다면 홈페이지로 리다이렉트
-const PrivateRoute = ({component: Component, ...rest}) => (
+const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-    sessionStorage.getItem('token') && // 토큰이 존재하면서 동시에 expired 되지 않았을 때
-    (decodeJWT(sessionStorage.getItem('token')).exp > moment(new Date().getTime()).unix())
-      ? (<Component {...props}/>)
-      : (<Redirect to='/'/>)}
+    render={props => (sessionStorage.getItem('token') // 토큰이 존재하면서 동시에 expired 되지 않았을 때
+    && (decodeJWT(sessionStorage.getItem('token')).exp > moment(new Date().getTime()).unix())
+      ? (<Component {...props} />)
+      : (<Redirect to="/" />))}
   />
 );
 
 class App extends Component {
   render() {
     return (
-    <BrowserRouter>
-      <div className="App">
-        <NavigationColumn/>
-        <LogoColumn/>
+      <BrowserRouter>
+        <div className="App">
+          <NavigationColumn />
+          <LogoColumn />
           <Switch>
-            <PrivateRoute path="/notice/patch/:id" component={PatchNotice}/>
-            <PrivateRoute path="/notice/write" component={CreateNotice}/>
-            <Route path="/notice/:id" component={RetrieveNotice}/>
-            <Route path="/notice" component={ListNotice}/>
-            <PrivateRoute path="/board/patch/:id" component={PatchFreeBoard}/>
-            <PrivateRoute path="/board/write" component={CreateFreeBoard}/>
-            <Route path="/board/:id" component={RetrieveFreeBoard}/>
-            <Route path="/board" component={ListFreeBoard}/>
-            <Route path="/stories/:id" component={RetrieveStory}/>
-            <PrivateRoute path="/me/write" component={CreateStory}/>
-            <PrivateRoute path="/me/stories/:id" component={PatchStory}/>
-            <PrivateRoute path="/me/settings" component={SettingsIndex}/>
-            <PrivateRoute path="/me/stories" component={ListStory}/>
-            <Route path="/authors/:id" component={AuthorDetail}/>
-            <Route path="/about" component={About}/>
-            <Route path="/st-more-admin" component={AdminSignUp}/>
-            <Route exact path="/" component={PostsIndex}/>
-            <Route path="*" component={PostsIndex}/>
+            <PrivateRoute path="/notice/patch/:id" component={PatchNotice} />
+            <PrivateRoute path="/notice/write" component={CreateNotice} />
+            <Route path="/notice/:id" component={RetrieveNotice} />
+            <Route path="/notice" component={ListNotice} />
+            <PrivateRoute path="/board/patch/:id" component={PatchFreeBoard} />
+            <PrivateRoute path="/board/write" component={CreateFreeBoard} />
+            <Route path="/board/:id" component={RetrieveFreeBoard} />
+            <Route path="/board" component={ListFreeBoard} />
+            <Route path="/stories/:id" component={RetrieveStory} />
+            <PrivateRoute path="/me/write" component={CreateStory} />
+            <PrivateRoute path="/me/stories/:id" component={PatchStory} />
+            <PrivateRoute path="/me/settings" component={SettingsIndex} />
+            <PrivateRoute path="/me/stories" component={ListStory} />
+            <Route path="/authors/:id" component={AuthorDetail} />
+            <Route path="/about" component={About} />
+            <Route path="/st-more-admin" component={AdminSignUp} />
+            <Route exact path="/" component={PostsIndex} />
+            <Route path="*" component={PostsIndex} />
           </Switch>
-        <FooterColumn/>
-        <FauxColumn/>
-        <ToTop/>
-        <LoginModal/>
-        <SignUpModal/>
-      </div>
-    </BrowserRouter>
+          <FooterColumn />
+          <FauxColumn />
+          <ToTop />
+          <LoginModal />
+          <SignUpModal />
+        </div>
+      </BrowserRouter>
     );
   }
 }

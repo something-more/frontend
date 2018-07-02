@@ -11,19 +11,18 @@ import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
 
 class CreateBoard extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      quill: ''
-    }
+      quill: '',
+    };
   }
 
   componentDidMount() {
     this.setState({
-      quill: new Quill('#editor', QuillOptions)
-    })
+      quill: new Quill('#editor', QuillOptions),
+    });
   }
 
   async onSubmit(values) {
@@ -38,30 +37,33 @@ class CreateBoard extends Component {
     return (
       <div className="content-col">
         <div className="inner-content">
-          <h1 className="title">Write Your Comment...</h1>
-          <hr className="vertical-spacer"/>
+          <h1 className="title">
+Write Your Comment...
+          </h1>
+          <hr className="vertical-spacer" />
           <form
-          method="post"
-          encType="multipart/form-data"
-          onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <Field name="title" label="publish" component={TitleField}/>
-            <div id="editor" style={{minHeight: "70vh"}}/>
+            method="post"
+            encType="multipart/form-data"
+            onSubmit={handleSubmit(this.onSubmit.bind(this))}
+          >
+            <Field name="title" label="publish" component={TitleField} />
+            <div id="editor" style={{ minHeight: '70vh' }} />
           </form>
-          <AlertError errors={this.props.error}/>
+          <AlertError errors={this.props.error} />
         </div>
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    error: state.board.error
-  }
+    error: state.board.error,
+  };
 }
 
 export default reduxForm({
-  form: 'CreateBoardForm'
+  form: 'CreateBoardForm',
 })(
-  connect(mapStateToProps, { createBoard })(CreateBoard)
+  connect(mapStateToProps, { createBoard })(CreateBoard),
 );

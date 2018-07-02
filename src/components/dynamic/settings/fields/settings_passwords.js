@@ -5,7 +5,6 @@ import { patchPassword } from '../../../../reducers/reducer_auth';
 import { PasswordField } from '../../structure/input_fields';
 
 class NewPasswords extends Component {
-
   async onPatch(values) {
     await this.props.patchPassword(values);
 
@@ -15,32 +14,36 @@ class NewPasswords extends Component {
   }
 
   render() {
-    const {handleSubmit} = this.props;
+    const { handleSubmit } = this.props;
 
     return (
-    <div>
-      <h4>패스워드 변경</h4>
-      <div className="panel panel-info">
-        <div className="panel-body">
-          <form method="post" onSubmit={handleSubmit(this.onPatch.bind(this))}>
-            <Field
-            id="newPassword1"
-            name="password1"
-            label="New Password"
-            component={PasswordField}
-            />
-            <Field
-            id="newPassword2"
-            name="password2"
-            label="Repeat Password"
-            component={PasswordField}
-            />
-            <button type="submit" className="btn btn-info">Submit</button>
-          </form>
+      <div>
+        <h4>
+패스워드 변경
+        </h4>
+        <div className="panel panel-info">
+          <div className="panel-body">
+            <form method="post" onSubmit={handleSubmit(this.onPatch.bind(this))}>
+              <Field
+                id="newPassword1"
+                name="password1"
+                label="New Password"
+                component={PasswordField}
+              />
+              <Field
+                id="newPassword2"
+                name="password2"
+                label="Repeat Password"
+                component={PasswordField}
+              />
+              <button type="submit" className="btn btn-info">
+Submit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    )
+    );
   }
 }
 
@@ -56,13 +59,13 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    error: state.auth.error
-  }
+    error: state.auth.error,
+  };
 }
 
 export default reduxForm({
   validate,
-  form: 'NewPasswordsForm'
+  form: 'NewPasswordsForm',
 })(
-  connect(mapStateToProps, { patchPassword })(NewPasswords)
+  connect(mapStateToProps, { patchPassword })(NewPasswords),
 );
