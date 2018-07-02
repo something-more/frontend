@@ -2,7 +2,6 @@ import asyncComponent from "./async";
 // Dynamically imported components
 
 // Static Components
-export const LogoColumn = asyncComponent(() => import('../components/static/logo_column').then(module => module.default));
 export const FooterColumn = asyncComponent(() => import('../components/static/footer_column').then(module => module.default));
 export const About = asyncComponent(() => import('../components/static/about').then(module => module.default));
 

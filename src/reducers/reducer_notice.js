@@ -16,8 +16,8 @@ const DESTROY = 'something-more/notice/DESTROY';
 
 // 공지사항 생성
 export async function createNotice(formData) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -42,8 +42,8 @@ export async function createNotice(formData) {
 
 // 공지사항 목록
 export async function listNotice(query = '1') {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -63,8 +63,8 @@ export async function listNotice(query = '1') {
 
 // 공지사항 갯수
 export async function countNotice() {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -84,8 +84,8 @@ export async function countNotice() {
 
 // 공지사항 디테일
 export async function retrieveNotice(id) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -105,8 +105,8 @@ export async function retrieveNotice(id) {
 
 // 공지사항 수정
 export async function patchNotice(formData, id) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -131,8 +131,8 @@ export async function patchNotice(formData, id) {
 
 // 공지사항 삭제
 export async function destroyNotice(id) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -160,32 +160,6 @@ const initialState = {
   count: 0,
   error: '',
 };
-
-// Reducer
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case CREATE:
-      return reducerCreateNotice(action, state);
-
-    case LIST:
-      return reducerListNotice(action, state);
-
-    case COUNT:
-      return reducerCountNotice(action, state);
-
-    case RETRIEVE:
-      return reducerRetrieveNotice(action, state);
-
-    case PATCH:
-      return reducerPatchNotice(action, state);
-
-    case DESTROY:
-      return reducerDestroyNotice(action, state);
-
-    default:
-      return state;
-  }
-}
 
 // Reducer Functions
 function reducerCreateNotice(action, state) {
@@ -275,4 +249,30 @@ function reducerDestroyNotice(action, state) {
     ...state,
     error: action.error,
   };
+}
+
+// Reducer
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case CREATE:
+      return reducerCreateNotice(action, state);
+
+    case LIST:
+      return reducerListNotice(action, state);
+
+    case COUNT:
+      return reducerCountNotice(action, state);
+
+    case RETRIEVE:
+      return reducerRetrieveNotice(action, state);
+
+    case PATCH:
+      return reducerPatchNotice(action, state);
+
+    case DESTROY:
+      return reducerDestroyNotice(action, state);
+
+    default:
+      return state;
+  }
 }
