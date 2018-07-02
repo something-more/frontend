@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -17,7 +18,7 @@ class Navigation extends Component {
 
   handleClick() {
     // 사이드 바 메뉴를 클릭하면 빨간 불이 들어오도록
-    $('.primary-nav a').click(function () {
+    $('.primary-nav a').click(() => {
       $(this).parent().tab('show');
     });
   }
@@ -26,12 +27,12 @@ class Navigation extends Component {
   // 필진 리스트 렌더링 함수
   // 리스트를 클릭하면 액션 생성자를 호출해 특정 필진 데이터를 리듀서로 옮긴다
   renderAuthors() {
-    return this.props.authors.list.map(author => (
-      <li
-        key={author.id}
-        onClick={() => this.props.selectAuthor(author.id)}
-      >
-        <Link to={`/authors/${author.id}`}>
+    return _.map(this.props.authors.list, author => (
+      <li key={author.id}>
+        <Link
+          onClick={() => this.props.selectAuthor(author.id)}
+          to={`/authors/${author.id}`}
+        >
           {author.name_en}
         </Link>
       </li>

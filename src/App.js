@@ -39,7 +39,7 @@ import LogoColumn from './components/static/logo_column';
 import FauxColumn from './components/static/faux_column';
 
 // Helper function
-import { decodeJWT } from './include/jwt_decode';
+import decodeJWT from './include/jwt_decode';
 
 // Private Route
 // 라우트의 컴포넌트와 기타 등등을 모두 상속받음
