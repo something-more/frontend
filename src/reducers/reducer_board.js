@@ -41,14 +41,14 @@ export async function createBoard(formData) {
 }
 
 // 글 목록
-export async function listBoard(query = 'page=1') {
+export async function listBoard(query = '1') {
 
   let response, error = '';
 
   try {
     response = await axios({
       method: 'get',
-      url: `/board/list/?${query}`
+      url: `/board/list/?page=${query}`
     })
   } catch (e) {
     error = e.message;

@@ -41,14 +41,14 @@ export async function createNotice(formData) {
 }
 
 // 공지사항 목록
-export async function listNotice(query = 'page=1') {
+export async function listNotice(query = '1') {
 
   let response, error = '';
 
   try {
     response = await axios({
       method: 'get',
-      url: `/notice/list/?${query}`
+      url: `/notice/list/?page=${query}`
     })
   } catch (e) {
     error = e.message;
