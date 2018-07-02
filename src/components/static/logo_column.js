@@ -11,7 +11,7 @@ export default () => {
 
     return (
     <div className="logo-col" style={cssStyle}>
-      <a href="#" className="toggle-menu">
+      <a className="toggle-menu">
         <i className="fa fa-bars"/></a>
       <div className="logo-wrapper">
         <a href="/" className="clearfix">

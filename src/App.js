@@ -23,7 +23,7 @@ import './assets/css/soft-gray.css';
 
 // 동적 로딩
 import {
-  LogoColumn, FooterColumn, About,
+  FooterColumn, About,
   PostsIndex, AuthorDetail, SettingsIndex,
   LoginModal, SignUpModal, AdminSignUp,
   ListStory, CreateStory, RetrieveStory, PatchStory,
@@ -34,6 +34,7 @@ import {
 // 정적 로딩
 import ToTop from './components/static/to_top';
 import NavigationColumn from './components/dynamic/structure/navigation_column';
+import LogoColumn from './components/static/logo_column';
 
 // Helper function
 import { decodeJWT } from "./include/jwt_decode";
