@@ -16,8 +16,8 @@ const DESTROY = 'something-more/auth/DESTROY';
 
 // 관리자 회원 가입
 export async function adminSignUp(values) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -41,8 +41,8 @@ export async function adminSignUp(values) {
 
 // 회원 가입
 export async function signUp(values) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -66,8 +66,8 @@ export async function signUp(values) {
 
 // 로그인
 export async function signIn(values) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -98,8 +98,8 @@ export function signOut() {
 
 // 패스워드 수정
 export async function patchPassword(values) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -125,8 +125,8 @@ export async function patchPassword(values) {
 
 // 회원 탈퇴
 export async function destroyUser(values) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -150,38 +150,11 @@ export async function destroyUser(values) {
   };
 }
 
-// Reducer
-
 // 초기 state 정의
 const initialState = {
   email: '',
   error: '',
 };
-
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case ADMIN_SIGNUP:
-      return reducerAdminSignUp(state, action);
-
-    case SIGNUP:
-      return reducerSignUp(state, action);
-
-    case SIGNIN:
-      return reducerLogin(state, action);
-
-    case SIGNOUT:
-      return reducerSignOut(state);
-
-    case PATCH:
-      return reducerPatchPassword(state, action);
-
-    case DESTROY:
-      return reducerDestroyUser(state, action);
-
-    default:
-      return state;
-  }
-}
 
 // Reducer function
 function reducerAdminSignUp(state, action) {
@@ -270,4 +243,30 @@ function reducerDestroyUser(state, action) {
     ...state,
     error: action.error,
   };
+}
+
+// Reducer
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case ADMIN_SIGNUP:
+      return reducerAdminSignUp(state, action);
+
+    case SIGNUP:
+      return reducerSignUp(state, action);
+
+    case SIGNIN:
+      return reducerLogin(state, action);
+
+    case SIGNOUT:
+      return reducerSignOut(state);
+
+    case PATCH:
+      return reducerPatchPassword(state, action);
+
+    case DESTROY:
+      return reducerDestroyUser(state, action);
+
+    default:
+      return state;
+  }
 }
