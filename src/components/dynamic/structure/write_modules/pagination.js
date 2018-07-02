@@ -7,7 +7,7 @@ export default ({count, list}) => {
 
   return _.map(pageArray, (pageNum) => {
     return (
-    <li>
+    <li key={pageNum}>
       <a onClick={() => list(`page=${pageNum}`)}>{pageNum}</a>
     </li>
     )
