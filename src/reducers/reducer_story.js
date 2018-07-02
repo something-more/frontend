@@ -15,8 +15,8 @@ const DESTROY = 'something-more/story/DESTROY';
 
 // Action Creators
 export async function createStory(formData) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -40,8 +40,8 @@ export async function createStory(formData) {
 }
 
 export async function listStory(query = 1) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -63,8 +63,8 @@ export async function listStory(query = 1) {
 }
 
 export async function clientListStory() {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -83,8 +83,8 @@ export async function clientListStory() {
 }
 
 export async function countStory() {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -106,8 +106,8 @@ export async function countStory() {
 }
 
 export async function retrieveStory(id) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -129,8 +129,8 @@ export async function retrieveStory(id) {
 }
 
 export async function patchStory(formData, id) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -154,8 +154,8 @@ export async function patchStory(formData, id) {
 }
 
 export async function changePublishStory(formData, id) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -179,8 +179,8 @@ export async function changePublishStory(formData, id) {
 }
 
 export async function destroyStory(id) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -208,38 +208,6 @@ const initialState = {
   error: '',
   count: 0,
 };
-
-// Reducer
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case CREATE:
-      return reducerCreateStory(state, action);
-
-    case LIST:
-      return reducerListStory(state, action);
-
-    case CLIENT:
-      return reducerClientListStory(state, action);
-
-    case COUNT:
-      return reducerCountStory(state, action);
-
-    case RETRIEVE:
-      return reducerRetrieveStory(state, action);
-
-    case PATCH:
-      return reducerPatchStory(state, action);
-
-    case PUBLISH:
-      return reducerChangePublishStory(state, action);
-
-    case DESTROY:
-      return reducerDestroyStory(state, action);
-
-    default:
-      return state;
-  }
-}
 
 // Reducer function
 function reducerCreateStory(state, action) {
@@ -359,3 +327,36 @@ function reducerDestroyStory(state, action) {
     error: action.error,
   };
 }
+
+// Reducer
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case CREATE:
+      return reducerCreateStory(state, action);
+
+    case LIST:
+      return reducerListStory(state, action);
+
+    case CLIENT:
+      return reducerClientListStory(state, action);
+
+    case COUNT:
+      return reducerCountStory(state, action);
+
+    case RETRIEVE:
+      return reducerRetrieveStory(state, action);
+
+    case PATCH:
+      return reducerPatchStory(state, action);
+
+    case PUBLISH:
+      return reducerChangePublishStory(state, action);
+
+    case DESTROY:
+      return reducerDestroyStory(state, action);
+
+    default:
+      return state;
+  }
+}
+
