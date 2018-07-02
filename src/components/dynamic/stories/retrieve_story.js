@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Quill from 'quill';
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
 import moment from 'moment';
 import { retrieveStory, destroyStory } from '../../../reducers/reducer_story';
 import { renderQuillObject } from '../../../include/render_quill_object';
@@ -17,13 +19,16 @@ class RetrieveStory extends Component {
     }
   }
 
-  async componentDidMount() {
-    this.setState({
-      quill: new Quill('#editor')
-    });
+  async componentWillMount() {
     const {id} = this.props.match.params;
     await this.props.retrieveStory(id);
     await renderQuillObject(this.props.story.content, this.state.quill);
+  }
+
+  componentDidMount() {
+    this.setState({
+      quill: new Quill('#editor')
+    });
   }
 
   render() {
@@ -41,17 +46,17 @@ class RetrieveStory extends Component {
           <span>Date: {moment(story.date_created).format('YYYY-MM-DD')}</span>
           {sessionStorage.getItem('token') &&
           decodeJWT(sessionStorage.getItem('token')).id === story.author
-          ? <div className="pull-right">
+          ? <span className="pull-right" style={{display: "block"}}>
             <button
             className="btn btn-danger"
             style={{marginRight: "10px"}}
-            onClick={() =>
-            onDestroy(story.id, destroyStory, history.push('/me/stories'))}>Delete</button>
+            onClick={() => onDestroy(
+            story.id, destroyStory, history.push('/me/stories'))}>Delete</button>
             <Link
             to={`/me/stories/${story.id}`}
             type="button"
             className="btn btn-warning">Modify</Link>
-          </div>
+          </span>
           : null}
         </p>
         <hr className="hidden-xs"/>

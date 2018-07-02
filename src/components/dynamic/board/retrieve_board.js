@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Quill from 'quill';
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
 import moment from 'moment';
 import { retrieveBoard, destroyBoard } from '../../../reducers/reducer_board';
 import { decodeJWT } from '../../../include/jwt_decode';
@@ -17,13 +19,16 @@ class RetrieveBoard extends Component {
     }
   }
 
+  async componentWillMount() {
+    const {id} = this.props.match.params;
+    await this.props.retrieveBoard(id);
+    await renderQuillObject(this.props.board.content, this.state.quill);
+  }
+
   async componentDidMount() {
     this.setState({
       quill: new Quill('#editor')
     });
-    const {id} = this.props.match.params;
-    await this.props.retrieveBoard(id);
-    await renderQuillObject(this.props.board.content, this.state.quill);
   }
 
   render() {
@@ -41,17 +46,17 @@ class RetrieveBoard extends Component {
           <span>Date: {moment(board.date_created).format('YYYY-MM-DD')}</span>
           {sessionStorage.getItem('token') &&
           decodeJWT(sessionStorage.getItem('token')).email === board.author
-          ? <div className="pull-right">
+          ? <span className="pull-right" style={{display: "block"}}>
             <button
             className="btn btn-danger"
             style={{marginRight: "10px"}}
-            onClick={() =>
-            onDestroy(board.id, destroyBoard, history.push('/board'))}>Delete</button>
+            onClick={() => onDestroy(
+            board.id, destroyBoard, history.push('/board'))}>Delete</button>
             <Link
           to={`/board/patch/${board.id}`}
           type="button"
           className="btn btn-warning">Modify</Link>
-          </div>
+          </span>
           : null}
         </p>
         <hr className="hidden-xs"/>

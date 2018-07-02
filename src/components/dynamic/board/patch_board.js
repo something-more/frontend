@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Quill from 'quill';
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
 import moment from 'moment';
 import { retrieveBoard, patchBoard, destroyBoard } from '../../../reducers/reducer_board';
 import {renderQuillPatchObject } from '../../../include/render_quill_object';
@@ -19,13 +21,16 @@ class PatchBoard extends Component {
     }
   }
 
-  async componentDidMount() {
-    this.setState({
-      quill: new Quill('#editor', QuillOptions)
-    });
+  async componentWillMount() {
     const {id} = this.props.match.params;
     await this.props.retrieveBoard(id);
     await renderQuillPatchObject(this.props, this.props.board, this.state.quill);
+  }
+
+  componentDidMount() {
+    this.setState({
+      quill: new Quill('#editor', QuillOptions)
+    });
   }
 
   async onPublish(values) {
