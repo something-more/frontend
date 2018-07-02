@@ -1,0 +1,16 @@
+@font-face {
+    font-family: "Source Han Serif KR";
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/SourceHanSerifKR-Light.woff2");
+}
+
+#content {
+    font-family: "Source Han Serif KR", serif;
+    font-weight: 300;
+}
+
+#editor {
+    font-family: "Source Han Serif KR", serif;
+    font-weight: 300;
+}
