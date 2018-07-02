@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { axiosConfig } from '../include/axios';
+import axiosConfig from '../include/axios';
 
 axiosConfig(axios);
 
