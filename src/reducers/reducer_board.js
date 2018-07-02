@@ -16,8 +16,8 @@ const DESTROY = 'something-more/board/DESTROY';
 
 // 글 생성
 export async function createBoard(formData) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -42,8 +42,8 @@ export async function createBoard(formData) {
 
 // 글 목록
 export async function listBoard(query = '1') {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -63,8 +63,8 @@ export async function listBoard(query = '1') {
 
 // 글 갯수
 export async function countBoard() {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -84,8 +84,8 @@ export async function countBoard() {
 
 // 글 디테일
 export async function retrieveBoard(id) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -105,8 +105,8 @@ export async function retrieveBoard(id) {
 
 // 글 수정
 export async function patchBoard(formData, id) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -131,8 +131,8 @@ export async function patchBoard(formData, id) {
 
 // 글 삭제
 export async function destroyBoard(id) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -160,32 +160,6 @@ const initialState = {
   count: 0,
   error: '',
 };
-
-// Reducer
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case CREATE:
-      return reducerCreateBoard(action, state);
-
-    case LIST:
-      return reducerListBoard(action, state);
-
-    case COUNT:
-      return reducerCountBoard(action, state);
-
-    case RETRIEVE:
-      return reducerRetrieveBoard(action, state);
-
-    case PATCH:
-      return reducerPatchBoard(action, state);
-
-    case DESTROY:
-      return reducerDestroyBoard(action, state);
-
-    default:
-      return state;
-  }
-}
 
 // Reducer Functions
 function reducerCreateBoard(action, state) {
@@ -275,4 +249,30 @@ function reducerDestroyBoard(action, state) {
     ...state,
     error: action.error,
   };
+}
+
+// Reducer
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case CREATE:
+      return reducerCreateBoard(action, state);
+
+    case LIST:
+      return reducerListBoard(action, state);
+
+    case COUNT:
+      return reducerCountBoard(action, state);
+
+    case RETRIEVE:
+      return reducerRetrieveBoard(action, state);
+
+    case PATCH:
+      return reducerPatchBoard(action, state);
+
+    case DESTROY:
+      return reducerDestroyBoard(action, state);
+
+    default:
+      return state;
+  }
 }
