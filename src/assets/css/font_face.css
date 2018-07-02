@@ -2,7 +2,14 @@
     font-family: "Source Han Serif KR";
     font-style: normal;
     font-weight: 300;
-    src: url("../fonts/SourceHanSerifKR-Light.woff2");
+    src: url("../fonts/NotoSerifCJKkr-Light-subset.woff2");
+}
+
+@font-face {
+    font-family: "Source Han Serif KR";
+    font-style: normal;
+    font-weight: 500;
+    src: url("../fonts/NotoSerifCJKkr-Bold-subset.woff2");
 }
 
 #content {
@@ -10,7 +17,17 @@
     font-weight: 300;
 }
 
+#content strong {
+    font-family: "Source Han Serif KR", serif;
+    font-weight: 500;
+}
+
 #editor {
     font-family: "Source Han Serif KR", serif;
     font-weight: 300;
+}
+
+#editor strong {
+    font-family: "Source Han Serif KR", serif;
+    font-weight: 500;
 }
