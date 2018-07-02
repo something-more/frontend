@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import { clientListStory } from '../../../reducers/reducer_story';
 import AlertError from '../structure/alert_error';
@@ -11,10 +11,27 @@ class MainCarousel extends Component {
   }
 
   renderItem() {
+    const CSS = {
+      border: "1px solid #ddd",
+      borderRadius: "4px",
+      textAlign: "center"
+    };
+
     return _.map(this.props.storyList, (story) => {
       return (
-        <div key={story.id}>
-          {story.title}
+        <div
+        className="col-sm-3 col-ms-3"
+        key={story.id}>
+          <div style={CSS}>
+            <figure>
+              <img src="" alt="thumbnail"/>
+              <figcaption>
+                <span>{story.title}</span>
+                <span>&nbsp;|&nbsp;</span>
+                <span>작가 이름</span>
+              </figcaption>
+            </figure>
+          </div>
         </div>
       )
     })
@@ -22,10 +39,12 @@ class MainCarousel extends Component {
 
   render() {
     return (
-    <div className="">
-      {this.renderItem()}
+    <Fragment>
+      <div className="row">
+        {this.renderItem()}
+      </div>
       <AlertError errors={this.props.error}/>
-    </div>
+    </Fragment>
     )
   }
 }
