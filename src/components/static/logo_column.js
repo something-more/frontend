@@ -10,7 +10,7 @@ export default () => {
     };
 
     return (
-    <div className="logo-col" style={cssStyle}>
+    <div className="logo-col">
       <a className="toggle-menu">
         <i className="fa fa-bars"/></a>
       <div className="logo-wrapper">

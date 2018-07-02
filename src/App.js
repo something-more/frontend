@@ -35,6 +35,7 @@ import {
 import ToTop from './components/static/to_top';
 import NavigationColumn from './components/dynamic/structure/navigation_column';
 import LogoColumn from './components/static/logo_column';
+import FauxColumn from './components/static/faux_column';
 
 // Helper function
 import { decodeJWT } from "./include/jwt_decode";
@@ -81,6 +82,7 @@ class App extends Component {
             <Route path="*" component={PostsIndex}/>
           </Switch>
         <FooterColumn/>
+        <FauxColumn/>
         <ToTop/>
         <LoginModal/>
         <SignUpModal/>

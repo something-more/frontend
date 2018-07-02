@@ -41,7 +41,7 @@ class Navigation extends Component {
 
   render() {
     return (
-    <div className="nav-col" style={{"border": "none"}}>
+    <div className="nav-col">
       <div id="nav" className="clearfix" role="navigation">
         <div className="user-wrapper">
           <AuthenticationState/>

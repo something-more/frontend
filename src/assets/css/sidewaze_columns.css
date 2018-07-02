@@ -50,10 +50,6 @@ Also, notice how the footer-col adjusts significantly from 0-1399px
     border-right: 1px solid #ccc;
 }
 
-.logo-col {
-    border-left: 1px solid #ccc;
-}
-
 /* --- remove right border on content-col and .faux-content-col when footer is below --- */
 @media (max-width:1399px) {
 	.content-col, .faux-content-col { border-right: 0px }
@@ -169,7 +165,7 @@ hr {border-color:#ddd;}
 	.faux-col {
 	    position: fixed;
 	    top: 0;
-	    z-index: -1;
+	    /*z-index: -1;*/
 	    min-height: 100%;
 	    bottom: 0;
 	}
