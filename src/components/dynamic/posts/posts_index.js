@@ -88,7 +88,6 @@ class PostsIndex extends Component {
         <div className="row">
           <div className="col-ms-6 col-sm-6">
             <p>Pellentesque habitant morbi tristiquesenectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a
-            href="#"
             className="text-underline">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
           </div>
           <div className="col-ms-6 col-sm-6">
@@ -103,7 +102,7 @@ class PostsIndex extends Component {
             <i className="fa fa-refresh feature-icon"/>
             <h2 className="spaced-out-header h4 uppercase font-weight-bold">Refreshing</h2>
             <p className="med-sm">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat.</p>
-            <p><a className="btn btn-default btn-sm" href="#" role="button">Some Link &raquo;</a></p>
+            <p><a className="btn btn-default btn-sm" role="button">Some Link &raquo;</a></p>
             <hr className="vertical-spacer visible-xs"/>
           </div>
           <div className="col-ms-4 col-sm-4">
@@ -112,14 +111,14 @@ class PostsIndex extends Component {
             <i className="fa fa-desktop feature-icon"/>
             <h2 className="spaced-out-header h4 uppercase font-weight-bold">Responsive</h2>
             <p className="med-sm">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat.</p>
-            <p><a className="btn btn-default btn-sm" href="#" role="button">Some Link &raquo;</a></p>
+            <p><a className="btn btn-default btn-sm" role="button">Some Link &raquo;</a></p>
             <hr className="vertical-spacer visible-xs"/>
           </div>
           <div className="col-ms-4 col-sm-4">
             <i className="fa fa-code feature-icon"/>
             <h2 className="spaced-out-header h4 uppercase font-weight-bold">Clean</h2>
             <p className="med-sm">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat.</p>
-            <p><a className="btn btn-default btn-sm" href="#" role="button">Some Link &raquo;</a></p>
+            <p><a className="btn btn-default btn-sm" role="button">Some Link &raquo;</a></p>
           </div>
         </div>
         <hr className="vertical-spacer"/>

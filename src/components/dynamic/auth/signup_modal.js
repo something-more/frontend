@@ -56,7 +56,6 @@ class SignUpModal extends Component {
               <ul className="list-unstyled social-user">
                 <li>
                   <a
-                  href="#"
                   title="Signup with Facebook"
                   className="facebook">
                     <i className="fa fa-facebook"/>

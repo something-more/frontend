@@ -60,7 +60,7 @@ class Navigation extends Component {
             </ul>
           </li>
           <li>
-            <a href="#">Stories</a>
+            <a>Stories</a>
           </li>
           <li>
             <Link to="/notice">Notice</Link>

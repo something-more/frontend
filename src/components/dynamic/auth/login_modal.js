@@ -43,16 +43,23 @@ class LoginModal extends Component {
       data-width="760"
       style={{display: "none"}}>
         <div className="modal-header">
-          <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <button
+          type="button"
+          className="close"
+          data-dismiss="modal"
+          aria-hidden="true">×</button>
         </div>
         <div className="modal-body">
           <div className="row">
             <div className="col-sm-6 col-ms-6">
               <h4 className="title">Social Login</h4>
               <ul className="list-unstyled social-user">
-                <li><a href="#"
+                <li>
+                  <a
                 title="Login with Facebook"
-                className="facebook"><i className="fa fa-facebook"/><span>Login with Facebook</span></a>
+                className="facebook">
+                    <i className="fa fa-facebook"/>
+                    <span>Login with Facebook</span></a>
                 </li>
               </ul>
             </div>
@@ -89,9 +96,7 @@ class LoginModal extends Component {
             </div>
           </div>
           <p className="text-center">
-            <a
-              className="text-underline"
-              href="your-link-here.html">비밀번호를 잊으셨나요?</a>
+            <a className="text-underline">비밀번호를 잊으셨나요?</a>
             <br/>
             아직 계정이 없으신가요?&nbsp;
             <a
