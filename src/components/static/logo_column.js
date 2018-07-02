@@ -2,13 +2,6 @@ import React from 'react';
 import logo from '../../assets/images/logo/text_logo.svg';
 
 export default () => {
-    const cssStyle = {
-      'height': '100vh',
-      'float': 'left',
-      'position': 'fixed',
-      'top': 0
-    };
-
     return (
     <div className="logo-col">
       <a className="toggle-menu">
