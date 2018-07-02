@@ -1,5 +1,5 @@
 // axios 설정
-export default (payload) => {
+export default function axiosConfig(payload) {
   const axios = payload;
   axios.defaults.baseURL = 'http://localhost:1323/';
   axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

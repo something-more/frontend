@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../../../reducers/reducer_auth';
-import { decodeJWT } from '../../../include/jwt_decode';
+import decodeJWT from '../../../include/jwt_decode';
 
 class AuthenticationState extends Component {
   // 인증 상태 렌더링 함수

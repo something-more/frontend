@@ -7,7 +7,7 @@ import 'quill/dist/quill.snow.css';
 import moment from 'moment';
 import { retrieveStory, destroyStory } from '../../../reducers/reducer_story';
 import { renderQuillObject } from '../../../include/render_quill_object';
-import { decodeJWT } from '../../../include/jwt_decode';
+import decodeJWT from '../../../include/jwt_decode';
 import { onDestroy } from '../../../include/submit_functions';
 
 class RetrieveStory extends Component {

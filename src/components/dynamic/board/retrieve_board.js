@@ -6,7 +6,7 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import moment from 'moment';
 import { retrieveBoard, destroyBoard } from '../../../reducers/reducer_board';
-import { decodeJWT } from '../../../include/jwt_decode';
+import decodeJWT from '../../../include/jwt_decode';
 import { renderQuillObject } from '../../../include/render_quill_object';
 import { onDestroy } from '../../../include/submit_functions';
 

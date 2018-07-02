@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { listUsers } from '../../../reducers/reducer_admin';
-import { decodeJWT } from '../../../include/jwt_decode';
+import decodeJWT from '../../../include/jwt_decode';
 import SettingsFields from './settings_fields';
 import AlertError from '../structure/alert_error';
 
