@@ -6,6 +6,7 @@ axiosConfig(axios);
 // Actions
 const CREATE = 'something-more/story/CREATE';
 const LIST = 'something-more/story/LIST';
+const CLIENT = 'something-more/story/CLIENT';
 const COUNT = 'something-more/story/COUNT';
 const RETRIEVE = 'something-more/story/RETRIEVE';
 const PATCH = 'something-more/story/PATCH';
@@ -38,14 +39,14 @@ export async function createStory(formData) {
   }
 }
 
-export async function listStory(query = 'page=1') {
+export async function listStory(query = 1) {
 
   let response, error = '';
 
   try {
     response = await axios({
       method: 'get',
-      url: `/story/?${query}`,
+      url: `/story/?page=${query}`,
       headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
       }
@@ -56,6 +57,26 @@ export async function listStory(query = 'page=1') {
 
   return {
     type: LIST,
+    response: response,
+    error: error
+  }
+}
+
+export async function clientListStory() {
+
+  let response, error = '';
+
+  try {
+    response = await axios({
+      method: 'get',
+      url: '/story/client/'
+    })
+  } catch (e) {
+    error = e.message;
+  }
+
+  return {
+    type: CLIENT,
     response: response,
     error: error
   }
@@ -132,7 +153,7 @@ export async function patchStory(formData, id) {
   }
 }
 
-export async function changePublishStory(formdata, id) {
+export async function changePublishStory(formData, id) {
 
   let response, error = '';
 
@@ -144,7 +165,7 @@ export async function changePublishStory(formdata, id) {
         'Content-Type': 'multipart/form-data',
         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
       },
-      data: formdata
+      data: formData
     });
   } catch (e) {
     error = e.message;
@@ -197,6 +218,9 @@ export default function reducer(state = initialState, action) {
     case LIST:
       return reducerListStory(state, action);
 
+    case CLIENT:
+      return reducerClientListStory(state, action);
+
     case COUNT:
       return reducerCountStory(state, action);
 
@@ -243,6 +267,22 @@ function reducerListStory(state, action) {
   } else {
     return {
       ...state,
+      error: action.error
+    }
+  }
+}
+
+function reducerClientListStory(state, action) {
+  if (action.response) {
+    return {
+      ...state,
+      list: action.response.data,
+      error: ''
+    }
+  } else {
+    return {
+      ...state,
+      list: [],
       error: action.error
     }
   }
