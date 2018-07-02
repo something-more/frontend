@@ -4,7 +4,24 @@ import { connect } from 'react-redux';
 import { selectAuthor } from '../../../reducers/reducer_author';
 import AuthenticationState from '../auth/auth_state';
 
+const $ = window.jQuery;
+
 class Navigation extends Component {
+  componentWillMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  componentWillUnmount() {
+    document.addEventListener('mousedown', this.handleClick, false);
+  }
+
+  handleClick() {
+      // 사이드 바 메뉴를 클릭하면 빨간 불이 들어오도록
+      $('.primary-nav a').click(function () {
+        $(this).parent().tab('show');
+      })
+  };
+
 
   // 필진 리스트 렌더링 함수
   // 리스트를 클릭하면 액션 생성자를 호출해 특정 필진 데이터를 리듀서로 옮긴다

@@ -135,7 +135,7 @@ figcaption a:not(:hover), .text-underline:not(:hover) { color: #333 }
 
 .nav-col a:not(:hover) { color: #333 }
 
-.primary-nav .active a, .primary-nav a:hover, .primary-nav .dcjq-parent.active { color: #ec5004 }
+.primary-nav .active > a, .primary-nav a:hover, .primary-nav .dcjq-parent.active { color: #ec5004 }
 
 
 /* logo-col links
