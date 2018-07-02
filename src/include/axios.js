@@ -7,4 +7,4 @@ export default function axiosConfig(payload) {
   axios.defaults.xsrfHeaderName = 'X-CSRF-Token';
   axios.defaults.xsrfCookieName = '_csrf';
   axios.defaults.withCredentials = true;
-};
+}
