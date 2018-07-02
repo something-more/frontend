@@ -12,8 +12,8 @@ const UPDATE = 'something-more/admin/UPDATE';
 
 // 유저 리스트
 export async function listUsers() {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -35,8 +35,8 @@ export async function listUsers() {
 }
 
 export async function updateUserAuth(payload) {
-  let response,
-    error = '';
+  let response = '';
+  let error = '';
 
   try {
     response = await axios({
@@ -68,20 +68,6 @@ const initialState = {
   error: '',
 };
 
-// Reducer
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case LIST:
-      return reducerListUsers(state, action);
-
-    case UPDATE:
-      return reducerUpdateUserAuth(state, action);
-
-    default:
-      return state;
-  }
-}
-
 // Reducer Functions
 function reducerListUsers(state, action) {
   if (action.response) {
@@ -109,4 +95,18 @@ function reducerUpdateUserAuth(state, action) {
     ...state,
     error: action.error,
   };
+}
+
+// Reducer
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case LIST:
+      return reducerListUsers(state, action);
+
+    case UPDATE:
+      return reducerUpdateUserAuth(state, action);
+
+    default:
+      return state;
+  }
 }
