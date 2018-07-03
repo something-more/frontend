@@ -49,39 +49,39 @@ class BoardMiniList extends Component {
     const { loading } = this.state;
     if (!loading) {
       return (
-      <div className="col-ms-6 col-sm-6">
-        <h4>
+        <div className="col-ms-6 col-sm-6">
+          <h4>
           자유게시판
-        </h4>
-        <table className="table table-hover text-center">
-          <thead>
-          <tr>
-            <th className="col-md-2 text-center">
+          </h4>
+          <table className="table table-hover text-center">
+            <thead>
+              <tr>
+                <th className="col-md-2 text-center">
               글쓴이
-            </th>
-            <th className="col-md-8 text-center">
+                </th>
+                <th className="col-md-8 text-center">
               제목
-            </th>
-            <th className="col-md-2 text-center">
+                </th>
+                <th className="col-md-2 text-center">
               날짜
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-          {this.props.boardCount !== 0 ? this.renderList() : null}
-          </tbody>
-        </table>
-        <AlertError errors={this.props.error} />
-      </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.boardCount !== 0 ? this.renderList() : null}
+            </tbody>
+          </table>
+          <AlertError errors={this.props.error} />
+        </div>
       );
     }
     return (
-    <div className="col-ms-6 col-sm-6">
-      <h4>
+      <div className="col-ms-6 col-sm-6">
+        <h4>
         자유게시판
-      </h4>
-      <Loading/>
-    </div>
+        </h4>
+        <Loading />
+      </div>
     );
   }
 }
