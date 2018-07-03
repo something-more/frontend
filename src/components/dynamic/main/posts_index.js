@@ -13,19 +13,6 @@ class PostsIndex extends Component {
           <MainCarousel />
           {/* banner */}
           <Banner />
-          {/* text description */}
-          <div>
-            <h2 className="h1 font-weight-thin">
-Wrap & Roll sideWaze
-            </h2>
-            <p className="lead">
-              <strong>
-Pellentesque habitant morbi tristique
-              </strong>
-              {' '}
-senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget.
-            </p>
-          </div>
           {/* 2-row description */}
           <div className="row">
             <NoticeMiniList />
