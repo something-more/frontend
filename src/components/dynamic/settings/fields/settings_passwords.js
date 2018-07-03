@@ -17,7 +17,7 @@ class NewPasswords extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div>
+      <div className="fadeIn animated">
         <h4>
 패스워드 변경
         </h4>

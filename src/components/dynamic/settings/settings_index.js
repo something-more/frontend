@@ -19,7 +19,7 @@ class SettingsIndex extends Component {
 
     return (
       <div className="content-col">
-        <div className="inner-content">
+        <div className="inner-content fadeIn animated">
           <h1 className="title">
 Settings
           </h1>

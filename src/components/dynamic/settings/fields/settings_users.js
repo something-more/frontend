@@ -135,7 +135,7 @@ Submit
 
   render() {
     return (
-      <div>
+      <div className="fadeIn animated">
         <h4>
 회원 등급 관리
         </h4>

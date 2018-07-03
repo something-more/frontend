@@ -95,7 +95,7 @@ class ListStory extends Component {
         ref={node => this.node = node}
         className="content-col"
       >
-        <div className="inner-content">
+        <div className="inner-content fadeIn animated">
           <h1 className="title">
 Stories
           </h1>

@@ -18,7 +18,7 @@ class DestroyUser extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div>
+      <div className="fadeIn animated">
         <h4>
 회원 탈퇴
         </h4>

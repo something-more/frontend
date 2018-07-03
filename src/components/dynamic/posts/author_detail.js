@@ -11,7 +11,7 @@ class AuthorDetail extends Component {
 
     return (
       <div className="content-col">
-        <div className="inner-content" style={{marginTop: "100px"}}>
+        <div className="inner-content fadeIn animated" style={{marginTop: "100px"}}>
           <div className="col-md-6 col-md-offset-3 text-center">
             <img
               src={author.thumbnail}

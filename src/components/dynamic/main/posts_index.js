@@ -8,7 +8,7 @@ class PostsIndex extends Component {
   render() {
     return (
       <div className="content-col" id="page">
-        <div className="inner-content">
+        <div className="inner-content fadeIn animated">
           {/* carousel */}
           <MainCarousel />
           {/* banner */}

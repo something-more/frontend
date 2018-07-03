@@ -36,7 +36,7 @@ class CreateBoard extends Component {
 
     return (
       <div className="content-col">
-        <div className="inner-content">
+        <div className="inner-content fadeIn animated">
           <h1 className="title">
 Write Your Comment...
           </h1>
