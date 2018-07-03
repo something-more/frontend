@@ -38,7 +38,7 @@ class RetrieveBoard extends Component {
       <div className="content-col">
         <div className="inner-content">
           <div id="editor" style={{ display: 'none' }} />
-          <h1 className="font-weight-thin no-margin-top">
+          <h1 id="content-title" className="font-weight-thin no-margin-top">
             {notice.title}
           </h1>
           <hr className="hidden-xs" />
