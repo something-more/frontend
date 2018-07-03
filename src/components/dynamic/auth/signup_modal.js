@@ -81,6 +81,7 @@ class SignUpModal extends Component {
                 <div className="form-group">
                   <Field
                     type="text"
+                    name="nickname"
                     className="form-control"
                     placeholder="Nickname"
                     component="input"
