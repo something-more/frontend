@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import {
   BrowserRouter,
   Route,
@@ -84,8 +84,13 @@ class App extends Component {
           <FooterColumn />
           <FauxColumn />
           <ToTop />
-          <LoginModal />
-          <SignUpModal />
+          {(sessionStorage.getItem('token') // 토큰이 존재하면서 동시에 expired 되지 않았을 때
+          && (decodeJWT(sessionStorage.getItem('token')).exp > moment(new Date().getTime()).unix()))
+          ? null
+          : <Fragment>
+            <LoginModal />
+            <SignUpModal />
+          </Fragment>}
         </div>
       </BrowserRouter>
     );
