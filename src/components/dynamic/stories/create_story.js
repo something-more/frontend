@@ -16,6 +16,8 @@ class CreateStory extends Component {
 
     this.state = {
       quill: '',
+      file: '',
+      imagePreviewUrl: ''
     };
   }
 
@@ -25,13 +27,29 @@ class CreateStory extends Component {
     });
   }
 
+  handleFileUpload(event) {
+    event.preventDefault();
+    let reader = new FileReader();
+    let file = event.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      })
+    };
+
+    reader.readAsDataURL(file);
+  }
+
   async onSubmit(values) {
-    const { quill } = this.state;
+    const { quill, file } = this.state;
     const { createStory, error, history } = this.props;
-    await onCreate(quill, values, createStory, error, history.push('/me/stories'));
+    await onCreate(quill, values, createStory, error, history.push('/me/stories'), file);
   }
 
   render() {
+    const { imagePreviewUrl } = this.state;
     const { handleSubmit } = this.props;
 
     return (
@@ -46,6 +64,27 @@ Write Your Story...
             encType="multipart/form-data"
             onSubmit={handleSubmit(this.onSubmit.bind(this))}
           >
+            <div className="row">
+              <div className="col-sm-4 col-ms-4">
+                <div className="form-group">
+                  <label htmlFor="thumbnailInput">썸네일 선택</label>
+                  <input
+                  id="thumbnailInput"
+                  name="thumbnail"
+                  type="file"
+                  onChange={this.handleFileUpload.bind(this)}/>
+                </div>
+              </div>
+              <div className="col-sm-8 col-ms-8">
+                {imagePreviewUrl
+                ? <img
+                  alt="story thumbnail"
+                  src={imagePreviewUrl} className="img-responsive center-block"
+                  style={{maxWidth: "200px", maxHeight: "200px", marginBottom: "20px"}}/>
+                : <div className="alert alert-info center-block text-center"
+                style={{maxWidth:"300px"}}>썸네일 이미지를 선택해주세요</div>}
+              </div>
+            </div>
             <Field name="title" label="save" component={TitleField} />
             <div id="editor" style={{ minHeight: '70vh' }} />
           </form>
