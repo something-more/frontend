@@ -4,11 +4,21 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { clientListStory } from '../../../reducers/reducer_story';
 import AlertError from '../structure/alert_error';
+import Loading from '../structure/loading';
 import defaultImg from '../../../assets/images/logo/img_logo.svg';
 
 class MainCarousel extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: true,
+    };
+  }
+
   async componentWillMount() {
     await this.props.clientListStory();
+    await this.setState({ loading: false });
   }
 
   renderItem() {
@@ -62,17 +72,22 @@ class MainCarousel extends Component {
   }
 
   render() {
+    const { loading } = this.state;
+    if (!loading) {
+      return (
+        <Fragment>
+          <div className="row">
+            {this.renderItem()}
+          </div>
+          <AlertError errors={this.props.error} />
+        </Fragment>
+      );
+    }
     return (
-      <Fragment>
-        <div className="row">
-          {this.renderItem()}
-        </div>
-        <AlertError errors={this.props.error} />
-      </Fragment>
+      <Loading />
     );
   }
 }
-
 function mapStateToProps(state) {
   return {
     storyList: state.story.list,
