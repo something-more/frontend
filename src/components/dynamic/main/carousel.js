@@ -14,7 +14,7 @@ class MainCarousel extends Component {
   renderItem() {
     const CSS = {
       border: '1px solid #ddd',
-      borderRadius: '4px',
+      borderRadius: '8px',
       textAlign: 'center',
     };
 
@@ -27,7 +27,11 @@ class MainCarousel extends Component {
           <Link to={`/stories/${story.id}`} className="text-muted">
             <figure>
               {story.thumbnail
-                ? <img src={story.thumbnail} alt="thumbnail" />
+                ? <img
+                    src={story.thumbnail}
+                    style={{borderRadius: '8px 8px 0 0'}}
+                    className="img-responsive"
+                    alt="thumbnail" />
                 : (
                   <img
                     src={defaultImg}
