@@ -19,7 +19,7 @@ class Navigation extends Component {
 
   handleClick() {
     // 사이드 바 메뉴를 클릭하면 빨간 불이 들어오도록
-    $('.primary-nav a').click(() => {
+    $('.primary-nav a').click(function () {
       $(this).parent().tab('show');
     });
   }
