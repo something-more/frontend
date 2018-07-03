@@ -11,13 +11,7 @@ class AuthorDetail extends Component {
 
     return (
       <div className="content-col">
-        <div
-          className="row"
-          style={{
-            margin: '100px 0',
-            padding: '0 10px',
-          }}
-        >
+        <div className="inner-content" style={{marginTop: "100px"}}>
           <div className="col-md-6 col-md-offset-3 text-center">
             <img
               src={author.thumbnail}
