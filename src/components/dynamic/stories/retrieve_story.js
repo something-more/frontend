@@ -20,8 +20,8 @@ class RetrieveStory extends Component {
   }
 
   async componentWillMount() {
-    const { id } = this.props.match.params;
-    await this.props.retrieveStory(id);
+    const { match } = this.props;
+    await this.props.retrieveStory(match.params.id);
     await renderQuillObject(this.props.story.content, this.state.quill);
   }
 
@@ -32,8 +32,7 @@ class RetrieveStory extends Component {
   }
 
   render() {
-    const { story, destroyStory, history } = this.props;
-
+    const { story, history } = this.props;
     return (
       <div className="content-col">
         <div className="inner-content">
@@ -44,14 +43,14 @@ class RetrieveStory extends Component {
           <hr className="hidden-xs" />
           <p className="meta">
             <span>
-Author:
+Author:&nbsp;
               {story.author}
             </span>
             <span>
 &nbsp;/&nbsp;
             </span>
             <span>
-Date:
+Date:&nbsp;
               {moment(story.date_created).format('YYYY-MM-DD')}
             </span>
             {sessionStorage.getItem('token')
@@ -59,20 +58,21 @@ Date:
               ? (
                 <span className="pull-right" style={{ display: 'block' }}>
                   <button
+                    type="button"
                     className="btn btn-danger"
                     style={{ marginRight: '10px' }}
                     onClick={() => onDestroy(
                       story.id, destroyStory, history.push('/me/stories'),
                     )}
                   >
-Delete
+                    Delete
                   </button>
                   <Link
                     to={`/me/stories/${story.id}`}
                     type="button"
                     className="btn btn-warning"
                   >
-Modify
+                    Modify
                   </Link>
                 </span>
               )
