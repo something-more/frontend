@@ -32,12 +32,12 @@ class BoardMiniList extends Component {
           <td className="col-md-2">
             {board.author}
           </td>
-          <td className="col-md-8">
+          <td className="col-md-7">
             <Link to={`/board/${board.id}`}>
               {board.title}
             </Link>
           </td>
-          <td className="col-md-2">
+          <td className="col-md-3">
             {dateCreated}
           </td>
         </tr>
@@ -59,10 +59,10 @@ class BoardMiniList extends Component {
                 <th className="col-md-2 text-center">
               글쓴이
                 </th>
-                <th className="col-md-8 text-center">
+                <th className="col-md-7 text-center">
               제목
                 </th>
-                <th className="col-md-2 text-center">
+                <th className="col-md-3 text-center">
               날짜
                 </th>
               </tr>
