@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Quill from 'quill';
@@ -11,6 +12,13 @@ import decodeJWT from '../../../include/jwt_decode';
 import { onDestroy } from '../../../include/submit_functions';
 
 class RetrieveStory extends Component {
+
+  static propTypes = {
+    retrieveStory: PropTypes.func.isRequired,
+    story: PropTypes.shape.isRequired,
+    content: PropTypes.shape.isRequired,
+  };
+
   constructor(props) {
     super(props);
 

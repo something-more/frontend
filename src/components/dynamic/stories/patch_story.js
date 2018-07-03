@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Quill from 'quill';
@@ -12,6 +13,12 @@ import AlertError from '../structure/alert_error';
 import { onDestroy } from '../../../include/submit_functions';
 
 class PatchStory extends Component {
+
+  static propTypes = {
+    retrieveStory: PropTypes.func.isRequired,
+    story: PropTypes.shape().isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -21,8 +28,8 @@ class PatchStory extends Component {
   }
 
   async componentWillMount() {
-    const { id } = this.props.match.params;
-    await this.props.retrieveStory(id);
+    const { match } = this.props;
+    await this.props.retrieveStory(match.params.id);
     await renderQuillPatchObject(this.props, this.props.story, this.state.quill);
   }
 

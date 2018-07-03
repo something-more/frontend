@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectAuthor } from '../../../reducers/reducer_author';
@@ -86,6 +87,12 @@ Free Board
     );
   }
 }
+
+Navigation.propTypes = {
+  selectAuthor: PropTypes.func.isRequired,
+  authors: PropTypes.shape().isRequired,
+  list: PropTypes.arrayOf(),
+};
 
 function mapStateToProps(state) {
   return {
