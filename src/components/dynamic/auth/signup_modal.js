@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { signUp } from '../../../reducers/reducer_auth';
+import { PasswordField } from '../structure/input_fields';
 import AlertError from '../structure/alert_error';
 
 const $ = window.jQuery;
@@ -73,19 +74,34 @@ class SignUpModal extends Component {
                     className="form-control"
                     placeholder="Email"
                     name="email"
-                    component="input"/>
+                    component="input"
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <Field
-                    type="password"
+                    type="text"
                     className="form-control"
-                    placeholder="Password"
-                    name="password"
-                    component="input"/>
+                    placeholder="Nickname"
+                    component="input"
+                    required
+                  />
                 </div>
+                <Field
+                name="password1"
+                label="New Password"
+                component={PasswordField}
+                required
+                />
+                <Field
+                name="password2"
+                label="Repeat Password"
+                component={PasswordField}
+                required
+                />
                 <p className="text-center">
                   <button className="btn btn-default btn-custom" type="submit">
-                    <i className="fa fa-lock"/> 회원 가입
+                    <i className="fa fa-lock"/>&nbsp;회원 가입
                   </button>
                 </p>
               </form>
@@ -96,18 +112,28 @@ class SignUpModal extends Component {
               <AlertError errors={this.props.error}/>
             </div>
           </div>
-          <p className="text-center">Already have an account?
+          <p className="text-center">이미 계정이 있으신가요?&nbsp;
             <a
             className="text-underline"
             href="#login-modal"
             data-toggle="modal"
-            data-dismiss="modal">Login</a>
+            data-dismiss="modal">로그인</a>
           </p>
         </div>
       </div>
     </div>
     )
   }
+}
+
+function validate(values) {
+  const errors = {};
+
+  if (values.password1 !== values.password2) {
+    errors.password2 = '패스워드가 서로 다릅니다';
+  }
+
+  return errors;
 }
 
 function mapStateToProps(state) {
@@ -117,6 +143,7 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
+  validate,
   form: 'SignUpForm'
 })(
   connect(mapStateToProps, { signUp })(SignUpModal)

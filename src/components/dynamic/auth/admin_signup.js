@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { adminSignUp } from '../../../reducers/reducer_auth';
 import AlertError from '../structure/alert_error';
+import { PasswordField } from '../structure/input_fields';
 
 class AdminSignUp extends Component {
   async onSubmit(values) {
@@ -37,22 +38,34 @@ class AdminSignUp extends Component {
                   placeholder="Email"
                   name="email"
                   component="input"
+                  required
                 />
               </div>
               <div className="form-group">
                 <Field
-                  type="password"
+                  type="text"
                   className="form-control"
-                  placeholder="Password"
-                  name="password"
+                  placeholder="Nickname"
                   component="input"
+                  required
                 />
               </div>
+              <Field
+                name="password1"
+                label="New Password"
+                component={PasswordField}
+                required
+              />
+              <Field
+                name="password2"
+                label="Repeat Password"
+                component={PasswordField}
+                required
+              />
               <p className="text-center">
                 <button className="btn btn-default btn-custom" type="submit">
                   <i className="fa fa-lock" />
-                  {' '}
-회원 가입
+&nbsp;회원 가입
                 </button>
               </p>
             </form>
@@ -68,6 +81,16 @@ class AdminSignUp extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (values.password1 !== values.password2) {
+    errors.password2 = '패스워드가 서로 다릅니다';
+  }
+
+  return errors;
+}
+
 function mapStateToProps(state) {
   return {
     error: state.auth.error,
@@ -75,6 +98,7 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
+  validate,
   form: 'AdminSignUpForm',
 })(
   connect(mapStateToProps, { adminSignUp })(AdminSignUp),
