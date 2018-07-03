@@ -27,11 +27,14 @@ class MainCarousel extends Component {
           <Link to={`/stories/${story.id}`} className="text-muted">
             <figure>
               {story.thumbnail
-                ? <img
+                ? (
+                  <img
                     src={story.thumbnail}
-                    style={{borderRadius: '8px 8px 0 0'}}
+                    style={{ borderRadius: '8px 8px 0 0' }}
                     className="img-responsive"
-                    alt="thumbnail" />
+                    alt="thumbnail"
+                  />
+                )
                 : (
                   <img
                     src={defaultImg}

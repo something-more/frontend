@@ -21,7 +21,7 @@ export async function onCreate(quill, values, dispatch, error, routeFn, file) {
   formData.append('content', delta);
   formData.append('date_created', moment().format());
   if (file) {
-    formData.append('thumbnail', file)
+    formData.append('thumbnail', file);
   }
 
   await dispatch(formData);
