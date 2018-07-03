@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -8,6 +9,12 @@ import Pagination from '../structure/write_modules/pagination';
 import AlertError from '../structure/alert_error';
 
 class ListStory extends Component {
+
+  static propTypes = {
+    countStory: propTypes.func.isRequired,
+    listStory: propTypes.func.isRequired,
+  };
+
   async componentWillMount() {
     await this.props.countStory();
     await this.props.listStory();

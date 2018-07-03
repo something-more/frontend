@@ -15,8 +15,8 @@ class RetrieveStory extends Component {
 
   static propTypes = {
     retrieveStory: PropTypes.func.isRequired,
-    story: PropTypes.shape.isRequired,
-    content: PropTypes.shape.isRequired,
+    story: PropTypes.shape().isRequired,
+    content: PropTypes.shape(),
   };
 
   constructor(props) {
