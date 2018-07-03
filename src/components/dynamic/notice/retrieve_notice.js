@@ -42,9 +42,9 @@ class RetrieveBoard extends Component {
             {notice.title}
           </h1>
           <hr className="hidden-xs" />
-          <p className="meta">
-            <span>
-Date:
+          <p className="meta clearfix">
+            <span style={{ display: 'inline-block', marginTop: '6px' }}>
+Date:&nbsp;
               {moment(notice.date_created).format('YYYY-MM-DD')}
             </span>
             {sessionStorage.getItem('token')
@@ -56,8 +56,7 @@ Date:
                     style={{ marginRight: '10px' }}
                     onClick={() => onDestroy(
                       notice.id, destroyNotice, history.push('/notice'),
-                    )
-            }
+                    )}
                   >
 Delete
                   </button>

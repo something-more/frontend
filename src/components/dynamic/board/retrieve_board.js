@@ -42,17 +42,19 @@ class RetrieveBoard extends Component {
             {board.title}
           </h1>
           <hr className="hidden-xs" />
-          <p className="meta">
-            <span>
-Author:
-              {board.author}
-            </span>
-            <span>
+          <p className="meta clearfix">
+            <span style={{ display: 'inline-block', marginTop: '6px' }}>
+              <span>
+Author:&nbsp;
+                {board.author}
+              </span>
+              <span>
 &nbsp;/&nbsp;
-            </span>
-            <span>
-Date:
-              {moment(board.date_created).format('YYYY-MM-DD')}
+              </span>
+              <span>
+Date:&nbsp;
+                {moment(board.date_created).format('YYYY-MM-DD')}
+              </span>
             </span>
             {sessionStorage.getItem('token')
           && decodeJWT(sessionStorage.getItem('token')).email === board.author

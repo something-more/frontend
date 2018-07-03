@@ -49,10 +49,11 @@ class RetrieveStory extends Component {
             {story.title}
           </h1>
           <hr className="hidden-xs" />
-          <p className="meta">
-            <span>
+          <p className="meta clearfix">
+            <span style={{display: "inline-block", marginTop: "6px"}}>
+              <span>
 Author:&nbsp;
-              {story.author}
+                {story.author}
             </span>
             <span>
 &nbsp;/&nbsp;
@@ -60,6 +61,7 @@ Author:&nbsp;
             <span>
 Date:&nbsp;
               {moment(story.date_created).format('YYYY-MM-DD')}
+            </span>
             </span>
             {sessionStorage.getItem('token')
           && decodeJWT(sessionStorage.getItem('token')).id === story.author
