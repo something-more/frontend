@@ -25,7 +25,8 @@ export async function adminSignUp(values) {
       url: '/admin/',
       data: {
         email: values.email,
-        password: values.password,
+        nickname: values.nickname,
+        password: values.password2,
       },
     });
   } catch (e) {
@@ -50,7 +51,8 @@ export async function signUp(values) {
       url: '/sign-up/',
       data: {
         email: values.email,
-        password: values.password,
+        nickname: values.nickname,
+        password: values.password2,
       },
     });
   } catch (e) {
