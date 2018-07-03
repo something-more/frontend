@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { clientListStory } from '../../../reducers/reducer_story';
 import AlertError from '../structure/alert_error';
+import defaultImg from '../../../assets/images/logo/img_logo.svg';
 
 class MainCarousel extends Component {
   async componentWillMount() {
@@ -25,7 +26,16 @@ class MainCarousel extends Component {
         <div style={CSS}>
           <Link to={`/stories/${story.id}`} className="text-muted">
             <figure>
-              <img src="" alt="thumbnail" />
+              {story.thumbnail
+                ? <img src={story.thumbnail} alt="thumbnail" />
+                : (
+                  <img
+                    src={defaultImg}
+                    style={{ opacity: '.3' }}
+                    className="img-responsive"
+                    alt="default-thumbnail"
+                  />
+                )}
               <figcaption>
                 <span>
                   {story.title}
