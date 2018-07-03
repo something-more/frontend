@@ -34,7 +34,7 @@ class MainCarousel extends Component {
 &nbsp;|&nbsp;
                 </span>
                 <span>
-작가 이름
+                  {story.author}
                 </span>
               </figcaption>
             </figure>

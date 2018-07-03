@@ -57,7 +57,7 @@ Date:&nbsp;
               </span>
             </span>
             {sessionStorage.getItem('token')
-          && decodeJWT(sessionStorage.getItem('token')).email === board.author
+          && decodeJWT(sessionStorage.getItem('token')).nickname === board.author
               ? (
                 <span className="pull-right" style={{ display: 'block' }}>
                   <button

@@ -44,8 +44,17 @@ class RetrieveBoard extends Component {
           <hr className="hidden-xs" />
           <p className="meta clearfix">
             <span style={{ display: 'inline-block', marginTop: '6px' }}>
+              <span>
+Author:&nbsp;
+                {notice.author}
+              </span>
+              <span>
+&nbsp;/&nbsp;
+              </span>
+              <span>
 Date:&nbsp;
-              {moment(notice.date_created).format('YYYY-MM-DD')}
+                {moment(notice.date_created).format('YYYY-MM-DD')}
+              </span>
             </span>
             {sessionStorage.getItem('token')
           && decodeJWT(sessionStorage.getItem('token')).isAdmin

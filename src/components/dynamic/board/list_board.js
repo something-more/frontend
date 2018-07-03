@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -14,7 +15,7 @@ class ListBoard extends Component {
   }
 
   renderList() {
-    return this.props.boardList.map((board) => {
+    return _.map(this.props.boardList, (board) => {
       // 글 생성 일자
       const dateCreated = moment(board.date_created).format('YYYY-MM-DD');
 
