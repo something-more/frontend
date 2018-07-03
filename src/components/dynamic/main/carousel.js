@@ -24,20 +24,20 @@ class MainCarousel extends Component {
       >
         <div style={CSS}>
           <Link to={`/stories/${story.id}`} className="text-muted">
-          <figure>
-            <img src="" alt="thumbnail" />
-            <figcaption>
-              <span>
-                {story.title}
-              </span>
-              <span>
+            <figure>
+              <img src="" alt="thumbnail" />
+              <figcaption>
+                <span>
+                  {story.title}
+                </span>
+                <span>
 &nbsp;|&nbsp;
-              </span>
-              <span>
+                </span>
+                <span>
 작가 이름
-              </span>
-            </figcaption>
-          </figure>
+                </span>
+              </figcaption>
+            </figure>
           </Link>
         </div>
       </div>
