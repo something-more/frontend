@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { clientListStory } from '../../../reducers/reducer_story';
 import AlertError from '../structure/alert_error';
@@ -22,6 +23,7 @@ class MainCarousel extends Component {
         key={story.id}
       >
         <div style={CSS}>
+          <Link to={`/stories/${story.id}`} className="text-muted">
           <figure>
             <img src="" alt="thumbnail" />
             <figcaption>
@@ -36,6 +38,7 @@ class MainCarousel extends Component {
               </span>
             </figcaption>
           </figure>
+          </Link>
         </div>
       </div>
     ));
