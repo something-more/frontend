@@ -22,6 +22,7 @@ import './assets/css/sidewaze_base_color.css';
 import './assets/css/soft-gray.css';
 import './assets/css/font_face.css';
 import './assets/css/transition.css';
+import './assets/css/carousel_grid.css';
 
 // 동적 로딩
 import {
