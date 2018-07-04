@@ -20,14 +20,10 @@ class MainCarousel extends Component {
     await this.props.clientListStory();
     await this.setState({ loading: false });
     const imgArray = await document.querySelectorAll('img.story-thumbnail');
-    _.forEach(imgArray, (img) => {
-      if (img.width > img.height) {
-        img.style.height = '100%';
-        img.style.position = 'absolute';
-        img.style.transform = 'translateX(-50%)';
-      } else {
-        img.style.width = '100%';
-      }
+    await _.forEach(imgArray, (img) => {
+      img.width > img.height
+      ? img.classList.add('thumbnail-wide-img')
+      : img.style.width = '100%';
     });
   }
 
