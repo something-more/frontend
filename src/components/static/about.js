@@ -4,7 +4,7 @@ import logoText from '../../assets/images/logo/text_logo_horizontal.png';
 
 export default () => (
   <div className="content-col">
-    <div className="inner-content fadeIn animated" style={{marginTop: "100px"}}>
+    <div className="inner-content fadeIn animated" style={{ marginTop: '100px' }}>
       <div className="col-md-6 col-md-offset-3">
         <img
           src={logoImg}
