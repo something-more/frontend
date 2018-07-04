@@ -9,7 +9,7 @@ class NewNickname extends Component {
     await this.props.patchNickname(values);
 
     if (!this.props.error) {
-      await window.location.reload();
+      await alert('닉네임이 변경되었습니다');
     }
   }
 
@@ -23,12 +23,12 @@ class NewNickname extends Component {
         </h4>
         <div className="panel panel-primary">
           <div className="panel-body">
-            <p>
-현재 닉네임:
+            <h5>
+현재 닉네임:&nbsp;
               <strong>
                 {decodedToken.nickname}
               </strong>
-            </p>
+            </h5>
             <form method="post" onSubmit={handleSubmit(this.onPatch.bind(this))}>
               <div className="form-group">
                 <Field
