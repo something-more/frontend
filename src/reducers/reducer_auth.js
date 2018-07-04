@@ -10,6 +10,7 @@ const SIGNUP = 'something-more/auth/SIGNUP';
 const SIGNIN = 'something-more/auth/SIGNIN';
 const SIGNOUT = 'something-more/auth/SIGNOUT';
 const PATCH = 'something-more/auth/PATCH';
+const NICKNAME = 'something-more/auth/NICKNAME';
 const DESTROY = 'something-more/auth/DESTROY';
 
 // Action Creators
@@ -125,6 +126,33 @@ export async function patchPassword(values) {
   };
 }
 
+// 닉네임 수정
+export async function patchNickname(values) {
+  let response = '';
+  let error = '';
+
+  try {
+    response = await axios({
+      method: 'patch',
+      url: '/nickname/',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
+      data: {
+        nickname: values.nickname,
+      },
+    });
+  } catch (e) {
+    error = e.response.data.message;
+  }
+
+  return {
+    type: NICKNAME,
+    response,
+    error,
+  };
+}
+
 // 회원 탈퇴
 export async function destroyUser(values) {
   let response = '';
@@ -231,6 +259,19 @@ function reducerPatchPassword(state, action) {
   };
 }
 
+function reducerPatchNickname(state, action) {
+  if (!action.error) {
+    return {
+      ...state,
+      error: '',
+    };
+  }
+  return {
+    ...state,
+    error: action.error,
+  };
+}
+
 function reducerDestroyUser(state, action) {
   if (!action.error) {
     sessionStorage.removeItem('token');
@@ -264,6 +305,9 @@ export default function reducer(state = initialState, action) {
 
     case PATCH:
       return reducerPatchPassword(state, action);
+
+    case NICKNAME:
+      return reducerPatchNickname(state, action);
 
     case DESTROY:
       return reducerDestroyUser(state, action);
