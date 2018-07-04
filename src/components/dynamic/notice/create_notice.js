@@ -35,22 +35,20 @@ class CreateNotice extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div className="content-col">
-        <div className="inner-content fadeIn animated">
-          <h1 className="title">
+      <div className="inner-content fadeIn animated">
+        <h1 className="title">
 Write Your Notice...
-          </h1>
-          <hr className="vertical-spacer" />
-          <form
-            method="post"
-            encType="multipart/form-data"
-            onSubmit={handleSubmit(this.onSubmit.bind(this))}
-          >
-            <Field name="title" label="publish" component={TitleField} />
-            <div id="editor" style={{ minHeight: '70vh' }} />
-          </form>
-          <AlertError errors={this.props.error} />
-        </div>
+        </h1>
+        <hr className="vertical-spacer" />
+        <form
+          method="post"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit(this.onSubmit.bind(this))}
+        >
+          <Field name="title" label="publish" component={TitleField} />
+          <div id="editor" style={{ minHeight: '70vh' }} />
+        </form>
+        <AlertError errors={this.props.error} />
       </div>
     );
   }

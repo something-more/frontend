@@ -42,7 +42,6 @@ class RetrieveStory extends Component {
   render() {
     const { story, history } = this.props;
     return (
-      <div className="content-col">
         <div className="inner-content fadeIn animated">
           <div id="editor" style={{ display: 'none' }} />
           <h1 id="content-title" className="font-weight-thin no-margin-top">
@@ -101,7 +100,6 @@ Date:&nbsp;
           : null}
           <div id="content" className="ql-editor" />
         </div>
-      </div>
     );
   }
 }

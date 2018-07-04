@@ -53,56 +53,54 @@ class CreateStory extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div className="content-col">
-        <div className="inner-content fadeIn animated">
-          <h1 className="title">
+      <div className="inner-content fadeIn animated">
+        <h1 className="title">
 Write Your Story...
-          </h1>
-          <hr className="vertical-spacer" />
-          <form
-            method="post"
-            encType="multipart/form-data"
-            onSubmit={handleSubmit(this.onSubmit.bind(this))}
-          >
-            <div className="row">
-              <div className="col-sm-4 col-ms-4">
-                <div className="form-group">
-                  <label htmlFor="thumbnailInput">
+        </h1>
+        <hr className="vertical-spacer" />
+        <form
+          method="post"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit(this.onSubmit.bind(this))}
+        >
+          <div className="row">
+            <div className="col-sm-4 col-ms-4">
+              <div className="form-group">
+                <label htmlFor="thumbnailInput">
 썸네일 선택
-                  </label>
-                  <input
-                    id="thumbnailInput"
-                    name="thumbnail"
-                    type="file"
-                    onChange={this.handleFileUpload.bind(this)}
-                  />
-                </div>
-              </div>
-              <div className="col-sm-8 col-ms-8">
-                {imagePreviewUrl
-                  ? (
-                    <img
-                      alt="story thumbnail"
-                      src={imagePreviewUrl}
-                      className="img-responsive center-block"
-                      style={{ maxWidth: '200px', maxHeight: '200px', marginBottom: '20px' }}
-                    />
-                  )
-                  : (
-                    <div
-                      className="alert alert-info center-block text-center"
-                      style={{ maxWidth: '300px' }}
-                    >
-썸네일 이미지를 선택해주세요
-                    </div>
-                  )}
+                </label>
+                <input
+                  id="thumbnailInput"
+                  name="thumbnail"
+                  type="file"
+                  onChange={this.handleFileUpload.bind(this)}
+                />
               </div>
             </div>
-            <Field name="title" label="save" component={TitleField} />
-            <div id="editor" style={{ minHeight: '70vh' }} />
-          </form>
-          <AlertError errors={this.props.error} />
-        </div>
+            <div className="col-sm-8 col-ms-8">
+              {imagePreviewUrl
+                ? (
+                  <img
+                    alt="story thumbnail"
+                    src={imagePreviewUrl}
+                    className="img-responsive center-block"
+                    style={{ maxWidth: '200px', maxHeight: '200px', marginBottom: '20px' }}
+                  />
+                )
+                : (
+                  <div
+                    className="alert alert-info center-block text-center"
+                    style={{ maxWidth: '300px' }}
+                  >
+썸네일 이미지를 선택해주세요
+                  </div>
+                )}
+            </div>
+          </div>
+          <Field name="title" label="save" component={TitleField} />
+          <div id="editor" style={{ minHeight: '70vh' }} />
+        </form>
+        <AlertError errors={this.props.error} />
       </div>
     );
   }

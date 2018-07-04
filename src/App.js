@@ -63,26 +63,28 @@ class App extends Component {
         <div className="App">
           <NavigationColumn />
           <LogoColumn />
-          <Switch>
-            <PrivateRoute path="/notice/patch/:id" component={PatchNotice} />
-            <PrivateRoute path="/notice/write" component={CreateNotice} />
-            <Route path="/notice/:id" component={RetrieveNotice} />
-            <Route path="/notice" component={ListNotice} />
-            <PrivateRoute path="/board/patch/:id" component={PatchFreeBoard} />
-            <PrivateRoute path="/board/write" component={CreateFreeBoard} />
-            <Route path="/board/:id" component={RetrieveFreeBoard} />
-            <Route path="/board" component={ListFreeBoard} />
-            <Route path="/stories/:id" component={RetrieveStory} />
-            <PrivateRoute path="/me/write" component={CreateStory} />
-            <PrivateRoute path="/me/stories/:id" component={PatchStory} />
-            <PrivateRoute path="/me/settings" component={SettingsIndex} />
-            <PrivateRoute path="/me/stories" component={ListStory} />
-            <Route path="/authors/:id" component={AuthorDetail} />
-            <Route path="/about" component={About} />
-            <Route path="/st-more-admin" component={AdminSignUp} />
-            <Route exact path="/" component={PostsIndex} />
-            <Route path="*" component={PostsIndex} />
-          </Switch>
+          <div className="content-col">
+            <Switch>
+              <PrivateRoute path="/notice/patch/:id" component={PatchNotice} />
+              <PrivateRoute path="/notice/write" component={CreateNotice} />
+              <Route path="/notice/:id" component={RetrieveNotice} />
+              <Route path="/notice" component={ListNotice} />
+              <PrivateRoute path="/board/patch/:id" component={PatchFreeBoard} />
+              <PrivateRoute path="/board/write" component={CreateFreeBoard} />
+              <Route path="/board/:id" component={RetrieveFreeBoard} />
+              <Route path="/board" component={ListFreeBoard} />
+              <Route path="/stories/:id" component={RetrieveStory} />
+              <PrivateRoute path="/me/write" component={CreateStory} />
+              <PrivateRoute path="/me/stories/:id" component={PatchStory} />
+              <PrivateRoute path="/me/settings" component={SettingsIndex} />
+              <PrivateRoute path="/me/stories" component={ListStory} />
+              <Route path="/authors/:id" component={AuthorDetail} />
+              <Route path="/about" component={About} />
+              <Route path="/st-more-admin" component={AdminSignUp} />
+              <Route exact path="/" component={PostsIndex} />
+              <Route path="*" component={PostsIndex} />
+            </Switch>
+          </div>
           <FooterColumn />
           <FauxColumn />
           <ToTop />

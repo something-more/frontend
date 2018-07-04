@@ -10,56 +10,54 @@ class AuthorDetail extends Component {
     const mailto = `mailto:${author.email}`;
 
     return (
-      <div className="content-col">
-        <div className="inner-content fadeIn animated" style={{ marginTop: '100px' }}>
-          <div className="col-md-6 col-md-offset-3 text-center">
+      <div className="inner-content fadeIn animated" style={{ marginTop: '100px' }}>
+        <div className="col-md-6 col-md-offset-3 text-center">
+          <img
+            src={author.thumbnail}
+            className="img-responsive img-circle center-block"
+            width="100px"
+            alt="author-thumbnail"
+          />
+          <h2>
+            {author.name_ko}
+          </h2>
+        </div>
+        <div
+          className="col-md-10 col-md-offset-1 text-center"
+          style={{ padding: '40px 0' }}
+        >
+          <div className="media">
             <img
-              src={author.thumbnail}
-              className="img-responsive img-circle center-block"
-              width="100px"
-              alt="author-thumbnail"
+              src={quotation_left}
+              className="media-object img-responsive pull-left"
+              width="50px"
+              alt="quotation-left"
             />
-            <h2>
-              {author.name_ko}
-            </h2>
           </div>
-          <div
-            className="col-md-10 col-md-offset-1 text-center"
-            style={{ padding: '40px 0' }}
-          >
-            <div className="media">
-              <img
-                src={quotation_left}
-                className="media-object img-responsive pull-left"
-                width="50px"
-                alt="quotation-left"
-              />
-            </div>
-            <h4 style={{ padding: '20px 0' }}>
-              <em>
-                {author.introduce}
-              </em>
-            </h4>
-            <div className="media">
-              <img
-                src={quotation_right}
-                className="media-object img-responsive pull-right"
-                width="50px"
-                alt="quotation-right"
-              />
-            </div>
+          <h4 style={{ padding: '20px 0' }}>
+            <em>
+              {author.introduce}
+            </em>
+          </h4>
+          <div className="media">
+            <img
+              src={quotation_right}
+              className="media-object img-responsive pull-right"
+              width="50px"
+              alt="quotation-right"
+            />
           </div>
-          <div className="col-md-4 col-md-offset-8 text-right">
-            <p style={{ marginBottom: '0' }}>
+        </div>
+        <div className="col-md-4 col-md-offset-8 text-right">
+          <p style={{ marginBottom: '0' }}>
 연락처:
-            </p>
-            <a
-              href={mailto}
-              className="text-underline"
-            >
-              {author.email}
-            </a>
-          </div>
+          </p>
+          <a
+            href={mailto}
+            className="text-underline"
+          >
+            {author.email}
+          </a>
         </div>
       </div>
     );

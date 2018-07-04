@@ -46,27 +46,25 @@ class PatchBoard extends Component {
     const { handleSubmit, board } = this.props;
 
     return (
-      <div className="content-col">
-        <div className="inner-content fadeIn animated">
-          <h1 className="title">
+      <div className="inner-content fadeIn animated">
+        <h1 className="title">
 Complete Your Comments...
-          </h1>
-          <p className="meta">
-            <span>
+        </h1>
+        <p className="meta">
+          <span>
 Created Date:
-              {moment(board.date_created).format('YYYY-MM-DD')}
-            </span>
-          </p>
-          <form
-            method="post"
-            encType="multipart/form-data"
-            onSubmit={handleSubmit(this.onPublish.bind(this))}
-          >
-            <Field name="title" label="publish" component={TitleField} />
-            <div id="editor" style={{ minHeight: '70vh' }} />
-          </form>
-          <AlertError errors={this.props.error} />
-        </div>
+            {moment(board.date_created).format('YYYY-MM-DD')}
+          </span>
+        </p>
+        <form
+          method="post"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit(this.onPublish.bind(this))}
+        >
+          <Field name="title" label="publish" component={TitleField} />
+          <div id="editor" style={{ minHeight: '70vh' }} />
+        </form>
+        <AlertError errors={this.props.error} />
       </div>
     );
   }

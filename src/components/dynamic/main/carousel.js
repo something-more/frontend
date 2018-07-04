@@ -21,7 +21,7 @@ class MainCarousel extends Component {
     await this.setState({ loading: false });
     const imgArray = await document.querySelectorAll('img.story-thumbnail');
     await _.forEach(imgArray, (img) => {
-      img.width > img.height
+      Number(img.width) > Number(img.height)
         ? img.classList.add('thumbnail-wide-img')
         : img.style.width = '100%';
     });

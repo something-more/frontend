@@ -35,54 +35,52 @@ class RetrieveBoard extends Component {
     const { board, destroyBoard, history } = this.props;
 
     return (
-      <div className="content-col">
-        <div className="inner-content fadeIn animated">
-          <div id="editor" style={{ display: 'none' }} />
-          <h1 id="content-title" className="font-weight-thin no-margin-top">
-            {board.title}
-          </h1>
-          <hr className="hidden-xs" />
-          <p className="meta clearfix">
-            <span style={{ display: 'inline-block', marginTop: '6px' }}>
-              <span>
+      <div className="inner-content fadeIn animated">
+        <div id="editor" style={{ display: 'none' }} />
+        <h1 id="content-title" className="font-weight-thin no-margin-top">
+          {board.title}
+        </h1>
+        <hr className="hidden-xs" />
+        <p className="meta clearfix">
+          <span style={{ display: 'inline-block', marginTop: '6px' }}>
+            <span>
 Author:&nbsp;
-                {board.author}
-              </span>
-              <span>
-&nbsp;/&nbsp;
-              </span>
-              <span>
-Date:&nbsp;
-                {moment(board.date_created).format('YYYY-MM-DD')}
-              </span>
+              {board.author}
             </span>
-            {sessionStorage.getItem('token')
+            <span>
+&nbsp;/&nbsp;
+            </span>
+            <span>
+Date:&nbsp;
+              {moment(board.date_created).format('YYYY-MM-DD')}
+            </span>
+          </span>
+          {sessionStorage.getItem('token')
           && decodeJWT(sessionStorage.getItem('token')).nickname === board.author
-              ? (
-                <span className="pull-right" style={{ display: 'block' }}>
-                  <button
-                    className="btn btn-danger"
-                    style={{ marginRight: '10px' }}
-                    onClick={() => onDestroy(
-                      board.id, destroyBoard, history.push('/board'),
-                    )}
-                  >
+            ? (
+              <span className="pull-right" style={{ display: 'block' }}>
+                <button
+                  className="btn btn-danger"
+                  style={{ marginRight: '10px' }}
+                  onClick={() => onDestroy(
+                    board.id, destroyBoard, history.push('/board'),
+                  )}
+                >
 Delete
-                  </button>
-                  <Link
-                    to={`/board/patch/${board.id}`}
-                    type="button"
-                    className="btn btn-warning"
-                  >
+                </button>
+                <Link
+                  to={`/board/patch/${board.id}`}
+                  type="button"
+                  className="btn btn-warning"
+                >
 Modify
-                  </Link>
-                </span>
-              )
-              : null}
-          </p>
-          <hr className="hidden-xs" />
-          <div id="content" className="ql-editor" />
-        </div>
+                </Link>
+              </span>
+            )
+            : null}
+        </p>
+        <hr className="hidden-xs" />
+        <div id="content" className="ql-editor" />
       </div>
     );
   }

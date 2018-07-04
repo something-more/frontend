@@ -65,7 +65,7 @@ class PatchStory extends Component {
     formData.append('content', delta);
     formData.append('date_modified', moment().format());
     formData.append('is_published', 'true');
-    
+
     if(file) {
       formData.append('thumbnail', file);
     }
@@ -105,7 +105,6 @@ class PatchStory extends Component {
     } = this.props;
 
     return (
-      <div className="content-col">
         <div className="inner-content fadeIn animated">
           <h1 className="title">
 Complete Your Stories...
@@ -211,7 +210,6 @@ Destroy
           </form>
           <AlertError errors={this.props.error} />
         </div>
-      </div>
     );
   }
 }

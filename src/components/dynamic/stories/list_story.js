@@ -91,11 +91,8 @@ class ListStory extends Component {
 
   render() {
     return (
-      <div
-        ref={node => this.node = node}
-        className="content-col"
-      >
-        <div className="inner-content fadeIn animated">
+        <div ref={node => this.node = node}
+        className="inner-content fadeIn animated">
           <h1 className="title">
 Stories
           </h1>
@@ -139,7 +136,6 @@ Let's Post
           </div>
           <AlertError errors={this.props.error} />
         </div>
-      </div>
     );
   }
 }

@@ -7,17 +7,15 @@ import BoardMiniList from './board_mini';
 class PostsIndex extends Component {
   render() {
     return (
-      <div className="content-col" id="page">
-        <div className="inner-content fadeIn animated">
-          {/* carousel */}
-          <MainCarousel />
-          {/* banner */}
-          <Banner />
-          {/* 2-row description */}
-          <div className="row">
-            <NoticeMiniList />
-            <BoardMiniList />
-          </div>
+      <div className="inner-content fadeIn animated">
+        {/* carousel */}
+        <MainCarousel />
+        {/* banner */}
+        <Banner />
+        {/* 2-row description */}
+        <div className="row">
+          <NoticeMiniList />
+          <BoardMiniList />
         </div>
       </div>
     );
