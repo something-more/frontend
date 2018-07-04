@@ -1,14 +1,9 @@
 import React from 'react';
 
 export default () => (
-  <div className="banner">
-    <h1 className="display-text">
-      <span style={{ fontSize: '2em' }}>
-Something More;
-      </span>
-      <span className="text-right">
-Literature Beyond Novel
-      </span>
+  <div id="banner-title">
+    <h1 className="text-center">
+literature beyond novel
     </h1>
   </div>
 );
