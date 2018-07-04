@@ -19,6 +19,16 @@ class MainCarousel extends Component {
   async componentWillMount() {
     await this.props.clientListStory();
     await this.setState({ loading: false });
+    const imgArray = await document.querySelectorAll('img.story-thumbnail');
+    _.forEach(imgArray, (img) => {
+      if (img.width > img.height) {
+        img.style.height = '100%';
+        img.style.position = 'absolute';
+        img.style.transform = 'translateX(-50%)';
+      } else {
+        img.style.width = '100%';
+      }
+    });
   }
 
   renderItem() {
@@ -26,43 +36,60 @@ class MainCarousel extends Component {
       border: '1px solid #ddd',
       borderRadius: '8px',
       textAlign: 'center',
+      marginBottom: '16px',
     };
 
     return _.map(this.props.storyList, story => (
       <div
-        className="col-sm-3 col-ms-3"
+        className="col-sm-3 col-ms-6"
         key={story.id}
       >
         <div style={CSS}>
           <Link to={`/stories/${story.id}`} className="text-muted">
             <figure>
-              {story.thumbnail
-                ? (
-                  <img
-                    src={story.thumbnail}
-                    style={{ borderRadius: '8px 8px 0 0' }}
-                    className="img-responsive"
-                    alt="thumbnail"
-                  />
-                )
-                : (
-                  <img
-                    src={defaultImg}
-                    style={{ opacity: '.3' }}
-                    className="img-responsive"
-                    alt="default-thumbnail"
-                  />
-                )}
-              <figcaption>
-                <span>
-                  {story.title}
-                </span>
-                <span>
+              <div
+                className="thumbnail-grid"
+                style={{
+                  borderRadius: '8px 8px 0 0',
+                  overflow: 'hidden',
+                }}
+              >
+                <div className="thumbnail-grid-content">
+                  {story.thumbnail
+                    ? (
+                      <img
+                        className="story-thumbnail"
+                        src={story.thumbnail}
+                        alt="thumbnail"
+                      />
+                    )
+                    : (
+                      <img
+                        src={defaultImg}
+                        style={{ opacity: '.3' }}
+                        className="img-responsive"
+                        alt="default-thumbnail"
+                      />
+                    )}
+                </div>
+              </div>
+              <figcaption
+                className="center-block"
+                style={{ maxWidth: '90%' }}
+              >
+                <p style={{
+                  margin: '6px 0',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                }}
+                >
+                  <strong>
+                    {story.author}
+                  </strong>
 &nbsp;|&nbsp;
-                </span>
-                <span>
-                  {story.author}
-                </span>
+                  {story.title}
+                </p>
               </figcaption>
             </figure>
           </Link>
