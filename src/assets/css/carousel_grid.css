@@ -23,3 +23,13 @@
     height: 100%;
     transform: translateX(-50%);
 }
+
+.parallex-grid {
+    height: 600px;
+    background-attachment: fixed;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+}

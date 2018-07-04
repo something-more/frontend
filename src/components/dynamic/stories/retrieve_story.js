@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -89,6 +89,16 @@ Date:&nbsp;
               : null}
           </p>
           <hr className="hidden-xs" />
+          {story.thumbnail
+          ?<Fragment>
+            <div
+            className="parallex-grid"
+            style={{
+              backgroundImage: `url(${story.thumbnail})`,
+            }}/>
+            <hr className="vertical-spacer"/>
+          </Fragment>
+          : null}
           <div id="content" className="ql-editor" />
         </div>
       </div>
