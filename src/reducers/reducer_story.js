@@ -112,7 +112,7 @@ export async function retrieveStory(id) {
   try {
     response = await axios({
       method: 'get',
-      url: `/story/${id}`,
+      url: `/story/view/${id}`,
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
