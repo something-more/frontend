@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Users from './fields/settings_users';
+import NewNickname from './fields/settings_nickname';
 import NewPasswords from './fields/settings_passwords';
 import Destroy from './fields/settings_destroy';
 
@@ -9,6 +10,9 @@ class SettingsFields extends Component {
     switch (this.props.onStatusChange) {
       case 'admin':
         return (<Users />);
+
+      case 'nickname':
+        return (<NewNickname />);
 
       case 'password':
         return (<NewPasswords />);

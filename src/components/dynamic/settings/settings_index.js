@@ -49,7 +49,16 @@ Email:&nbsp;
                       </strong>
                     </li>
                   )
-                  : ''}
+                  : null}
+                <li
+                  className="list-group-item"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => { this.setState({ status: 'nickname' }); }}
+                >
+                  <strong>
+                    닉네임 변경
+                  </strong>
+                </li>
                 <li
                   className="list-group-item"
                   style={{ cursor: 'pointer' }}
