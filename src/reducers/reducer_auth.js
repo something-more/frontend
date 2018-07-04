@@ -260,7 +260,10 @@ function reducerPatchPassword(state, action) {
 }
 
 function reducerPatchNickname(state, action) {
-  if (!action.error) {
+  if (action.response) {
+    // 닉네임이 바뀐 사용자 데이터를 sessionStorage 에 저장
+    sessionStorage.removeItem('token');
+    sessionStorage.setItem('token', action.response.data);
     return {
       ...state,
       error: '',
