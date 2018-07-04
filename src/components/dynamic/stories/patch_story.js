@@ -16,7 +16,6 @@ class PatchStory extends Component {
 
   static propTypes = {
     retrieveStory: PropTypes.func.isRequired,
-    story: PropTypes.shape().isRequired,
   };
 
   constructor(props) {
@@ -24,6 +23,8 @@ class PatchStory extends Component {
 
     this.state = {
       quill: '',
+      file: '',
+      imagePreviewUrl: '',
     };
   }
 
@@ -39,8 +40,24 @@ class PatchStory extends Component {
     });
   }
 
+  handleFileUpload(event) {
+    event.preventDefault();
+    const reader = new FileReader();
+    const file = event.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file,
+        imagePreviewUrl: reader.result,
+      });
+    };
+
+    reader.readAsDataURL(file);
+  }
+
   async onPublish(values) {
-    const delta = JSON.stringify(this.state.quill.getContents());
+    const { quill, file } = this.state;
+    const delta = JSON.stringify(quill.getContents());
 
     const formData = new FormData();
 
@@ -48,6 +65,10 @@ class PatchStory extends Component {
     formData.append('content', delta);
     formData.append('date_modified', moment().format());
     formData.append('is_published', 'true');
+    
+    if(file) {
+      formData.append('thumbnail', file);
+    }
 
     await this.props.patchStory(formData, this.props.story.id);
 
@@ -57,7 +78,8 @@ class PatchStory extends Component {
   }
 
   async onDraftSave(values) {
-    const delta = JSON.stringify(this.state.quill.getContents());
+    const { quill, file } = this.state;
+    const delta = JSON.stringify(quill.getContents());
 
     const formData = new FormData();
 
@@ -65,6 +87,9 @@ class PatchStory extends Component {
     formData.append('content', delta);
     formData.append('date_modified', moment().format());
     formData.append('is_published', 'false');
+    if (file) {
+      formData.append('thumbnail', file);
+    }
 
     await this.props.patchStory(formData, this.props.story.id);
 
@@ -74,6 +99,7 @@ class PatchStory extends Component {
   }
 
   render() {
+    const { imagePreviewUrl } = this.state;
     const {
       handleSubmit, story, destroyStory, history,
     } = this.props;
@@ -94,6 +120,46 @@ Created Date:
             method="post"
             encType="multipart/form-data"
           >
+            <div className="row" style={{marginBottom: "20px"}}>
+              <div className="col-sm-4 col-ms-4">
+                <div className="form-group">
+                  <label htmlFor="thumbnailInput">
+                    썸네일 선택
+                  </label>
+                  <input
+                  id="thumbnailInput"
+                  name="thumbnail"
+                  type="file"
+                  onChange={this.handleFileUpload.bind(this)}
+                  />
+                </div>
+              </div>
+              <div className="col-sm-4 col-ms-4">
+                {imagePreviewUrl
+                ? (
+                <img
+                alt="story thumbnail"
+                src={imagePreviewUrl}
+                className="img-responsive center-block"
+                style={{ maxWidth: '200px', maxHeight: '200px', marginBottom: '20px' }}
+                />
+                )
+                : (
+                <div
+                className="alert alert-info center-block text-center"
+                style={{ maxWidth: '300px' }}
+                >
+                  썸네일 이미지를 선택해주세요
+                </div>
+                )}
+              </div>
+              <div className="col-sm-4 col-ms-4">
+                <h6><strong>기존 썸네일</strong></h6>
+                {story.thumbnail
+                ? <img src={story.thumbnail} className="img-responsive" alt="default thumbnail" />
+                : <p className="text-center">없음</p>}
+              </div>
+            </div>
             <div
               className="input-group"
               style={{ marginBottom: '20px' }}
@@ -114,8 +180,7 @@ Created Date:
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-Action
-                  {' '}
+Action&nbsp;
                   <span className="caret" />
                 </button>
                 <ul className="dropdown-menu dropdown-menu-right">
