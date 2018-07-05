@@ -28,10 +28,24 @@ class LandingPage extends Component {
           <div className="aligner">
             <div className="aligner-item text-center fadeIn animated">
               <div style={{ marginBottom: '20px' }}>
-                <img src={logoImg} className="img-responsive" alt="logo-img" />
-                <img src={logoText} className="img-responsive" alt="logo-text" />
+                <img
+                  src={logoImg}
+                  style={{ maxWidth: '200px' }}
+                  className="img-responsive center-block"
+                  alt="logo-img"
+                />
+                <img
+                  src={logoText}
+                  className="img-responsive"
+                  alt="logo-text"
+                />
               </div>
-              <form method="post" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <form
+                method="post"
+                className="center-block"
+                style={{ maxWidth: '200px' }}
+                onSubmit={handleSubmit(this.onSubmit.bind(this))}
+              >
                 <div className="form-group">
                   <Field
                     type="email"
