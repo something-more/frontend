@@ -29,16 +29,11 @@ class PatchStory extends Component {
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     const { match } = this.props;
     await this.props.retrieveStory(match.params.id);
+    await this.setState({ quill: new Quill('#editor', QuillOptions) });
     await renderQuillPatchObject(this.props, this.props.story, this.state.quill);
-  }
-
-  componentDidMount() {
-    this.setState({
-      quill: new Quill('#editor', QuillOptions),
-    });
   }
 
   handleFileUpload(event) {

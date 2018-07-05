@@ -16,7 +16,7 @@ class ListStory extends Component {
     listStory: propTypes.func.isRequired,
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     await this.props.countStory();
     await this.props.listStory();
   }
@@ -35,7 +35,7 @@ class ListStory extends Component {
 
     if (!this.props.error) {
       alert('변경되었습니다');
-      await window.location.reload();
+      await window.location.replace('/me/stories');
     }
   }
 
