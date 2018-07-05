@@ -23,6 +23,7 @@ import './assets/css/soft-gray.css';
 import './assets/css/font_face.css';
 import './assets/css/transition.css';
 import './assets/css/carousel_grid.css';
+import './assets/css/landing_page.css';
 
 // 동적 로딩
 import {
@@ -35,6 +36,7 @@ import {
 } from './route/lazy';
 
 // 정적 로딩
+import LandingPage from './components/dynamic/structure/landing_page';
 import ToTop from './components/static/to_top';
 import NavigationColumn from './components/dynamic/structure/navigation_column';
 import LogoColumn from './components/static/logo_column';
@@ -61,6 +63,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
+          <LandingPage />
           <NavigationColumn />
           <LogoColumn />
           <div className="content-col">
