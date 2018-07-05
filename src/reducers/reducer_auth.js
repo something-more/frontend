@@ -278,6 +278,7 @@ function reducerPatchNickname(state, action) {
 function reducerDestroyUser(state, action) {
   if (!action.error) {
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('display');
 
     return {
       ...state,
