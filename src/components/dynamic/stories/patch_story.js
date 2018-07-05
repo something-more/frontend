@@ -90,7 +90,7 @@ class PatchStory extends Component {
     await this.props.patchStory(formData, this.props.story.id);
 
     if (!this.props.error) {
-      await window.location.reload();
+      await window.location.replace(`/me/stories/${this.props.story.id}`);
     }
   }
 

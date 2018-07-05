@@ -22,25 +22,21 @@ class PatchBoard extends Component {
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     const { id } = this.props.match.params;
     await this.props.retrieveNotice(id);
+    await this.setState({ quill: new Quill('#editor', QuillOptions) });
     await renderQuillPatchObject(this.props, this.props.notice, this.state.quill);
-  }
-
-  componentDidMount() {
-    this.setState({
-      quill: new Quill('#editor', QuillOptions),
-    });
   }
 
   async onPublish(values) {
     const { quill } = this.state;
-    const {
-      notice, patchNotice, error, history,
-    } = this.props;
-    await onPatch(notice.id, quill, values,
-      patchNotice, error, history.push(`/notice/${notice.id}`));
+    const { notice, patchNotice, error } = this.props;
+    await onPatch(notice.id, quill, values, patchNotice);
+
+    if (!error) {
+      await window.location.replace(`/notice/${notice.id}`);
+    }
   }
 
   render() {
