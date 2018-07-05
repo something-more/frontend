@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Quill from 'quill';
@@ -106,6 +107,10 @@ class PatchStory extends Component {
 
     return (
         <div className="inner-content fadeIn animated">
+          <Helmet>
+            <meta charSet="utf-8"/>
+            <title>Something More | 스토리 수정</title>
+          </Helmet>
           <h1 className="title">
 Complete Your Stories...
           </h1>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Quill from 'quill/dist/quill.min';
@@ -54,6 +55,12 @@ class CreateStory extends Component {
 
     return (
       <div className="inner-content fadeIn animated">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+Something More | 스토리 쓰기
+          </title>
+        </Helmet>
         <h1 className="title">
 Write Your Story...
         </h1>

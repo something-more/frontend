@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import Quill from 'quill';
@@ -47,6 +48,12 @@ class PatchBoard extends Component {
 
     return (
       <div className="inner-content fadeIn animated">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+Something More | 자유게시판 글 수정
+          </title>
+        </Helmet>
         <h1 className="title">
 Complete Your Comments...
         </h1>

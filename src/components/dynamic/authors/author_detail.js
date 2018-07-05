@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import quotation_left from '../../../assets/images/design/quotation_left.png';
 import quotation_right from '../../../assets/images/design/quotation_right.png';
@@ -11,6 +12,12 @@ class AuthorDetail extends Component {
 
     return (
       <div className="inner-content fadeIn animated" style={{ marginTop: '100px' }}>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+            {`Something More | ${author.name_en}`}
+          </title>
+        </Helmet>
         <div className="col-md-6 col-md-offset-3 text-center">
           <img
             src={author.thumbnail}

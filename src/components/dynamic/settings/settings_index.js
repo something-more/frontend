@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { listUsers } from '../../../reducers/reducer_admin';
 import decodeJWT from '../../../include/jwt_decode';
@@ -19,6 +20,12 @@ class SettingsIndex extends Component {
 
     return (
       <div className="inner-content fadeIn animated">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+Something More | 회원 정보 설정
+          </title>
+        </Helmet>
         <h1 className="title">
 Settings
         </h1>

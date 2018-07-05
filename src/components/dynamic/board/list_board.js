@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment/moment';
@@ -40,6 +41,12 @@ class ListBoard extends Component {
   render() {
     return (
       <div className="inner-content fadeIn animated">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+Something More | 자유게시판 목록
+          </title>
+        </Helmet>
         <h1 className="title">
 Free Board
         </h1>

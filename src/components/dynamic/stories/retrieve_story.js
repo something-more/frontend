@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, {Component, Fragment} from 'react';
+import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -57,6 +58,10 @@ class RetrieveStory extends Component {
 
     return (
     <div className="inner-content fadeIn animated">
+      <Helmet>
+        <meta charSet="utf-8"/>
+        <title>{`Something More | ${story.title}`}</title>
+      </Helmet>
       <div id="editor" style={{display: 'none'}}/>
       <h1 id="content-title" className="font-weight-thin no-margin-top">
         {story.title}

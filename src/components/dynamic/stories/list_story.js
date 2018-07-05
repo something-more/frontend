@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import propTypes from 'prop-types';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
@@ -93,6 +94,10 @@ class ListStory extends Component {
     return (
         <div ref={node => this.node = node}
         className="inner-content fadeIn animated">
+          <Helmet>
+            <meta charSet="utf-8"/>
+            <title>Something More | 스토리 목록</title>
+          </Helmet>
           <h1 className="title">
 Stories
           </h1>

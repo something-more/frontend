@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { adminSignUp } from '../../../reducers/reducer_auth';
@@ -22,6 +23,12 @@ class AdminSignUp extends Component {
         className="inner-content fadeIn animated"
         style={{ marginTop: '100px' }}
       >
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+Something More | 관리자 회원 가입
+          </title>
+        </Helmet>
         <div className="col-md-6 col-md-offset-3">
           <h4 className="title">
 관리자 회원 가입

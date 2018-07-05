@@ -1,9 +1,16 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import logoImg from '../../assets/images/logo/img_logo.svg';
 import logoText from '../../assets/images/logo/text_logo_horizontal.png';
 
 export default () => (
   <div className="inner-content fadeIn animated" style={{ marginTop: '100px' }}>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>
+Something More | About
+      </title>
+    </Helmet>
     <div className="col-md-6 col-md-offset-3">
       <img
         src={logoImg}

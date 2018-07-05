@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Quill from 'quill';
@@ -49,6 +50,12 @@ class RetrieveNotice extends Component {
 
     return (
       <div className="inner-content fadeIn animated">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+            {`Something More | ${notice.title}`}
+          </title>
+        </Helmet>
         <div id="editor" style={{ display: 'none' }} />
         <h1 id="content-title" className="font-weight-thin no-margin-top">
           {notice.title}
