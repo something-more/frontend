@@ -9,7 +9,7 @@ class AuthenticationState extends Component {
   // sessionStorage 에 정보가 하나라도 없으면 로그인 / 회원가입 창을 띄우고
   // 그렇지 않으면 로그인 되었음을 보여준다
   render() {
-    if (sessionStorage.length === 0) {
+    if (!sessionStorage.getItem('token')) {
       return (
         <p>
           <a href="#login-modal" data-toggle="modal" className="toggle-login">
