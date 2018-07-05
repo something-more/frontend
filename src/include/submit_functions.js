@@ -12,7 +12,7 @@ export async function onDestroy(id, dispatch, routeFn) {
   }
 }
 
-export async function onCreate(quill, values, dispatch, error, routeFn, file) {
+export async function onCreate(quill, values, dispatch, file) {
   const delta = JSON.stringify(quill.getContents());
 
   const formData = new FormData();
@@ -25,10 +25,6 @@ export async function onCreate(quill, values, dispatch, error, routeFn, file) {
   }
 
   await dispatch(formData);
-
-  if (!error) {
-    await routeFn;
-  }
 }
 
 export async function onPatch(id, quill, values, dispatch) {
