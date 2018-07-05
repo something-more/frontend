@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Default from './fields/settings_default';
 import Users from './fields/settings_users';
 import NewNickname from './fields/settings_nickname';
 import NewPasswords from './fields/settings_passwords';
@@ -21,7 +22,7 @@ class SettingsFields extends Component {
         return (<Destroy />);
 
       default:
-        return null;
+        return (<Default />);
     }
   }
 }
