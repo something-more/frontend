@@ -72,7 +72,7 @@ class NoticeMiniList extends Component {
               {this.props.noticeCount !== 0 ? this.renderList() : null}
             </tbody>
           </table>
-          <AlertError />
+          <AlertError errors={this.props.error} />
         </div>
       );
     }
