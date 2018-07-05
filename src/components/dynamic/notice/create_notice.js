@@ -28,10 +28,10 @@ class CreateNotice extends Component {
 
   async onSubmit(values) {
     const { quill } = this.state;
-    const { createNotice, error } = this.props;
+    const { createNotice } = this.props;
     await onCreate(quill, values, createNotice);
 
-    if (!error) {
+    if (!this.props.error) {
       await window.location.replace('/notice');
     }
   }

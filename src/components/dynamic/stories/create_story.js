@@ -45,10 +45,10 @@ class CreateStory extends Component {
 
   async onSubmit(values) {
     const { quill, file } = this.state;
-    const { createStory, error } = this.props;
+    const { createStory } = this.props;
     await onCreate(quill, values, createStory, file);
 
-    if (!error) {
+    if (!this.props.error) {
       await window.location.replace('/me/stories');
     }
   }

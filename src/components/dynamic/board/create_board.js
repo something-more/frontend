@@ -28,10 +28,10 @@ class CreateBoard extends Component {
 
   async onSubmit(values) {
     const { quill } = this.state;
-    const { createBoard, error } = this.props;
+    const { createBoard } = this.props;
     await onCreate(quill, values, createBoard);
 
-    if (!error) {
+    if (!this.props.error) {
       await window.location.replace('/board');
     }
   }
