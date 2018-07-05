@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,9 +8,9 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import moment from 'moment';
 import { retrieveStory, destroyStory } from '../../../reducers/reducer_story';
-import { renderQuillObject } from '../../../include/render_quill_object';
 import decodeJWT from '../../../include/jwt_decode';
 import { onDestroy } from '../../../include/submit_functions';
+import Loading from '../structure/loading';
 
 class RetrieveStory extends Component {
 
@@ -24,31 +25,44 @@ class RetrieveStory extends Component {
 
     this.state = {
       quill: '',
+      loading: true,
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
+    // Call Ajax
     const { match } = this.props;
     await this.props.retrieveStory(match.params.id);
-    await renderQuillObject(this.props.story.content, this.state.quill);
-  }
 
-  componentDidMount() {
-    this.setState({
-      quill: new Quill('#editor'),
+    // Set Quill Object
+    await this.setState({ quill: new Quill('#editor') });
+    const contents = await JSON.parse(this.props.story.content);
+    await this.state.quill.setContents(contents);
+
+    // Render Contents
+    await this.setState({ loading: false });
+
+    // Process Img
+    document.getElementById('content').innerHTML = this.state.quill.root.innerHTML;
+    const images = document.getElementById('content').querySelectorAll('img');
+    _.forEach(images, (img) => {
+      img.style.maxWidth = '100%';
+      img.style.height = 'auto';
     });
   }
 
   render() {
-    const { story, history } = this.props;
+    const {loading} = this.state;
+    const {story, history} = this.props;
+
     return (
-        <div className="inner-content fadeIn animated">
-          <div id="editor" style={{ display: 'none' }} />
-          <h1 id="content-title" className="font-weight-thin no-margin-top">
-            {story.title}
-          </h1>
-          <hr className="hidden-xs" />
-          <p className="meta clearfix">
+    <div className="inner-content fadeIn animated">
+      <div id="editor" style={{display: 'none'}}/>
+      <h1 id="content-title" className="font-weight-thin no-margin-top">
+        {story.title}
+      </h1>
+      <hr className="hidden-xs"/>
+      <p className="meta clearfix">
             <span style={{display: "inline-block", marginTop: "6px"}}>
               <span>
 Author:&nbsp;
@@ -62,44 +76,47 @@ Date:&nbsp;
               {moment(story.date_created).format('YYYY-MM-DD')}
             </span>
             </span>
-            {sessionStorage.getItem('token')
-          && decodeJWT(sessionStorage.getItem('token')).nickname === story.author
-              ? (
-                <span className="pull-right" style={{ display: 'block' }}>
+        {sessionStorage.getItem('token') && decodeJWT(sessionStorage.getItem('token')).nickname === story.author ? (
+        <span className="pull-right" style={{display: 'block'}}>
                   <button
-                    type="button"
-                    className="btn btn-danger"
-                    style={{ marginRight: '10px' }}
-                    onClick={() => onDestroy(
-                      story.id, destroyStory, history.push('/me/stories'),
-                    )}
+                  type="button"
+                  className="btn btn-danger"
+                  style={{marginRight: '10px'}}
+                  onClick={() => onDestroy(story.id, destroyStory, history.push('/me/stories'),)}
                   >
                     Delete
                   </button>
                   <Link
-                    to={`/me/stories/${story.id}`}
-                    type="button"
-                    className="btn btn-warning"
+                  to={`/me/stories/${story.id}`}
+                  type="button"
+                  className="btn btn-warning"
                   >
                     Modify
                   </Link>
-                </span>
-              )
-              : null}
-          </p>
-          <hr className="hidden-xs" />
-          {story.thumbnail
-          ?<Fragment>
-            <div
-            className="parallex-grid"
-            style={{
-              backgroundImage: `url(${story.thumbnail})`,
-            }}/>
-            <hr className="vertical-spacer"/>
-          </Fragment>
-          : null}
-          <div id="content" className="ql-editor" />
+                </span>) : null}
+      </p>
+      <hr className="hidden-xs"/>
+      {!loading
+      ? <Fragment>
+        {story.thumbnail
+        ? <Fragment>
+          <div
+          className="parallex-grid fadeIn animated"
+          style={{
+            backgroundImage: `url(${story.thumbnail})`,
+          }}/>
+          <hr className="vertical-spacer"/>
+        </Fragment>
+        : null}
+        <div id="content" className="ql-editor fadeIn animated"/>
+      </Fragment>
+      : <div className="aligner">
+        <div className="aligner-item">
+          <Loading />
         </div>
+      </div>
+      }
+    </div>
     );
   }
 }
