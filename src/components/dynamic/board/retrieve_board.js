@@ -65,7 +65,7 @@ class RetrieveBoard extends Component {
           <span style={{ display: 'inline-block', marginTop: '6px' }}>
             <span>
 Author:&nbsp;
-              {board.author}
+              {board.author_nickname}
             </span>
             <span>
 &nbsp;/&nbsp;
@@ -76,7 +76,7 @@ Date:&nbsp;
             </span>
           </span>
           {sessionStorage.getItem('token')
-          && decodeJWT(sessionStorage.getItem('token')).nickname === board.author
+          && decodeJWT(sessionStorage.getItem('token')).id === board.author_id
             ? (
               <span className="pull-right" style={{ display: 'block' }}>
                 <button

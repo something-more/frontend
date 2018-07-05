@@ -65,7 +65,7 @@ class RetrieveNotice extends Component {
           <span style={{ display: 'inline-block', marginTop: '6px' }}>
             <span>
 Author:&nbsp;
-              {notice.author}
+              {notice.author_nickname}
             </span>
             <span>
 &nbsp;/&nbsp;

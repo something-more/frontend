@@ -81,7 +81,7 @@ class MainCarousel extends Component {
                 }}
                 >
                   <strong>
-                    {story.author}
+                    {story.author_nickname}
                   </strong>
 &nbsp;|&nbsp;
                   {story.title}

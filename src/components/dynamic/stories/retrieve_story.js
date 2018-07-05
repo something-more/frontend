@@ -71,7 +71,7 @@ class RetrieveStory extends Component {
             <span style={{display: "inline-block", marginTop: "6px"}}>
               <span>
 Author:&nbsp;
-                {story.author}
+                {story.author_nickname}
             </span>
             <span>
 &nbsp;/&nbsp;
@@ -81,7 +81,7 @@ Date:&nbsp;
               {moment(story.date_created).format('YYYY-MM-DD')}
             </span>
             </span>
-        {sessionStorage.getItem('token') && decodeJWT(sessionStorage.getItem('token')).nickname === story.author ? (
+        {sessionStorage.getItem('token') && decodeJWT(sessionStorage.getItem('token')).id === story.author_id ? (
         <span className="pull-right" style={{display: 'block'}}>
                   <button
                   type="button"

@@ -23,7 +23,7 @@ class ListBoard extends Component {
       return (
         <tr key={board.id}>
           <td className="col-md-2">
-            {board.author}
+            {board.author_nickname}
           </td>
           <td className="col-md-8">
             <Link to={`/board/${board.id}`}>
