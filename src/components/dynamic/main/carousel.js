@@ -16,7 +16,7 @@ class MainCarousel extends Component {
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     await this.props.clientListStory();
     await this.setState({ loading: false });
     const imgArray = await document.querySelectorAll('img.story-thumbnail');
