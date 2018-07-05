@@ -49,9 +49,9 @@ class Navigation extends Component {
           </div>
           <ul className="primary-nav">
             <li className="active">
-              <a href="/">
+              <Link to="/">
 Home
-              </a>
+              </Link>
             </li>
             <li>
               <Link to="/about">
