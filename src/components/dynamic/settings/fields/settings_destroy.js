@@ -9,7 +9,7 @@ class DestroyUser extends Component {
     await this.props.destroyUser(values);
 
     if (!this.props.error) {
-      await this.props.history.replace('/');
+      await window.location.replace('/');
       await window.location.reload();
     }
   }
