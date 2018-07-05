@@ -23,8 +23,8 @@ class RetrieveNotice extends Component {
 
   async componentDidMount() {
     // Call Ajax
-    const { match } = this.props;
-    await this.props.retrieveNotice(match.params.id);
+    const { match, retrieveNotice } = this.props;
+    await retrieveNotice(match.params.id);
 
     // Set Quill Object
     await this.setState({ quill: new Quill('#editor') });

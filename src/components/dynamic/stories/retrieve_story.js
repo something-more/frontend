@@ -31,8 +31,8 @@ class RetrieveStory extends Component {
 
   async componentDidMount() {
     // Call Ajax
-    const { match } = this.props;
-    await this.props.retrieveStory(match.params.id);
+    const { match, retrieveStory } = this.props;
+    await retrieveStory(match.params.id);
 
     // Set Quill Object
     await this.setState({ quill: new Quill('#editor') });
