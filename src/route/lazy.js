@@ -11,7 +11,7 @@ export const About = asyncComponent(() => import('../components/static/about').t
 export const PostsIndex = asyncComponent(() => import('../components/dynamic/main/posts_index').then(module => module.default));
 
 // 필진 소개
-export const AuthorDetail = asyncComponent(() => import('../components/dynamic/posts/author_detail').then(module => module.default));
+export const AuthorDetail = asyncComponent(() => import('../components/dynamic/authors/author_detail').then(module => module.default));
 
 // 회원가입, 로그인
 export const LoginModal = asyncComponent(() => import('../components/dynamic/auth/login_modal').then(module => module.default));
