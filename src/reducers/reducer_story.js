@@ -204,6 +204,7 @@ export async function destroyStory(id) {
 // State
 const initialState = {
   list: [],
+  clientList: [],
   retrieve: {},
   error: '',
   count: 0,
@@ -242,13 +243,13 @@ function reducerClientListStory(state, action) {
   if (action.response) {
     return {
       ...state,
-      list: action.response.data,
+      clientList: action.response.data,
       error: '',
     };
   }
   return {
     ...state,
-    list: [],
+    clientList: [],
     error: action.error,
   };
 }

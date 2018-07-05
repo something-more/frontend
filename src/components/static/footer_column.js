@@ -78,7 +78,7 @@ great-ho@somethingmore.co.kr
 
 function mapStateToProps(state) {
   return {
-    storyList: state.story.list,
+    storyList: state.story.clientList,
     error: state.story.error,
   };
 }
