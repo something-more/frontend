@@ -31,7 +31,7 @@ export async function onCreate(quill, values, dispatch, error, routeFn, file) {
   }
 }
 
-export async function onPatch(id, quill, values, dispatch, error, routeFn) {
+export async function onPatch(id, quill, values, dispatch) {
   const delta = JSON.stringify(quill.getContents());
 
   const formData = new FormData();
@@ -41,8 +41,4 @@ export async function onPatch(id, quill, values, dispatch, error, routeFn) {
   formData.append('date_modified', moment().format());
 
   await dispatch(formData, id);
-
-  if (!error) {
-    await routeFn;
-  }
 }
