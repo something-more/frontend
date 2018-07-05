@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
@@ -15,7 +16,7 @@ class ListBoard extends Component {
   }
 
   renderList() {
-    return this.props.noticeList.map((notice) => {
+    return _.map(this.props.noticeList, (notice) => {
       // 글 생성 일자
       const dateCreated = moment(notice.date_created).format('YYYY-MM-DD');
       // 글 인덱스 번호
