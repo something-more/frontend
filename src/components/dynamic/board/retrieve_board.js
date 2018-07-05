@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -7,8 +8,8 @@ import 'quill/dist/quill.snow.css';
 import moment from 'moment';
 import { retrieveBoard, destroyBoard } from '../../../reducers/reducer_board';
 import decodeJWT from '../../../include/jwt_decode';
-import { renderQuillObject } from '../../../include/render_quill_object';
 import { onDestroy } from '../../../include/submit_functions';
+import Loading from '../structure/loading';
 
 class RetrieveBoard extends Component {
   constructor(props) {
@@ -16,22 +17,34 @@ class RetrieveBoard extends Component {
 
     this.state = {
       quill: '',
+      loading: true,
     };
   }
 
-  async componentWillMount() {
-    const { id } = this.props.match.params;
-    await this.props.retrieveBoard(id);
-    await renderQuillObject(this.props.board.content, this.state.quill);
-  }
-
   async componentDidMount() {
-    this.setState({
-      quill: new Quill('#editor'),
+    // Call Ajax
+    const { match, retrieveBoard } = this.props;
+    await retrieveBoard(match.params.id);
+
+    // Set Quill Object
+    await this.setState({ quill: new Quill('#editor') });
+    const contents = await JSON.parse(this.props.board.content);
+    await this.state.quill.setContents(contents);
+
+    // Render Contents
+    await this.setState({ loading: false });
+
+    // Process Img
+    document.getElementById('content').innerHTML = this.state.quill.root.innerHTML;
+    const images = document.getElementById('content').querySelectorAll('img');
+    _.forEach(images, (img) => {
+      img.style.maxWidth = '100%';
+      img.style.height = 'auto';
     });
   }
 
   render() {
+    const { loading } = this.state;
     const { board, destroyBoard, history } = this.props;
 
     return (
@@ -80,7 +93,16 @@ Modify
             : null}
         </p>
         <hr className="hidden-xs" />
-        <div id="content" className="ql-editor" />
+        {!loading
+          ? <div id="content" className="ql-editor fadeIn animated" />
+          : (
+            <div className="aligner">
+              <div className="aligner-item">
+                <Loading />
+              </div>
+            </div>
+          )
+        }
       </div>
     );
   }
