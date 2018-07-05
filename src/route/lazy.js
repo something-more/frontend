@@ -6,6 +6,8 @@ export const FooterColumn = asyncComponent(() => import('../components/static/fo
 export const About = asyncComponent(() => import('../components/static/about').then(module => module.default));
 
 // Dynamic Components
+
+// 메인 페이지
 export const PostsIndex = asyncComponent(() => import('../components/dynamic/main/posts_index').then(module => module.default));
 
 // 필진 소개
