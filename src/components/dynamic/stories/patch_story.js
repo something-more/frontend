@@ -7,7 +7,7 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import moment from 'moment';
 import { retrieveStory, patchStory, destroyStory } from '../../../reducers/reducer_story';
-import { renderQuillPatchObject } from '../../../include/render_quill_object';
+import renderQuillPatchObject from '../../../include/render_quill_object';
 import QuillOptions from '../structure/write_modules/quill_options';
 import AlertError from '../structure/alert_error';
 import { onDestroy } from '../../../include/submit_functions';

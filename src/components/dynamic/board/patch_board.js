@@ -6,7 +6,7 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import moment from 'moment';
 import { retrieveBoard, patchBoard, destroyBoard } from '../../../reducers/reducer_board';
-import { renderQuillPatchObject } from '../../../include/render_quill_object';
+import renderQuillPatchObject from '../../../include/render_quill_object';
 import { TitleField } from '../structure/input_fields';
 import { onPatch } from '../../../include/submit_functions';
 import QuillOptions from '../structure/write_modules/quill_options';
