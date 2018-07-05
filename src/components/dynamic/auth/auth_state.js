@@ -65,7 +65,8 @@ Settings
               className="toggle-login"
               onClick={() => {
                 this.props.signOut();
-                window.location.reload();
+                sessionStorage.removeItem('display');
+                window.location.replace('/');
               }}
             >
               <i className="fa fa-sign-out" />
