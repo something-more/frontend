@@ -22,6 +22,10 @@ class Navigation extends Component {
     $('.primary-nav a').click(function () {
       $(this).parent().tab('show');
     });
+
+    $('.toggle-item').click(() => {
+      $('html').removeClass('menu-open');
+    });
   }
 
 
@@ -31,6 +35,7 @@ class Navigation extends Component {
     return _.map(this.props.memAuthors, author => (
       <li key={author.id}>
         <Link
+          className="toggle-item"
           onClick={() => this.props.selectAuthor(author.id)}
           to={`/authors/${author.id}`}
         >
@@ -43,7 +48,7 @@ class Navigation extends Component {
   renderDBAuthors() {
     return _.map(this.props.dbAuthors, author => (
       <li key={author.id}>
-        <Link to={`/stories/public/${author.id}`}>
+        <Link className="toggle-item" to={`/stories/public/${author.id}`}>
           {author.nickname}
         </Link>
       </li>
@@ -59,12 +64,12 @@ class Navigation extends Component {
           </div>
           <ul className="primary-nav">
             <li className="active">
-              <Link to="/">
+              <Link className="toggle-item" to="/">
 Home
               </Link>
             </li>
             <li>
-              <Link to="/about">
+              <Link className="toggle-item" to="/about">
 About
               </Link>
             </li>
@@ -85,12 +90,12 @@ Stories
               </ul>
             </li>
             <li>
-              <Link to="/notice">
+              <Link className="toggle-item" to="/notice">
 Notice
               </Link>
             </li>
             <li>
-              <Link to="/board">
+              <Link className="toggle-item" to="/board">
 Free Board
               </Link>
             </li>
