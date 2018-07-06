@@ -15,24 +15,24 @@ export default () => (
         />
       </a>
     </div>
-    <div className="search-wrapper">
-      <a
-        className="toggle-search tooltip-hover"
-        title="search"
-        data-placement="left"
-      >
-        <i className="fa fa-search" />
-      </a>
-      <div className="search-panel">
-        <form>
-          <input
-            type="search"
-            placeholder="Enter search term and press enter"
-            className="form-control"
-          />
-        </form>
-      </div>
-    </div>
+    {/* <div className="search-wrapper"> */}
+    {/* <a */}
+    {/* className="toggle-search tooltip-hover" */}
+    {/* title="search" */}
+    {/* data-placement="left" */}
+    {/* > */}
+    {/* <i className="fa fa-search" /> */}
+    {/* </a> */}
+    {/* <div className="search-panel"> */}
+    {/* <form> */}
+    {/* <input */}
+    {/* type="search" */}
+    {/* placeholder="Enter search term and press enter" */}
+    {/* className="form-control" */}
+    {/* /> */}
+    {/* </form> */}
+    {/* </div> */}
+    {/* </div> */}
     <div className="social-wrapper">
       <ul>
         <li>
