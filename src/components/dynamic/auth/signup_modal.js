@@ -54,16 +54,16 @@ class SignUpModal extends Component {
           <div className="row">
             <div className="col-sm-6 col-ms-6">
               <h4 className="title">Sign Up with...</h4>
-              <ul className="list-unstyled social-user">
-                <li>
-                  <a
-                  title="Signup with Facebook"
-                  className="facebook">
-                    <i className="fa fa-facebook"/>
-                    <span>Signup with Facebook</span>
-                  </a>
-                </li>
-              </ul>
+              {/*<ul className="list-unstyled social-user">*/}
+                {/*<li>*/}
+                  {/*<a*/}
+                  {/*title="Signup with Facebook"*/}
+                  {/*className="facebook">*/}
+                    {/*<i className="fa fa-facebook"/>*/}
+                    {/*<span>Signup with Facebook</span>*/}
+                  {/*</a>*/}
+                {/*</li>*/}
+              {/*</ul>*/}
             </div>
             <div className="col-sm-6 col-ms-6">
               <h4 className="title">회원 가입</h4>

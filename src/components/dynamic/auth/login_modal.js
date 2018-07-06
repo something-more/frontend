@@ -52,16 +52,16 @@ class LoginModal extends Component {
         <div className="modal-body">
           <div className="row">
             <div className="col-sm-6 col-ms-6">
-              <h4 className="title">Social Login</h4>
-              <ul className="list-unstyled social-user">
-                <li>
-                  <a
-                title="Login with Facebook"
-                className="facebook">
-                    <i className="fa fa-facebook"/>
-                    <span>Login with Facebook</span></a>
-                </li>
-              </ul>
+              {/*<h4 className="title">Social Login</h4>*/}
+              {/*<ul className="list-unstyled social-user">*/}
+                {/*<li>*/}
+                  {/*<a*/}
+                {/*title="Login with Facebook"*/}
+                {/*className="facebook">*/}
+                    {/*<i className="fa fa-facebook"/>*/}
+                    {/*<span>Login with Facebook</span></a>*/}
+                {/*</li>*/}
+              {/*</ul>*/}
             </div>
             <div className="col-sm-6 col-ms-6">
               <h4 className="title">로그인</h4>
@@ -96,7 +96,7 @@ class LoginModal extends Component {
             </div>
           </div>
           <p className="text-center">
-            <a className="text-underline">비밀번호를 잊으셨나요?</a>
+            {/*<a className="text-underline">비밀번호를 잊으셨나요?</a>*/}
             <br/>
             아직 계정이 없으신가요?&nbsp;
             <a
