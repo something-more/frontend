@@ -1,15 +1,15 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { selectAuthor } from '../../../reducers/reducer_author';
+import { selectAuthor, listAuthors } from '../../../reducers/reducer_author';
 import AuthenticationState from '../auth/auth_state';
 
 const $ = window.jQuery;
 
 class Navigation extends Component {
-  componentWillMount() {
+  componentDidMount() {
+    this.props.listAuthors();
     document.addEventListener('mousedown', this.handleClick, false);
   }
 
@@ -28,13 +28,23 @@ class Navigation extends Component {
   // 필진 리스트 렌더링 함수
   // 리스트를 클릭하면 액션 생성자를 호출해 특정 필진 데이터를 리듀서로 옮긴다
   renderAuthors() {
-    return _.map(this.props.authors.list, author => (
+    return _.map(this.props.memAuthors, author => (
       <li key={author.id}>
         <Link
           onClick={() => this.props.selectAuthor(author.id)}
           to={`/authors/${author.id}`}
         >
           {author.name_en}
+        </Link>
+      </li>
+    ));
+  }
+
+  renderDBAuthors() {
+    return _.map(this.props.dbAuthors, author => (
+      <li key={author.id}>
+        <Link to={`/stories/public/${author.id}`}>
+          {author.nickname}
         </Link>
       </li>
     ));
@@ -66,10 +76,13 @@ Editors
                 {this.renderAuthors()}
               </ul>
             </li>
-            <li>
+            <li className="has-children">
               <a>
 Stories
               </a>
+              <ul>
+                {this.renderDBAuthors()}
+              </ul>
             </li>
             <li>
               <Link to="/notice">
@@ -88,16 +101,11 @@ Free Board
   }
 }
 
-Navigation.propTypes = {
-  selectAuthor: PropTypes.func.isRequired,
-  authors: PropTypes.shape().isRequired,
-  list: PropTypes.arrayOf(),
-};
-
 function mapStateToProps(state) {
   return {
-    authors: state.author, // author 리듀서 스테이트 전체를 authors prop 로 매핑
+    memAuthors: state.author.list, // author 리듀서 스테이트 전체를 authors prop 로 매핑
+    dbAuthors: state.author.dbList,
   };
 }
 
-export default connect(mapStateToProps, { selectAuthor })(Navigation);
+export default connect(mapStateToProps, { selectAuthor, listAuthors })(Navigation);
