@@ -4,7 +4,7 @@ import logoImg from '../../assets/images/logo/img_logo.svg';
 import logoText from '../../assets/images/logo/text_logo_horizontal.png';
 
 export default () => (
-  <div className="inner-content fadeIn animated" style={{ marginTop: '100px' }}>
+  <div className="inner-content fadeIn animated" style={{ paddingTop: '100px' }}>
     <Helmet>
       <meta charSet="utf-8" />
       <title>

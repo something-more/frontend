@@ -11,7 +11,7 @@ class AuthorDetail extends Component {
     const mailto = `mailto:${author.email}`;
 
     return (
-      <div className="inner-content fadeIn animated" style={{ marginTop: '100px' }}>
+      <div className="inner-content fadeIn animated" style={{ paddingTop: '100px' }}>
         <Helmet>
           <meta charSet="utf-8" />
           <title>
