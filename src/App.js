@@ -28,7 +28,7 @@ import './assets/css/landing_page.css';
 // 동적 로딩
 import {
   FooterColumn, About,
-  PostsIndex, AuthorDetail, SettingsIndex,
+  PostsIndex, AuthorDetail, AuthorStoryList, SettingsIndex,
   LoginModal, SignUpModal, AdminSignUp,
   ListStory, CreateStory, RetrieveStory, PatchStory,
   ListFreeBoard, CreateFreeBoard, RetrieveFreeBoard, PatchFreeBoard,
@@ -76,11 +76,12 @@ class App extends Component {
               <PrivateRoute path="/board/write" component={CreateFreeBoard} />
               <Route path="/board/:id" component={RetrieveFreeBoard} />
               <Route path="/board" component={ListFreeBoard} />
-              <Route path="/stories/:id" component={RetrieveStory} />
               <PrivateRoute path="/me/write" component={CreateStory} />
               <PrivateRoute path="/me/stories/:id" component={PatchStory} />
               <PrivateRoute path="/me/settings" component={SettingsIndex} />
               <PrivateRoute path="/me/stories" component={ListStory} />
+              <Route path="/stories/public/:id" component={AuthorStoryList} />
+              <Route path="/stories/:id" component={RetrieveStory} />
               <Route path="/authors/:id" component={AuthorDetail} />
               <Route path="/about" component={About} />
               <Route path="/st-more-admin" component={AdminSignUp} />

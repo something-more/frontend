@@ -13,6 +13,9 @@ export const PostsIndex = asyncComponent(() => import('../components/dynamic/mai
 // 필진 소개
 export const AuthorDetail = asyncComponent(() => import('../components/dynamic/authors/author_detail').then(module => module.default));
 
+// 필진 스토리 리스트
+export const AuthorStoryList = asyncComponent(() => import('../components/dynamic/authors/author_story_list').then(module => module.default));
+
 // 회원가입, 로그인
 export const LoginModal = asyncComponent(() => import('../components/dynamic/auth/login_modal').then(module => module.default));
 export const SignUpModal = asyncComponent(() => import('../components/dynamic/auth/signup_modal').then(module => module.default));
