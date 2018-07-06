@@ -10,7 +10,7 @@ import Pagination from '../structure/write_modules/pagination';
 import AlertError from '../structure/alert_error';
 
 class ListBoard extends Component {
-  async componentWillMount() {
+  async componentDidMount() {
     await this.props.countBoard();
     await this.props.listBoard();
   }
