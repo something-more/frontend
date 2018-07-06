@@ -1,0 +1,25 @@
+#init-box {
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    background-color: #ccc;
+    width: 100vw;
+    height: 100vh;
+}
+
+.aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.aligner-item {
+    max-width: 400px;
+}
+
+.aligner-item h1 {
+    font-family: "GoBold", sans-serif;
+    font-weight: 300;
+}

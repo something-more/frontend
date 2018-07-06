@@ -1,0 +1,237 @@
+/*   soft gray color scheme for sideWaze wrapper
+ -------------------------------------------------------------------------------------------- */
+html, body { background: #fff; color: #333; }
+
+
+/*  column borders // hr.divider & hr / .search-open .search-panel style
+ -------------------------------------------------------------------------------------------- */
+.logo-col, .faux-logo-col,
+.nav-col, .faux-nav-col,
+.content-col, .faux-content-col {
+    border-right: 1px solid #ccc;
+}
+
+/* --- remove right border on content-col and .faux-content-col when footer is below --- */
+@media (max-width:1399px) {
+	.content-col, .faux-content-col { border-right: 0px }
+}
+/* --- add a LEFT border on .content-col when the menu is open on small viewports --- */
+@media (max-width:1019px) {
+	.menu-open .content-col { border-left: 1px solid #ccc }
+}
+
+/*-------------- footer-col has a border top until 1399px -------------------------------------*/
+@media (max-width:1399px) {
+	.footer-col { border-top: 1px solid #ccc }
+}
+
+/*-------------- .footer-col and footer-content-* borders from 600px to 1399px -------------------------------------*/
+@media (min-width:600px) and (max-width:900px) {
+	.footer-content-1, .footer-content-3 { border-right: 1px solid #ccc }
+	[class*="footer-content-"] { border-bottom: 1px solid #ccc }
+}
+
+/*-------------- .footer-col and footer-content-* borders from 901px to 1399px -------------------------------------*/
+@media (min-width:901px) and (max-width:1399px) {
+	.footer-content-1, .footer-content-2, .footer-content-3 { border-right: 1px solid #ccc }
+	[class*="footer-content-"] { border-bottom: 1px solid #ccc }
+}
+
+
+/* --- hr.divider is used outside inner-content to extend rule beyond the content --- */
+hr.divider {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-color: #ccc;
+    width: 100%;
+    clear: both;
+}
+
+hr {border-color:#ddd;}
+
+
+/* search-open .search-panel style */
+@media (min-width:1020px) {
+	.search-open .search-panel { background: #fff; border: 1px solid #ccc; }
+}
+
+
+/* column background colors
+ -------------------------------------------------------------------------------------------- */
+
+.nav-col, .faux-nav-col { background: #fff }
+
+.logo-col, .faux-logo-col { background: #f7f7f7 }
+
+.content-col, .faux-content-col { background: #fff }
+
+.footer-col, .faux-footer-col { background: #fff }
+
+/*  .logo-wrapper // .search-wrapper // .social-wrapper  */
+.logo-wrapper { background: transparent }
+
+.search-wrapper { background: transparent }
+
+.social-wrapper { background: transparent }
+
+
+/* footer-content-* backgrounds === change to different background for every other effect  */
+
+@media (max-width:599px) {
+	.footer-content-2, .footer-content-4 { background: #f7f7f7 }
+}
+
+@media (min-width:600px) and (max-width:900px) {
+	.footer-content-2, .footer-content-3 { background: #f7f7f7 }
+}
+
+@media (min-width:901px) {
+	.footer-content-2, .footer-content-4 { background: #f7f7f7 }
+}
+
+
+/*   link and link styles -- I don't believe in not underlining linkes when it's not clear that they are links
+ -------------------------------------------------------------------------------------------- */
+
+a { color: #ec5004 }
+
+a:hover, a:active, a:focus { color: #ec5004 }
+
+figcaption a:not(:hover), .text-underline:not(:hover) { color: #333 }
+
+
+/* navigation base (not the link colors those are set in .nav-col links below
+ -------------------------------------------------------------------------------------------- */
+
+.primary-nav li a { border-bottom: 1px solid #ccc }
+
+/*  desktop navigation   */
+@media (min-width:1020px) {
+	.primary-nav > li > a { border-bottom: 1px solid #ccc }
+
+	.primary-nav li li a { border-bottom: 0px }
+
+	.primary-nav > li > a:after { border-bottom: 2px solid #ccc }
+
+	.primary-nav .active a:after, .primary-nav .dcjq-parent.active:after, .primary-nav a:hover:after { border-color: #ec5004 }
+}
+
+
+/* .user-wrapper (login and signup)
+ -------------------------------------------------------------------------------------------- */
+
+.user-wrapper a { border-bottom: 1px solid #ccc }
+
+@media (min-width:1020px) {
+	.user-wrapper a { border-bottom: 0px }
+
+	.user-wrapper .v-divider { border-right: 1px solid #ccc }
+}
+
+
+/*  nav-col links
+ -------------------------------------------------------------------------------------------- */
+
+.nav-col a:not(:hover) { color: #333 }
+
+.primary-nav .active > a, .primary-nav a:hover, .primary-nav .dcjq-parent.active { color: #ec5004 }
+
+
+/* logo-col links
+ -------------------------------------------------------------------------------------------- */
+
+.logo-col a:not(:hover) { color: #333 }
+
+
+/* footer-col links
+ -------------------------------------------------------------------------------------------- */
+
+.footer a:not(:hover) { color: #333 }
+
+
+/* .title
+ -------------------------------------------------------------------------------------------- */
+
+.title { border-bottom: 1px solid #ccc }
+
+.title span { border-bottom: 2px solid #ccc }
+
+
+/* banner
+ -------------------------------------------------------------------------------------------- */
+
+.banner { border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+
+
+/* image class(es) or Fixes
+ -------------------------------------------------------------------------------------------- */
+
+.img-custom { border: 1px solid #ddd;padding:3px; }
+
+
+/* .footer-col input-group
+ -------------------------------------------------------------------------------------------- */
+
+.footer-signup .btn { background: #ec5004; border-color: #ec5004; }
+
+.footer-signup .btn:hover, .footer-signup .btn:active, .footer-signup .btn:focus  { background: #333; border-color: #333; }
+
+.footer-signup .form-control { border-color: #ddd }
+
+
+/* #go-to-top
+ -------------------------------------------------------------------------------------------- */
+
+#go-to-top { background: #fff; border-left: 1px solid #ccc; border-top: 1px solid #ccc; }
+
+
+/*  .multi-slider // base is in assets/owl-carousel/owl.carousel.css
+ -------------------------------------------------------------------------------------------- */
+.multi-slider img {border: 1px solid #ddd;padding:3px;background:#fff;}
+
+.owl-theme .owl-controls .owl-page span { background: #aaa }
+
+.owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span { background: #ec5004 }
+
+
+/* bootstrap resets and colors
+ -------------------------------------------------------------------------------------------- */
+
+.page-header {border-color:#ddd}
+
+.btn-default { border-color: #ddd }
+
+blockquote { border-color: #f7f7f7 }
+
+blockquote footer, blockquote cite, blockquote small { color: #333 }
+
+.form-control:focus { border-color: #ccc; -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0, 0, 0, .2); box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0, 0, 0, .2); }
+
+
+/*  tool tip colors and style(s)
+ -------------------------------------------------------------------------------------------- */
+
+.tooltip-inner { font-weight: 400; color: #ffffff; background-color: #ec5004; }
+
+.tooltip.top .tooltip-arrow, .tooltip.top-left .tooltip-arrow, .tooltip.top-right .tooltip-arrow { border-top-color: #ec5004 }
+
+.tooltip.right .tooltip-arrow { border-right-color: #ec5004 }
+
+.tooltip.left .tooltip-arrow { border-left-color: #ec5004 }
+
+.tooltip.bottom .tooltip-arrow, .tooltip.bottom-left .tooltip-arrow, .tooltip.bottom-right .tooltip-arrow { border-bottom-color: #ec5004 }
+
+
+/* .user-modal is a custom class
+ -------------------------------------------------------------------------------------------- */
+
+.modal, .user-modal, .user-modal .modal-body { background: #fff }
+
+/* --- don't combine --- */
+
+.form-control::-moz-placeholder { color: #999 }
+
+.form-control:-ms-input-placeholder { color: #999 }
+
+.form-control::-webkit-input-placeholder { color: #999 }

@@ -1,0 +1,35 @@
+/*반응형 정사각형 만들기*/
+.thumbnail-grid {
+    position: relative;
+    width: 100%;
+}
+
+.thumbnail-grid:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.thumbnail-grid-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.thumbnail-wide-img {
+    position: absolute;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.parallex-grid {
+    height: 600px;
+    background-attachment: fixed;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+}
