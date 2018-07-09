@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import logoImg from '../../assets/images/logo/img_logo.svg';
-import logoText from '../../assets/images/logo/text_logo_horizontal.png';
+import LogoImg from '../../assets/images/somethingmore logo2.png';
 
 export default () => (
   <div className="inner-content fadeIn animated" style={{ paddingTop: '100px' }}>
@@ -13,15 +12,9 @@ Something More | About
     </Helmet>
     <div className="col-md-6 col-md-offset-3">
       <img
-        src={logoImg}
+        src={LogoImg}
         className="img-responsive center-block"
-        width="200px"
-        alt="img-logo"
-      />
-      <img
-        src={logoText}
-        className="img-responsive center-block"
-        width="500px"
+        width="400px"
         alt="text-logo"
       />
     </div>
