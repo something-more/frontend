@@ -2,8 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { signIn, signUp } from '../../../reducers/reducer_auth';
-import logoImg from '../../../assets/images/logo/img_logo.svg';
-import logoText from '../../../assets/images/logo/text_logo_horizontal.png';
+import LogoImg from '../../../assets/images/somethingmore logo2.png';
 import AlertError from './alert_error';
 import { PasswordField } from './input_fields';
 
@@ -159,15 +158,10 @@ class LandingPage extends Component {
             <div className="aligner-item text-center fadeIn animated">
               <div style={{ marginBottom: '20px' }}>
                 <img
-                  src={logoImg}
-                  style={{ maxWidth: '200px' }}
+                  src={LogoImg}
+                  style={{ maxWidth: '400px' }}
                   className="img-responsive center-block"
                   alt="logo-img"
-                />
-                <img
-                  src={logoText}
-                  className="img-responsive"
-                  alt="logo-text"
                 />
               </div>
               {this.state.form === 'signIn' ? this.signInForm() : this.signUpForm()}
