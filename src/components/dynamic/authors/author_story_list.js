@@ -34,15 +34,15 @@ class AuthorStoryList extends Component {
       const indexNum = (this.props.storyList.length) - (this.props.storyList.indexOf(story));
       return (
         <tr key={story.id}>
-          <td className="col-md-2">
+          <td className="col-md-2 text-center">
             {indexNum}
           </td>
-          <td className="col-md-8">
+          <td className="col-md-8 text-left">
             <Link to={`/stories/${story.id}`}>
               {story.title}
             </Link>
           </td>
-          <td className="col-md-2">
+          <td className="col-md-2 text-center">
             {dateCreated}
           </td>
         </tr>
@@ -63,13 +63,13 @@ class AuthorStoryList extends Component {
           {this.state.nickname}
 's stories
         </h1>
-        <table className="table table-hover text-center">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th className="text-center col-md-2">
               번호
               </th>
-              <th className="text-center col-md-8">
+              <th className="text-left col-md-8">
               제목
               </th>
               <th className="text-center col-md-2">

@@ -96,13 +96,6 @@ const initialState = {
       email: 'great-ho@somethingmore.co.kr',
     }, {
       id: 2,
-      name_ko: '한시원',
-      name_en: 'Han Siwon',
-      thumbnail: '',
-      introduce: '',
-      email: '',
-    }, {
-      id: 3,
       name_ko: '승형수',
       name_en: 'Seung Hyung Soo',
       thumbnail: hyungSoo,
