@@ -90,7 +90,7 @@ const initialState = {
     {
       id: 1,
       name_ko: '김호장',
-      name_en: 'Kim Hojang',
+      name_en: 'Kim Ho Jang',
       thumbnail: '',
       introduce: '',
       email: 'great-ho@somethingmore.co.kr',
