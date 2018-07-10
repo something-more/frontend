@@ -47,10 +47,10 @@ class ListStory extends Component {
       const indexNum = (this.props.storyList.length) - (_.indexOf(this.props.storyList, story));
       return (
         <tr key={story.id}>
-          <td className="col-md-2">
+          <td className="col-md-2 text-center">
             {indexNum}
           </td>
-          <td className="col-md-6">
+          <td className="col-md-6 text-left">
             {story.is_published
               ? (
                 <Link to={`/stories/${story.id}`}>
@@ -63,10 +63,10 @@ class ListStory extends Component {
                 </Link>
               )}
           </td>
-          <td className="col-md-2">
+          <td className="col-md-2 text-center">
             {dateCreated}
           </td>
-          <td className="col-md-2">
+          <td className="col-md-2 text-center">
             {story.is_published
               ? (
                 <button
@@ -111,13 +111,13 @@ Stories
 Let's Post
           </Link>
           <hr className="vertical-spacer" />
-          <table className="table table-hover text-center">
+          <table className="table table-hover">
             <thead>
               <tr>
                 <th className="text-center col-md-2">
 번호
                 </th>
-                <th className="text-center col-md-6">
+                <th className="text-left col-md-6">
 제목
                 </th>
                 <th className="text-center col-md-2">

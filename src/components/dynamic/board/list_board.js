@@ -22,15 +22,15 @@ class ListBoard extends Component {
 
       return (
         <tr key={board.id}>
-          <td className="col-md-2">
+          <td className="col-md-2 text-center">
             {board.author_nickname}
           </td>
-          <td className="col-md-8">
+          <td className="col-md-8 text-left">
             <Link to={`/board/${board.id}`}>
               {board.title}
             </Link>
           </td>
-          <td className="col-md-2">
+          <td className="col-md-2 text-center">
             {dateCreated}
           </td>
         </tr>
@@ -64,13 +64,13 @@ Let's Post
             </Link>
           )
           : null}
-        <table className="table table-hover text-center">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th className="col-md-2 text-center">
 글쓴이
               </th>
-              <th className="col-md-8 text-center">
+              <th className="col-md-8 text-left">
 제목
               </th>
               <th className="col-md-2 text-center">
