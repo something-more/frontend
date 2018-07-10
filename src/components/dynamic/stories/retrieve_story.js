@@ -105,11 +105,7 @@ Date:&nbsp;
       ? <Fragment>
         {story.thumbnail
         ? <Fragment>
-          <div
-          className="parallex-grid fadeIn animated"
-          style={{
-            backgroundImage: `url(${story.thumbnail})`,
-          }}/>
+          <img className="img-responsive" src={story.thumbnail} alt="story thumbnail"/>
           <hr className="vertical-spacer"/>
         </Fragment>
         : null}
