@@ -31,14 +31,9 @@ class FooterColumn extends Component {
               <strong>
               phone:&nbsp;
               </strong>
-              <a className="text-underline" href="tel:8135551234">
-              813.555.1234
+              <a className="text-underline" href="tel:01022242834">
+              010-2224-2834
               </a>
-              <br />
-              <strong>
-              fax:&nbsp;
-              </strong>
-            813.555.1235
               <br />
               <span className="overflow">
                 <strong>
