@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { listUsers, updateUserAuth } from '../../../../reducers/reducer_admin';
+import { listUsers, updateUserAuth, forceDestroyUser } from '../../../../reducers/reducer_admin';
 import AlertError from '../../structure/alert_error';
 
 class Users extends Component {
@@ -36,6 +36,19 @@ class Users extends Component {
 
     if (isConfirm) {
       await this.props.updateUserAuth(payload);
+    }
+
+    if (isConfirm && !this.props.error) {
+      await window.location.reload();
+    }
+  }
+
+  async onForceDestroy() {
+    const isConfirm = window.confirm('정말 유저를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.');
+
+    if (isConfirm) {
+      await this.props.forceDestroyUser(this.state.userEmail);
+      await alert('삭제되었습니다.');
     }
 
     if (isConfirm && !this.props.error) {
@@ -104,6 +117,7 @@ Submit
   }
 
   renderUsers() {
+    const { handleSubmit } = this.props;
     return this.props.users.map((user) => {
       // 인덱스 번호
       const indexNum = this.props.users.indexOf(user) + 1;
@@ -128,6 +142,17 @@ Submit
               {user.is_admin ? '관리자' : user.is_staff ? '필진' : '일반'}
             </a>
           </td>
+          <td>
+            <form method="post" onSubmit={handleSubmit(this.onForceDestroy.bind(this))}>
+              <button
+              onClick={() => {
+                this.setState({ userEmail: user.email });
+              }}
+              className="btn btn-danger btn-sm">
+                강퇴
+              </button>
+            </form>
+          </td>
         </tr>
       );
     });
@@ -137,7 +162,7 @@ Submit
     return (
       <div className="fadeIn animated">
         <h4>
-회원 등급 관리
+회원 관리
         </h4>
         <div className="panel panel-warning">
           <div className="panel-heading">
@@ -157,6 +182,9 @@ Submit
                   </th>
                   <th className="text-center">
 등급
+                  </th>
+                  <th className="text-center">
+                    강제 탈퇴
                   </th>
                 </tr>
               </thead>
@@ -179,7 +207,6 @@ Submit
 }
 
 function validate(values) {
-  console.log(values);
   const errors = {};
 
   if (!values.auth) {
@@ -200,5 +227,5 @@ export default reduxForm({
   validate,
   form: 'UserAuthUpdateForm',
 })(
-  connect(mapStateToProps, { listUsers, updateUserAuth })(Users),
+  connect(mapStateToProps, { listUsers, updateUserAuth, forceDestroyUser })(Users),
 );

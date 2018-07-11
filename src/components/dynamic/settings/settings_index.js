@@ -51,7 +51,7 @@ Email:&nbsp;
                     onClick={() => { this.setState({ status: 'admin' }); }}
                   >
                     <strong>
-회원 등급 관리
+회원 관리
                     </strong>
                   </li>
                 )
