@@ -23,7 +23,9 @@ class AuthorStoryList extends Component {
     await listStoryAuthor(match.params.id);
 
     const storyObject = await _.last(this.props.storyList);
-    await this.setState({ nickname: storyObject.author_nickname });
+    if (storyObject) {
+      await this.setState({ nickname: storyObject.author_nickname });
+    }
   }
 
   renderCategory(payload) {
