@@ -13,7 +13,7 @@ class AuthorStoryList extends Component {
     super(props);
 
     this.state = {
-      nickname: '',
+      nickname: 'author',
     };
   }
 
