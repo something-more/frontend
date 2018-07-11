@@ -28,6 +28,15 @@ class AuthorStoryList extends Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    // 다른 필진을 클릭하면 state 를 변경한다
+    const storyObject = _.last(newProps.storyList);
+    if (storyObject) {
+      this.setState({ nickname: storyObject.author_nickname });
+    }
+  }
+
+
   renderCategory(payload) {
     switch (payload) {
       case 'novel':

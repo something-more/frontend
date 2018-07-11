@@ -2,7 +2,10 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { selectAuthor, listAuthors } from '../../../reducers/reducer_author';
+import {
+  selectAuthor, listAuthors, countStoryAuthor, listStoryAuthor,
+}
+  from '../../../reducers/reducer_author';
 import AuthenticationState from '../auth/auth_state';
 
 const $ = window.jQuery;
@@ -48,7 +51,14 @@ class Navigation extends Component {
   renderDBAuthors() {
     return _.map(this.props.dbAuthors, author => (
       <li key={author.id}>
-        <Link className="toggle-item" to={`/stories/public/${author.id}`}>
+        <Link
+          onClick={async () => {
+            await this.props.countStoryAuthor(author.id);
+            await this.props.listStoryAuthor(author.id);
+          }}
+          className="toggle-item"
+          to={`/stories/public/${author.id}`}
+        >
           {author.nickname}
         </Link>
       </li>
@@ -113,4 +123,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { selectAuthor, listAuthors })(Navigation);
+export default connect(mapStateToProps, {
+  selectAuthor,
+  listAuthors,
+  countStoryAuthor,
+  listStoryAuthor,
+})(Navigation);
