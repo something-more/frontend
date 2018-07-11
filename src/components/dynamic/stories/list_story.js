@@ -39,6 +39,21 @@ class ListStory extends Component {
     }
   }
 
+  renderCategory(payload) {
+    switch (payload) {
+      case 'novel':
+        return '소설';
+      case 'essay':
+        return '산문';
+      case 'think':
+        return '단상';
+      case 'comment':
+        return '작가의 말';
+      default:
+        return '없음';
+    }
+  }
+
   renderList() {
     return _.map(this.props.storyList, (story) => {
       // 글 생성 일자
@@ -47,8 +62,11 @@ class ListStory extends Component {
       const indexNum = (this.props.storyList.length) - (_.indexOf(this.props.storyList, story));
       return (
         <tr key={story.id}>
-          <td className="col-md-2 text-center">
+          <td className="col-md-1 text-center">
             {indexNum}
+          </td>
+          <td className="col-md-1 text-center">
+            {this.renderCategory(story.category)}
           </td>
           <td className="col-md-6 text-left">
             {story.is_published
@@ -114,8 +132,11 @@ Let's Post
           <table className="table table-hover">
             <thead>
               <tr>
-                <th className="text-center col-md-2">
+                <th className="text-center col-md-1">
 번호
+                </th>
+                <th className="text-center col-md-1">
+                  글머리
                 </th>
                 <th className="text-left col-md-6">
 제목
