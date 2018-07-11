@@ -19,6 +19,12 @@
     src: url("../fonts/Gobold_Light.woff2");
 }
 
+body {
+    font-family: "Raleway", "Nanum Gothic", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
 #banner-title {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
@@ -26,9 +32,27 @@
 }
 
 #banner-title h1 {
-    font-family: "GoBold", sans-serif;
-    font-weight: 300;
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 700;
     margin: 20px 0 24px 0;
+}
+
+@media (max-width: 769px) {
+    #banner-title h1 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 600px) {
+    #banner-title h1 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 414px) {
+    #banner-title h1 {
+        font-size: 1em;
+    }
 }
 
 #content {

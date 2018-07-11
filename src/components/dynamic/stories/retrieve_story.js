@@ -81,24 +81,36 @@ Date:&nbsp;
               {moment(story.date_created).format('YYYY-MM-DD')}
             </span>
             </span>
-        {sessionStorage.getItem('token') && decodeJWT(sessionStorage.getItem('token')).id === story.author_id ? (
         <span className="pull-right" style={{display: 'block'}}>
-                  <button
-                  type="button"
-                  className="btn btn-danger"
-                  style={{marginRight: '10px'}}
-                  onClick={() => onDestroy(story.id, destroyStory, history.push('/me/stories'),)}
-                  >
-                    Delete
-                  </button>
-                  <Link
-                  to={`/me/stories/${story.id}`}
-                  type="button"
-                  className="btn btn-warning"
-                  >
-                    Modify
-                  </Link>
-                </span>) : null}
+          <Link
+          type="button"
+          className="btn btn-success"
+          style={{marginRight: '10px'}}
+          to={`/stories/public/${story.author_id}`}
+          >
+  List
+</Link>
+          {sessionStorage.getItem('token')
+        && decodeJWT(sessionStorage.getItem('token')).id === story.author_id ? (
+        <Fragment>
+          <button
+          type="button"
+          className="btn btn-danger"
+          style={{marginRight: '10px'}}
+          onClick={() => onDestroy(story.id, destroyStory, history.push('/me/stories'),)}
+          >
+            Delete
+          </button>
+          <Link
+          to={`/me/stories/${story.id}`}
+          type="button"
+          className="btn btn-warning"
+          >
+            Modify
+          </Link>
+        </Fragment>
+                ) : null}
+                </span>
       </p>
       <hr className="hidden-xs"/>
       {!loading

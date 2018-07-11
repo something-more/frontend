@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -75,29 +75,39 @@ Date:&nbsp;
               {moment(board.date_created).format('YYYY-MM-DD')}
             </span>
           </span>
-          {sessionStorage.getItem('token')
+          <span className="pull-right" style={{ display: 'block' }}>
+            <Link
+            type="button"
+            className="btn btn-success"
+            style={{marginRight: '10px'}}
+            to={'/board'}
+            >
+  List
+</Link>
+            {sessionStorage.getItem('token')
           && decodeJWT(sessionStorage.getItem('token')).id === board.author_id
             ? (
-              <span className="pull-right" style={{ display: 'block' }}>
-                <button
-                  className="btn btn-danger"
-                  style={{ marginRight: '10px' }}
-                  onClick={() => onDestroy(
-                    board.id, destroyBoard, history.push('/board'),
-                  )}
-                >
-Delete
-                </button>
-                <Link
-                  to={`/board/patch/${board.id}`}
-                  type="button"
-                  className="btn btn-warning"
-                >
-Modify
-                </Link>
-              </span>
+            <Fragment>
+              <button
+              className="btn btn-danger"
+              style={{ marginRight: '10px' }}
+              onClick={() => onDestroy(
+              board.id, destroyBoard, history.push('/board'),
+              )}
+              >
+                Delete
+              </button>
+              <Link
+              to={`/board/patch/${board.id}`}
+              type="button"
+              className="btn btn-warning"
+              >
+                Modify
+              </Link>
+            </Fragment>
             )
             : null}
+            </span>
         </p>
         <hr className="hidden-xs" />
         {!loading

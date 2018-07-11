@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -75,29 +75,39 @@ Date:&nbsp;
               {moment(notice.date_created).format('YYYY-MM-DD')}
             </span>
           </span>
+          <span className="pull-right" style={{ display: 'block' }}>
+            <Link
+            type="button"
+            className="btn btn-success"
+            style={{marginRight: '10px'}}
+            to={'/notice'}
+            >
+              List
+            </Link>
           {sessionStorage.getItem('token')
           && decodeJWT(sessionStorage.getItem('token')).isAdmin
             ? (
-              <span className="pull-right" style={{ display: 'block' }}>
+              <Fragment>
                 <button
-                  className="btn btn-danger"
-                  style={{ marginRight: '10px' }}
-                  onClick={() => onDestroy(
-                    notice.id, destroyNotice, history.push('/notice'),
-                  )}
+                className="btn btn-danger"
+                style={{ marginRight: '10px' }}
+                onClick={() => onDestroy(
+                notice.id, destroyNotice, history.push('/notice'),
+                )}
                 >
-Delete
+                  Delete
                 </button>
                 <Link
-                  to={`/notice/patch/${notice.id}`}
-                  type="button"
-                  className="btn btn-warning"
+                to={`/notice/patch/${notice.id}`}
+                type="button"
+                className="btn btn-warning"
                 >
-Modify
+                  Modify
                 </Link>
-              </span>
+              </Fragment>
             )
             : null}
+            </span>
         </p>
         <hr className="hidden-xs" />
         {!loading
