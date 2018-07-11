@@ -108,6 +108,27 @@ Write Your Story...
                 )}
             </div>
           </div>
+          <div className="row" style={{ marginBottom: '20px' }}>
+            <div className="col-sm-4 col-ms-4">
+              <Field name="category" className="form-control" id="category" component="select">
+                <option value="" disabled selected>
+                  글머리 선택
+                </option>
+                <option value="novel">
+                  소설
+                </option>
+                <option value="essay">
+                  산문
+                </option>
+                <option value="think">
+                  단상
+                </option>
+                <option value="comment">
+                  작가의 말
+                </option>
+              </Field>
+            </div>
+          </div>
           <Field name="title" label="save" component={TitleField} />
           <div id="editor" style={{ minHeight: '70vh' }} />
         </form>
@@ -117,6 +138,16 @@ Write Your Story...
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.category) {
+    errors.category = '글머리를 선택하셔야 합니다';
+  }
+
+  return errors;
+}
+
 function mapStateToProps(state) {
   return {
     error: state.story.error,
@@ -124,6 +155,7 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
+  validate,
   form: 'CreateStoryForm',
 })(
   connect(mapStateToProps, { createStory })(CreateStory),
