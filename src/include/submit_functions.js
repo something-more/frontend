@@ -19,6 +19,7 @@ export async function onCreate(quill, values, dispatch, file) {
 
   formData.append('title', values.title);
   formData.append('content', delta);
+  formData.append('category', values.category);
   formData.append('date_created', moment().format());
   if (file) {
     formData.append('thumbnail', file);

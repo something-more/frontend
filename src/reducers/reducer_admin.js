@@ -71,8 +71,8 @@ export async function forceDestroyUser(payload) {
       method: 'delete',
       url: `/users/${payload}`,
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-      }
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
     });
   } catch (e) {
     error = e.message;
@@ -82,7 +82,7 @@ export async function forceDestroyUser(payload) {
     type: FORCE_DESTROY,
     response,
     error,
-  }
+  };
 }
 
 // Initial State
@@ -124,15 +124,15 @@ function reducerUpdateUserAuth(state, action) {
 function reducerForceDestroyUser(state, action) {
   if (!action.error) {
     return {
-    ...state,
+      ...state,
       retrieve: {},
       error: '',
-    }
+    };
   }
   return {
     ...state,
     error: action.error,
-  }
+  };
 }
 
 // Reducer

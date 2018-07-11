@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -77,37 +77,37 @@ Date:&nbsp;
           </span>
           <span className="pull-right" style={{ display: 'block' }}>
             <Link
-            type="button"
-            className="btn btn-success"
-            style={{marginRight: '10px'}}
-            to={'/notice'}
+              type="button"
+              className="btn btn-success"
+              style={{ marginRight: '10px' }}
+              to="/notice"
             >
               List
             </Link>
-          {sessionStorage.getItem('token')
+            {sessionStorage.getItem('token')
           && decodeJWT(sessionStorage.getItem('token')).isAdmin
-            ? (
-              <Fragment>
-                <button
-                className="btn btn-danger"
-                style={{ marginRight: '10px' }}
-                onClick={() => onDestroy(
-                notice.id, destroyNotice, history.push('/notice'),
-                )}
-                >
+              ? (
+                <Fragment>
+                  <button
+                    className="btn btn-danger"
+                    style={{ marginRight: '10px' }}
+                    onClick={() => onDestroy(
+                      notice.id, destroyNotice, history.push('/notice'),
+                    )}
+                  >
                   Delete
-                </button>
-                <Link
-                to={`/notice/patch/${notice.id}`}
-                type="button"
-                className="btn btn-warning"
-                >
+                  </button>
+                  <Link
+                    to={`/notice/patch/${notice.id}`}
+                    type="button"
+                    className="btn btn-warning"
+                  >
                   Modify
-                </Link>
-              </Fragment>
-            )
-            : null}
-            </span>
+                  </Link>
+                </Fragment>
+              )
+              : null}
+          </span>
         </p>
         <hr className="hidden-xs" />
         {!loading

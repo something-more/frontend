@@ -145,10 +145,11 @@ Submit
           <td>
             <form method="post" onSubmit={handleSubmit(this.onForceDestroy.bind(this))}>
               <button
-              onClick={() => {
-                this.setState({ userEmail: user.email });
-              }}
-              className="btn btn-danger btn-sm">
+                onClick={() => {
+                  this.setState({ userEmail: user.email });
+                }}
+                className="btn btn-danger btn-sm"
+              >
                 강퇴
               </button>
             </form>

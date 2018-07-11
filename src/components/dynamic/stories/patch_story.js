@@ -59,6 +59,7 @@ class PatchStory extends Component {
 
     formData.append('title', values.title);
     formData.append('content', delta);
+    formData.append('category', values.category);
     formData.append('date_modified', moment().format());
     formData.append('is_published', 'true');
 
@@ -81,6 +82,7 @@ class PatchStory extends Component {
 
     formData.append('title', values.title);
     formData.append('content', delta);
+    formData.append('category', values.category);
     formData.append('date_modified', moment().format());
     formData.append('is_published', 'false');
     if (file) {
@@ -157,6 +159,27 @@ Created Date:
                 {story.thumbnail
                 ? <img src={story.thumbnail} className="img-responsive" alt="default thumbnail" />
                 : <p className="text-center">없음</p>}
+              </div>
+            </div>
+            <div className="row" style={{marginBottom: '20px'}}>
+              <div className="col-sm-4 col-ms-4">
+                <Field name="category" className="form-control" id="category" component="select">
+                  <option value="" disabled selected>
+                    글머리 선택
+                  </option>
+                  <option value="novel">
+                    소설
+                  </option>
+                  <option value="essay">
+                    산문
+                  </option>
+                  <option value="think">
+                    단상
+                  </option>
+                  <option value="comment">
+                    작가의 말
+                  </option>
+                </Field>
               </div>
             </div>
             <div

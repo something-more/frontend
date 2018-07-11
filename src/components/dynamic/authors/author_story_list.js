@@ -13,7 +13,7 @@ class AuthorStoryList extends Component {
     super(props);
 
     this.state = {
-      nickname: '',
+      nickname: 'author',
     };
   }
 
@@ -23,7 +23,33 @@ class AuthorStoryList extends Component {
     await listStoryAuthor(match.params.id);
 
     const storyObject = await _.last(this.props.storyList);
-    await this.setState({ nickname: storyObject.author_nickname });
+    if (storyObject) {
+      await this.setState({ nickname: storyObject.author_nickname });
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    // 다른 필진을 클릭하면 state 를 변경한다
+    const storyObject = _.last(newProps.storyList);
+    if (storyObject) {
+      this.setState({ nickname: storyObject.author_nickname });
+    }
+  }
+
+
+  renderCategory(payload) {
+    switch (payload) {
+      case 'novel':
+        return '소설';
+      case 'essay':
+        return '산문';
+      case 'think':
+        return '단상';
+      case 'comment':
+        return '작가의 말';
+      default:
+        return '없음';
+    }
   }
 
   renderList() {
@@ -34,8 +60,11 @@ class AuthorStoryList extends Component {
       const indexNum = (this.props.storyList.length) - (this.props.storyList.indexOf(story));
       return (
         <tr key={story.id}>
-          <td className="col-md-2 text-center">
+          <td className="col-md-1 text-center">
             {indexNum}
+          </td>
+          <td className="col-md-1 text-center">
+            {this.renderCategory(story.category)}
           </td>
           <td className="col-md-8 text-left">
             <Link to={`/stories/${story.id}`}>
@@ -66,8 +95,11 @@ class AuthorStoryList extends Component {
         <table className="table table-hover">
           <thead>
             <tr>
-              <th className="text-center col-md-2">
+              <th className="text-center col-md-1">
               번호
+              </th>
+              <th className="text-center col-md-1">
+                글머리
               </th>
               <th className="text-left col-md-8">
               제목
