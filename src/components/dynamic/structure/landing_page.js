@@ -19,7 +19,7 @@ class LandingPage extends Component {
     await this.props.signUp(values);
 
     if (!this.props.error) {
-      alert('회원가입이 완료되었습니다. 로그인해주세요');
+      alert('가입하신 이메일 주소로 인증 메일이 발송되었습니다. 이메일 수신함을 확인해주세요');
       this.setState({ form: 'signIn' });
     }
   }
