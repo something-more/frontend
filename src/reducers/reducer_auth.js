@@ -12,6 +12,7 @@ const SIGNOUT = 'something-more/auth/SIGNOUT';
 const PATCH = 'something-more/auth/PATCH';
 const NICKNAME = 'something-more/auth/NICKNAME';
 const DESTROY = 'something-more/auth/DESTROY';
+const RESET = 'something-more/auth/RESET';
 
 // Action Creators
 
@@ -180,6 +181,27 @@ export async function destroyUser(values) {
   };
 }
 
+// 패스워드 초기화
+export async function resetPassword(values) {
+  let response = '';
+  let error = '';
+
+  try {
+    response = await axios({
+      method: 'get',
+      url: `/reset/${values}`
+    })
+  } catch (e) {
+    error = e.message;
+  }
+
+  return {
+    type: RESET,
+    response,
+    error,
+  }
+}
+
 // 초기 state 정의
 const initialState = {
   email: '',
@@ -292,6 +314,21 @@ function reducerDestroyUser(state, action) {
   };
 }
 
+function reducerResetPassword(state, action) {
+  if (!action.error) {
+    return {
+      ...state,
+      email: '',
+      error: '',
+    }
+  }
+  return {
+    ...state,
+    email: '',
+    error: action.error,
+  }
+}
+
 // Reducer
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -315,6 +352,9 @@ export default function reducer(state = initialState, action) {
 
     case DESTROY:
       return reducerDestroyUser(state, action);
+
+    case RESET:
+      return reducerResetPassword(state, action);
 
     default:
       return state;
