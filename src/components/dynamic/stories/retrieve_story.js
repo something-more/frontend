@@ -117,7 +117,7 @@ Date:&nbsp;
       ? <Fragment>
         {story.thumbnail
         ? <Fragment>
-          <img className="img-responsive" src={story.thumbnail} alt="story thumbnail"/>
+          <img className="img-responsive center-block" src={story.thumbnail} alt="story thumbnail"/>
           <hr className="vertical-spacer"/>
         </Fragment>
         : null}
