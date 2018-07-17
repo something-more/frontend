@@ -1,6 +1,7 @@
 import axios from 'axios';
 import axiosConfig from '../include/axios';
 import hyungSoo from '../assets/images/thumbnail/hyung_soo_thumb-min.jpg';
+import hojang from '../assets/images/thumbnail/kim_ho_jang_thumb_min.jpeg';
 
 // Axios 설정
 axiosConfig(axios);
@@ -91,8 +92,8 @@ const initialState = {
       id: 1,
       name_ko: '김호장',
       name_en: 'Kim Ho Jang',
-      thumbnail: '',
-      introduce: '',
+      thumbnail: hojang,
+      introduce: '소설이 아닌, 소설 너머의 문학. 섬띵모어.',
       email: 'great-ho@somethingmore.co.kr',
     }, {
       id: 2,
