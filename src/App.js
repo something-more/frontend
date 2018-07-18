@@ -86,7 +86,7 @@ class App extends Component {
               <Route path="/about" component={About} />
               <Route path="/st-more-admin" component={AdminSignUp} />
               <Route exact path="/" component={PostsIndex} />
-              <Route path="*" component={PostsIndex} />
+              {/*<Route path="*" component={PostsIndex} />*/}
             </Switch>
           </div>
           <FooterColumn />
