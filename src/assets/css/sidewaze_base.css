@@ -524,7 +524,7 @@ hr.vertical-spacer {
 -------------------------------------------------------------------------------------------------------------------------------------*/
 .logo-wrapper img {
     width: 100%;
-    max-width: 28px;
+    max-width: 30px;
     height:auto;
 }
 
@@ -536,13 +536,13 @@ hr.vertical-spacer {
 }
 
 @media (min-width:1020px) {
-	.logo-wrapper img { max-width: 30px; }
+	.logo-wrapper img { max-width: 40px; }
 }
 @media (min-width:1400px) {
-	.logo-wrapper img { max-width: 40px;}
+	.logo-wrapper img { max-width: 50px;}
 }
 @media (min-width:1800px) {
-	.logo-wrapper img { max-width: 50px;}
+	.logo-wrapper img { max-width: 60px;}
 }
 
 /*------------------------------------------------------------------------------------------------------------------------------------
