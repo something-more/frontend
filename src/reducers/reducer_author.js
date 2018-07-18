@@ -93,7 +93,7 @@ const initialState = {
       name_ko: '김호장',
       name_en: 'Kim Ho Jang',
       thumbnail: hojang,
-      introduce: '소설이 아닌, 소설 너머의 문학. 섬띵모어.',
+      introduce: '소설이 아닌, 소설 너머의 문학.',
       email: 'great-ho@somethingmore.co.kr',
     }, {
       id: 2,

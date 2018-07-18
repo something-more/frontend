@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogoImg from '../../../assets/images/somethingmore logo2.png';
+import LogoImg from '../../../assets/images/logo/logo_full-min.png';
 import AlertError from './alert_error';
 import LandingPageForms from './landing_page_forms';
 
@@ -14,7 +14,6 @@ class LandingPage extends Component {
               <div style={{ marginBottom: '20px' }}>
                 <img
                   src={LogoImg}
-                  style={{ maxWidth: '400px' }}
                   className="img-responsive center-block"
                   alt="logo-img"
                 />

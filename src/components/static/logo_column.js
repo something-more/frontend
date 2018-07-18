@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/images/logo/text_logo.svg';
+import logo from '../../assets/images/logo/logo_text-min.png';
 
 export default () => (
   <div className="logo-col">

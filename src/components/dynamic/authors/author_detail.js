@@ -21,8 +21,8 @@ class AuthorDetail extends Component {
         <div className="col-md-6 col-md-offset-3 text-center">
           <img
             src={author.thumbnail}
-            className="img-responsive img-circle center-block"
-            width="100px"
+            className="img-responsive center-block"
+            width="200px"
             alt="author-thumbnail"
           />
           <h2>

@@ -36,3 +36,9 @@
     font-family: "GoBold", sans-serif;
     font-weight: 300;
 }
+
+@media (max-width: 414px) and (orientation:portrait) {
+    .aligner-item {
+        max-width: 300px;
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import LogoImg from '../../assets/images/somethingmore logo2.png';
+import LogoImg from '../../assets/images/logo/logo_full-min.png';
 
 export default () => (
   <div className="inner-content fadeIn animated" style={{ paddingTop: '100px' }}>
