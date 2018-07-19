@@ -37,7 +37,7 @@ export default () => (
       <ul>
         <li>
           <a
-            href="https://www.facebook.com/%EC%84%AC%EB%9D%B5%EB%AA%A8%EC%96%B4-137267330409505/"
+            href="https://www.facebook.com/%EC%84%AC%EB%9D%B5%EB%AA%A8%EC%96%B4-%EB%AC%B8%ED%95%99%ED%9A%8C-878870905630497/"
             className="tooltip-hover"
             data-placement="left"
             target="_blank"
