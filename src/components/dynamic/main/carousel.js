@@ -62,8 +62,7 @@ class MainCarousel extends Component {
                     : (
                       <img
                         src={defaultImg}
-                        style={{ opacity: '.3' }}
-                        className="img-responsive"
+                        style={{ opacity: '.3', maxWidth: '90%', padding: '45px 10px', height: 'auto' }}
                         alt="default-thumbnail"
                       />
                     )}
