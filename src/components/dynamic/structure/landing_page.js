@@ -7,7 +7,6 @@ import LandingPageForms from './landing_page_forms';
 class LandingPage extends Component {
   render() {
     const agent = navigator.userAgent.toLowerCase();
-    alert(agent);
 
     if (!sessionStorage.getItem('display')) {
       return (
@@ -15,6 +14,14 @@ class LandingPage extends Component {
           <div className="aligner">
             <div className="aligner-item text-center fadeIn animated">
               <div style={{ marginBottom: '20px' }}>
+                {
+                  agent.indexOf('trident') !== -1
+                  ? <div className="alert alert-danger">
+                    현재 구형 Internet Explorer를 사용하고 계십니다. 서비스를 원활히 이용하기 위해 신형 브라우저&nbsp;
+                    <a className="text-info"
+                    href="https://www.google.com/chrome/">Chrome</a>을 이용해주시길 바랍니다.
+                  </div>
+                  : null}
                 <img
                   src={LogoImg}
                   className="img-responsive center-block"
