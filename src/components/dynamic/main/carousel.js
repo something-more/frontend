@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { clientListStory } from '../../../reducers/reducer_story';
 import AlertError from '../structure/alert_error';
 import Loading from '../structure/loading';
-import defaultImg from '../../../assets/images/logo/img_logo.svg';
+import defaultImg from '../../../assets/images/logo/logo_full-min.png';
 
 class MainCarousel extends Component {
   constructor(props) {
