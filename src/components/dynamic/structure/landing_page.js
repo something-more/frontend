@@ -6,6 +6,9 @@ import LandingPageForms from './landing_page_forms';
 
 class LandingPage extends Component {
   render() {
+    const agent = navigator.userAgent.toLowerCase();
+    alert(agent);
+
     if (!sessionStorage.getItem('display')) {
       return (
         <div id="init-box">
