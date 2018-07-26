@@ -24,6 +24,7 @@ import './assets/css/font_face.css';
 import './assets/css/transition.css';
 import './assets/css/carousel_grid.css';
 import './assets/css/landing_page.css';
+import './assets/css/quill_custom.css';
 
 // 동적 로딩
 import {

@@ -1,0 +1,19 @@
+.ql-editor ol li:before {
+  content: counter(list-0, upper-roman) '. ' !important;
+}
+
+.ql-editor ol li.ql-indent-1:before {
+  content: counter(list-1, lower-roman) '. ' !important;
+}
+
+.ql-editor ol li.ql-indent-2:before {
+  content: counter(list-2, decimal) '. ' !important;
+}
+
+.ql-editor ol li.ql-indent-3:before {
+  content: counter(list-3, upper-alpha) '. ' !important;
+}
+
+.ql-editor ol li.ql-indent-4:before {
+  content: counter(list-4, lower-alpha) '. ' !important;
+}
