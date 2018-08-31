@@ -2,6 +2,7 @@ import axios from 'axios';
 import axiosConfig from '../include/axios';
 import hyungSoo from '../assets/images/thumbnail/hyung_soo_thumb-min.jpg';
 import hojang from '../assets/images/thumbnail/kim_ho_jang_thumb_min.jpeg';
+import siwon from '../assets/images/thumbnail/han_si_won_thumb_min.jpeg';
 
 // Axios 설정
 axiosConfig(axios);
@@ -102,6 +103,13 @@ const initialState = {
       thumbnail: hyungSoo,
       introduce: '컴퓨터의 말과 인간의 말을 함께 배워갑니다.',
       email: 'huskyhoochu@somethingmore.co.kr',
+    }, {
+      id: 3,
+      name_ko: '한시원',
+      name_en: 'Han Si Won',
+      thumbnail: siwon,
+      introduce: '계란으로 바위를 왜 칩니까. 바위는 가만히 있는데.',
+      email: 'essence91@naver.com',
     }],
   dbList: [],
   storyList: [],
